@@ -1,0 +1,56 @@
+CONSTANTS  R_TRUNK=0.0133  R_MIN=0.00220  R_FLOOR_BY_DEPTH=(0.0044, 0.0034, 0.003, 0.0027, 0.0024)
+           DEPTH_TAPER=0.80  TYPE_GIRTH.shootLeft=0.92  TIP_TAPER=0.45  AGE_STEPS=25.0  CURVE_TENSION=0.45  NODE_MOVE_MAX_CELLS=0.42
+           total_steps=512  frame_w=0.70685 m  scale=1273.3 px/m at 900x1200
+
+MONOTONIC radius check over 300 sampled frames: worst shrink = 0.000e+00 m at None
+  (any value <= 1e-12 is float noise, not a shrink)
+
+PATH DEVIATION from the literal cbonsai cell after the corner cut:
+  worst sampled = 0.420 cell  at chain (90, 2)   (budget 0.45)
+  worst node displacement reported by _smooth_nodes = 0.420 cell (cap 0.42)
+
+FIRST-ORDER BRANCH GIRTH AT ITS JUNCTION vs THE TRUNK AT THAT HEIGHT, t=1
+  (re-gate requires ratio >= 0.25)
+  chain         type     birth  segs  branch_r_mm   trunk_r_mm    ratio
+     81    shootLeft       243    22        9.789       10.163    0.963
+    141        trunk       417     8       10.640        7.353    1.447
+    101        trunk       305    16       10.640        9.830    1.082
+    165        dying       478     5        6.384        4.400    1.451
+      1        trunk         3    27       10.640       16.606    0.641
+    161        dying       467     6        6.384        6.617    0.965
+    169        dying       488     4        6.181        4.400    1.405
+    175        dying       500     3        3.987        4.400    0.906
+    178         dead       506     2        3.400        4.400    0.773
+  0 of 9 first-order branches under 0.25
+
+THE RIGHT-PAD PRIMARY (the branch measured at 3.0 mm / ratio 0.11 before)
+  chain 2 (shootRight, depth 2, birthStep 9, 25 cells, reaches x=0.249 m)
+  branch_r = 7.831 mm   trunk_r at the nebari = 28.633 mm   ratio = 0.273
+  trunk_r at THAT HEIGHT = 12.297 mm   ratio = 0.637
+  (rejected build: 3.0 mm against 27.8 mm, ratio 0.11)
+
+TRUNK RADIUS AT t=1 (unchanged by this round; depth 0 is not tapered): 28.633 mm at the nebari
+
+THINNEST LEAF-BEARING TWIG at t=1: 2.200 mm radius (5.6 px wide at 900x1200) on chain 4 dead  (re-gate requires >= 1.6 mm)
+
+THINNEST BARE WOOD PER PREVIEW FRAME (bare = no leaf card within 29 mm)
+  (re-gate requires >= 5.0 px at 900x1200)
+   frame        t    thinnest_mm    px_wide
+       0   0.0000  (all clothed)          -
+      54   0.0902          3.140       8.00
+     109   0.1820          3.349       8.53
+     130   0.2170          3.400       8.66
+     163   0.2721          3.549       9.04
+     218   0.3639          3.790       9.65
+     272   0.4541          3.000       7.64
+     290   0.4841          4.155      10.58
+     327   0.5459          3.000       7.64
+     381   0.6361          4.400      11.20
+     436   0.7279          4.400      11.20
+     490   0.8180          5.408      13.77
+     545   0.9098          5.805      14.78
+     599   1.0000          6.216      15.83
+  worst across the preview ladder: 7.64 px
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+
+Blender quit

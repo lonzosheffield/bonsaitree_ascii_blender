@@ -1,0 +1,283 @@
+================================================================================
+M2 LOOK GATE - REVISION 2  (the "blue standalone portrait" FAIL, remediated)
+================================================================================
+Fable's verdict on revision 1: the TREE passes and must not change - S-curve
+trunk, nebari, three asymmetric pads, monotonic growth (worst girth shrink
+0.000), blossoms confined to t > 0.87 and easing in on smootherstep.  The FAIL
+was everything AROUND the tree.  Four notes, four fixes, all measured below on
+the twelve frames in this directory (450x600, the same spread of t).
+
+Reproduce every number in this file with:
+    python proof/M2/preview/verify-art-direction.py proof/M2/preview
+Girth monotonicity (analytic, no render):
+    blender -b --factory-startup --python proof/M2/preview/verify-girth-monotonic.py
+
+The rejected build is preserved unaltered in ./superseded-blue-build/ for A/B.
+
+--------------------------------------------------------------------------------
+WHAT CHANGED IN blender/bonsai_growth.py
+--------------------------------------------------------------------------------
+(1) FRAMING - composed for the duet slot, not as a standalone portrait.
+    The camera is now SOLVED rather than padded.  Two targets, TARGET_POT_RIM_V
+    = 0.90 and TARGET_CANOPY_TOP_V = 0.45, determine frame_h outright:
+        frame_h = (canopy_top_z - pot_rim_z) / (0.90 - 0.45)
+    so the tree occupies exactly 45% of the frame height and sits at the same
+    height in it as the ASCII tree does in its 40-row panel (v 0.455..0.905).
+    FRAME_MARGIN (1.05 -> 1.18) and the new SIDE_MARGIN_MIN are now only guards
+    on the horizontal, which the vertical solve does not constrain; CONTENT_BIAS
+    is gone, because frame_bottom is derived, not chosen.
+    LENS_MM 85, CAM_YAW_DEG 4, CAM_ELEV_DEG 4 are unchanged, as required.
+
+    The floor is now SIZED FROM THE CAMERA.  build_camera reports where the
+    bottom edge of the frame lands on the floor plane (y = -0.1441 m) and
+    build_floor makes the pool's semi-axis toward the lens 80% of that, so there
+    is always a genuinely black band of floor before the last row of pixels.
+    Two further fixes there: the floor's outer specular stop went 0.015 -> 0.000
+    with its knee moved out to 0.55 (F0 = 0.015 under 100 W of rim is what AgX
+    was lifting into the grey band), and a latent bug in the Mapping node - it
+    scales BEFORE it translates, so scaling Z by 0 and then adding -floor_z put
+    a constant 0.09 m offset into a "flat" radial gradient - was removed.
+
+(2) AMBIENT HUE - blue -> desaturated green-cyan, echoing the phosphor.
+    World ramp, backdrop-card ramp and floor ramp all moved to G >= B with B - R
+    only just positive.  RimCool and RimCoolLow are now (0.55, 0.95, 0.85) and
+    Fill is (0.60, 0.80, 0.75).  Because that gel is 1.33x brighter per watt
+    than the blue it replaces, the wattages came DOWN to keep the same amount of
+    light: RimCool 108 -> 80 W (80 x 0.857 = 68.6 vs 108 x 0.646 = 69.8),
+    RimCoolLow 48 -> 40 W.  The backdrop's bright stop keeps its old LUMINANCE
+    (~0.035 linear); only its hue moved, because the glow's job - giving the
+    canopy something to be a silhouette against - is a brightness job.
+    KeyWarm (22 W, size 0.25, 1.000/0.760/0.520) and PotKick are UNTOUCHED.
+
+(3) SECONDARY MATURATION - the hour is alive now (BRIEF N7).
+    Skeleton reach, chain birth steps and blossom timing are untouched; they are
+    the sync contract.  What was added rides on top of them, per leaf SITE, on
+    that site's own clock from its own birth to MATURE_END = 0.85:
+      - size:   cards unfurl to LEAF_UNFURL_FLOOR = 0.55 over LEAF_STEPS as
+                before, then ease to 1.0 by MATURE_END.
+      - count:  LEAF_CARDS_AT_BIRTH = 4 of the 8 cards open with the pad; the
+                other 4 are gated on a per-card hash spread to LEAF_GATE_MAX,
+                so a pad thickens ~4 -> 8 cards over its own maturation.
+      - colour: a per-vertex "leafage" float drives a mix between a spring
+                yellow-green flush and the existing deep-green noise ramp, so
+                new growth arrives pale and hardens off by t~0.8.
+      - girth:  THICKEN_GAMMA 0.60 -> 1.50.  The old value was a DECELERATING
+                curve that spent 66% of the girth range before half time.
+    MATURE_LINEAR = 0.30 blends a straight line into the smootherstep, because
+    smootherstep has zero slope at BOTH ends and a maturation curve that goes
+    flat at t=0.85 is just a later still image.  Every factor is non-negative
+    and non-decreasing in t, so the product is: geometry still cannot shrink.
+
+(4) LEAF SPECULAR - Roughness 0.50 -> 0.68, Specular 0.28 -> 0.14.
+    The 0.34 translucent mix is untouched and is what carries the rim; the
+    specular lobe was only ever competing with the blossoms.
+
+================================================================================
+MEASUREMENTS
+================================================================================
+== C:/aha/ascii art/proof/M2/preview  12 frames  450x600 ==
+
+[1a] BOTTOM ROW / FLOOR BAND  (require bottom-row luma <= 9)
+   f0000  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0054  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0109  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0163  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0218  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0272  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0327  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0381  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0436  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0490  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0545  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0599  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+
+[1b] CONTENT EXTENT at t=1, from the clean plate (delta luma > 6)
+   tree pixels span  u=0.1733..0.8311   v=0.4533..0.9100
+   side margins: left=0.1733  right=0.1689   (require >= 0.12)
+   leaf pixels span  u=0.1733..0.8311   v=0.4533..0.9083
+
+[2] AMBIENT HUE at the first frame  (require G >= B and B-R <= +6)
+   backdrop glow, behind canopy v=.42-.52 u=.35-.65   RGB=( 20.3, 27.2, 22.6)  G-B= +4.6  B-R= +2.3
+   backdrop glow, wide band     v=.30-.45 u=.10-.90   RGB=(  7.2, 10.9,  8.8)  G-B= +2.1  B-R= +1.6
+   backdrop peak row            v=.46-.50 u=.44-.56   RGB=( 22.7, 30.1, 25.1)  G-B= +5.0  B-R= +2.3
+   top rows                     v=.00-.06             RGB=(  0.2,  0.5,  0.4)  G-B= +0.2  B-R= +0.2
+   floor, left of pot           v=.90-.97 u=.05-.20   RGB=(  1.0,  1.4,  1.1)  G-B= +0.2  B-R= +0.1
+
+[2b] TRUNK WARMTH  (wood only: differs from plate AND luma>40; require R-B >= +8)
+   f0000  (no wood in box yet: 0 px)
+   f0054  lit=  601  R= 93.59 G= 90.21 B= 73.92   R-B=+19.67  R-G= +3.37
+   f0109  lit=  780  R= 91.10 G= 88.09 B= 72.16   R-B=+18.93  R-G= +3.01
+   f0163  lit=  830  R= 91.83 G= 88.49 B= 72.39   R-B=+19.44  R-G= +3.34
+   f0218  lit=  859  R= 93.24 G= 89.41 B= 73.08   R-B=+20.16  R-G= +3.83
+   f0272  lit= 1340  R= 90.31 G= 87.40 B= 71.58   R-B=+18.73  R-G= +2.91
+   f0327  lit= 1733  R= 91.32 G= 87.12 B= 70.87   R-B=+20.45  R-G= +4.20
+   f0381  lit= 1849  R= 91.02 G= 86.20 B= 69.81   R-B=+21.21  R-G= +4.82
+   f0436  lit= 1947  R= 90.66 G= 85.46 B= 68.97   R-B=+21.69  R-G= +5.20
+   f0490  lit= 2049  R= 90.78 G= 85.03 B= 68.34   R-B=+22.44  R-G= +5.75
+   f0545  lit= 2143  R= 90.57 G= 84.14 B= 67.24   R-B=+23.33  R-G= +6.43
+   f0599  lit= 2367  R= 94.43 G= 87.95 B= 71.51   R-B=+22.92  R-G= +6.48
+
+[3a] RIGHT-PAD LEAF PIXELS  (must strictly increase f109->f218->f327->f436->f490)
+   -- Fable's literal box (old framing)  v=0.500..0.720 u=0.680..1.000
+      f0000  leaf px=     0
+      f0054  leaf px=   333  +333
+      f0109  leaf px=   493  +160
+      f0163  leaf px=   516  +23
+      f0218  leaf px=   601  +85
+      f0272  leaf px=   696  +95
+      f0327  leaf px=   768  +72
+      f0381  leaf px=   802  +34
+      f0436  leaf px=   817  +15
+      f0490  leaf px=   825  +8
+      f0545  leaf px=   827  +2
+      f0599  leaf px=   838  +11
+   -- same pad, re-mapped to new framing  v=0.667..0.832 u=0.635..1.000
+      f0000  leaf px=     0
+      f0054  leaf px=  1004  +1004
+      f0109  leaf px=  1822  +818
+      f0163  leaf px=  1881  +59
+      f0218  leaf px=  2139  +258
+      f0272  leaf px=  2465  +326
+      f0327  leaf px=  2711  +246
+      f0381  leaf px=  2851  +140
+      f0436  leaf px=  2933  +82
+      f0490  leaf px=  2967  +34
+      f0545  leaf px=  2957  *** NOT INCREASING (-10)
+      f0599  leaf px=  2807  *** NOT INCREASING (-150)
+
+[3b] WHOLE-FRAME mean|delta| between consecutive preview frames
+     (BRIEF N7: any consecutive pair with t in [0.55,0.87] must be >= 0.80/255)
+   f0000->f0054  t=0.000->0.090  mean|d|= 0.540/255
+   f0054->f0109  t=0.090->0.182  mean|d|= 0.553/255
+   f0109->f0163  t=0.182->0.272  mean|d|= 0.627/255
+   f0163->f0218  t=0.272->0.364  mean|d|= 0.630/255
+   f0218->f0272  t=0.364->0.454  mean|d|= 1.046/255
+   f0272->f0327  t=0.454->0.546  mean|d|= 1.556/255
+   f0327->f0381  t=0.546->0.636  mean|d|= 1.155/255  <-- N7 window
+   f0381->f0436  t=0.636->0.728  mean|d|= 1.445/255  <-- N7 window
+   f0436->f0490  t=0.728->0.818  mean|d|= 1.442/255  <-- N7 window
+   f0490->f0545  t=0.818->0.910  mean|d|= 1.079/255  <-- N7 window
+   f0545->f0599  t=0.910->1.000  mean|d|= 2.326/255
+   worst pair inside the N7 window: 1.079/255  (need >= 0.80)
+
+[4] LEAF SPECULAR GLITTER  (luma>200, B>R, blossoms masked out; require <= 150 at t=1)
+   f0000  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0054  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0109  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0163  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0218  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0272  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0327  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0381  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0436  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0490  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0545  cool-highlight px=    0   | all luma>200 px=   151  of which petal-like=    22
+   f0599  cool-highlight px=    0   | all luma>200 px=  1202  of which petal-like=    64
+
+[4b] BRIGHTEST ELEMENTS IN THE CANOPY AT t=1
+   petal-like px=  4735  mean luma= 162.6  p99= 231.6  max= 237.6
+   leaf-like  px=  4663  mean luma= 120.6  p99= 197.0  max= 232.9
+[3c] RIGHT-PAD TOTAL COVERAGE - all tree pixels, any hue (delta from plate > 6)
+     This is the control for [3a]: green-leaf pixel count DIPS at f545/f599
+     because pink blossoms land ON TOP of leaves and stop being green. Total
+     coverage is strictly increasing across all twelve frames, so nothing
+     shrank - foliage was recoloured by bloom, which is the point of bloom.
+   -- literal box (old framing)   v=.500-.720 u=.680-1.0
+      f0000  all tree px=     0   of which green=     0
+      f0054  all tree px=   373   of which green=   333  +373
+      f0109  all tree px=   530   of which green=   493  +157
+      f0163  all tree px=   551   of which green=   516  +21
+      f0218  all tree px=   628   of which green=   601  +77
+      f0272  all tree px=   715   of which green=   696  +87
+      f0327  all tree px=   777   of which green=   768  +62
+      f0381  all tree px=   811   of which green=   802  +34
+      f0436  all tree px=   823   of which green=   817  +12
+      f0490  all tree px=   829   of which green=   825  +6
+      f0545  all tree px=   832   of which green=   827  +3
+      f0599  all tree px=   875   of which green=   838  +43
+   -- same pad, new framing       v=.667-.832 u=.635-1.0
+      f0000  all tree px=     0   of which green=     0
+      f0054  all tree px=  1286   of which green=  1004  +1286
+      f0109  all tree px=  2107   of which green=  1822  +821
+      f0163  all tree px=  2164   of which green=  1881  +57
+      f0218  all tree px=  2387   of which green=  2139  +223
+      f0272  all tree px=  2671   of which green=  2465  +284
+      f0327  all tree px=  2894   of which green=  2711  +223
+      f0381  all tree px=  3025   of which green=  2851  +131
+      f0436  all tree px=  3122   of which green=  2933  +97
+      f0490  all tree px=  3150   of which green=  2967  +28
+      f0545  all tree px=  3231   of which green=  2957  +81
+      f0599  all tree px=  3543   of which green=  2807  +312
+
+[5] THICKEN_GAMMA 0.60 -> 1.50 : where girth growth actually lands
+    girth multiplier, and the share of the whole 0.50->1.00 range spent
+    in each half of the hour.
+      t      OLD gamma=0.60   NEW gamma=1.50
+    0.000      0.5000           0.5000
+    0.125      0.6436           0.5221
+    0.250      0.7176           0.5625
+    0.375      0.7776           0.6148
+    0.500      0.8299           0.6768
+    0.625      0.8771           0.7471
+    0.750      0.9207           0.8248
+    0.875      0.9615           0.9092
+    1.000      1.0000           1.0000
+    gamma 0.60:  first half delivers 66% of the range, second half 34%
+    gamma 1.50:  first half delivers 35% of the range, second half 65%
+
+[6] GIRTH MONOTONICITY, re-run at THICKEN_GAMMA = 1.50
+    blender -b --factory-startup --python proof/M2/preview/verify-girth-monotonic.py
+    AGE_STEPS = 45.0   total_steps = 512
+    MONOTONIC radius check over 300 sampled frames: worst shrink = 0.000e+00 m  at None
+      (R_MIN = 0.00085 m; any value <= 1e-12 is float noise, not a shrink)
+    
+    late camera-LEFT chain #84: head birthStep=262  reach=0.176 m  segs=2
+     frame        t  branch_r_mm   trunk_r_mm    ratio
+       246  (not born)
+       248  (not born)
+       251  (not born)
+       255  (not born)
+       262  (not born)
+       275  (not born)
+       290   0.4841        0.850       18.607     0.05
+       312   0.5209        1.918       19.151     0.10
+       340   0.5676        2.150       19.871     0.11
+       400   0.6678        2.328       21.514     0.11
+       500   0.8347        2.655       24.533     0.11
+       599   1.0000        3.012       27.837     0.11
+    Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)
+    
+
+================================================================================
+ACCEPTANCE, ONE LINE EACH
+================================================================================
+(1) pot_rim_v = 0.9000 and canopy_top_v = 0.4500 in camera.json  [target 0.90 / 0.45]
+    measured tree pixels span v = 0.4533 .. 0.9100               [ASCII: 0.455 .. 0.905]
+    bottom-row luma = 0.08 in all twelve frames                  [require <= 9]
+    bottom-row RGB = (0.1, 0.1, 0.1)                             [require <= (6,7,9)]
+    side margins: left 0.1733, right 0.1689                      [require >= 0.12]
+    t=1 content bounds in camera.json: u = 0.1433 .. 0.8567      [require 0.12 .. 0.88]
+(2) backdrop glow behind canopy at f0000: G-B = +4.6, B-R = +2.3 [require G>=B, B-R<=+6]
+    trunk lit-pixel R-B = +18.7 .. +23.3 across the run          [require >= +8]
+    (and R-G = +2.9 .. +6.5, so red is the dominant channel on wood: warm)
+(3) right-pad leaf pixels f109 -> f218 -> f327 -> f436 -> f490:
+        literal box    493 ->  601 ->  768 ->  817 ->  825       [strictly increasing]
+        re-mapped box 1822 -> 2139 -> 2711 -> 2933 -> 2967       [strictly increasing]
+    worst consecutive whole-frame delta, t in [0.55, 0.87]: 1.079/255  [require >= 0.80]
+    (the rejected build measured 1.17/255 over a wider step and only
+     0.19-0.39/255 per 110 frames inside this same pad)
+    girth monotonic: worst shrink 0.000e+00 m over 300 sampled frames
+(4) cool highlight px (luma>200, B>R, petals masked) at f0599: 0 [require <= 150]
+    (the rejected build: 23 -> 140 -> 286 -> 601 across the same run)
+    blossoms are the brightest thing in the canopy at t=1:
+        petal-like p99 luma 231.6  vs  leaf-like p99 luma 197.0
+
+A NOTE ON THE t=1 DIP IN [3a].  Green-leaf pixel count in the right pad falls at
+f0545 and f0599.  That is bloom, not shrinkage: pink petals land on top of leaves
+and stop those pixels being green.  [3c] counts ALL tree pixels in the same box,
+any hue, and it rises at every one of the twelve frames.
+
+UNCHANGED, as instructed: skeleton reach, chain birth steps, LEAF_STEPS = 14,
+BLOSSOM_START = 0.87, the blossom stagger, KeyWarm, PotKick, LENS_MM,
+CAM_YAW_DEG, CAM_ELEV_DEG, and the fixed-camera guarantee (the camera is still
+built once, before the render loop, and never touched again).

@@ -1,0 +1,7859 @@
+{
+  "seed": 1337,
+  "cols": 80,
+  "rows": 36,
+  "maxLife": 32,
+  "segments": [
+    {
+      "id": 0,
+      "parent": -1,
+      "type": "trunk",
+      "x0": 40,
+      "y0": 35,
+      "x1": 39,
+      "y1": 35,
+      "life": 31,
+      "age": 1,
+      "birthStep": 0,
+      "depth": 0
+    },
+    {
+      "id": 1,
+      "parent": 0,
+      "type": "trunk",
+      "x0": 39,
+      "y0": 35,
+      "x1": 38,
+      "y1": 35,
+      "life": 30,
+      "age": 2,
+      "birthStep": 1,
+      "depth": 0
+    },
+    {
+      "id": 2,
+      "parent": 1,
+      "type": "trunk",
+      "x0": 38,
+      "y0": 35,
+      "x1": 39,
+      "y1": 35,
+      "life": 29,
+      "age": 3,
+      "birthStep": 2,
+      "depth": 0
+    },
+    {
+      "id": 3,
+      "parent": 2,
+      "type": "trunk",
+      "x0": 39,
+      "y0": 35,
+      "x1": 39,
+      "y1": 34,
+      "life": 28,
+      "age": 4,
+      "birthStep": 3,
+      "depth": 0
+    },
+    {
+      "id": 4,
+      "parent": 3,
+      "type": "trunk",
+      "x0": 39,
+      "y0": 34,
+      "x1": 37,
+      "y1": 34,
+      "life": 27,
+      "age": 5,
+      "birthStep": 4,
+      "depth": 0
+    },
+    {
+      "id": 5,
+      "parent": 4,
+      "type": "shootLeft",
+      "x0": 37,
+      "y0": 34,
+      "x1": 36,
+      "y1": 34,
+      "life": 30,
+      "age": 2,
+      "birthStep": 5,
+      "depth": 1
+    },
+    {
+      "id": 6,
+      "parent": 5,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 34,
+      "x1": 36,
+      "y1": 33,
+      "life": 29,
+      "age": 3,
+      "birthStep": 6,
+      "depth": 1
+    },
+    {
+      "id": 7,
+      "parent": 6,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 33,
+      "x1": 36,
+      "y1": 33,
+      "life": 28,
+      "age": 4,
+      "birthStep": 7,
+      "depth": 1
+    },
+    {
+      "id": 8,
+      "parent": 7,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 33,
+      "x1": 36,
+      "y1": 33,
+      "life": 27,
+      "age": 5,
+      "birthStep": 8,
+      "depth": 1
+    },
+    {
+      "id": 9,
+      "parent": 8,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 33,
+      "x1": 36,
+      "y1": 33,
+      "life": 26,
+      "age": 6,
+      "birthStep": 9,
+      "depth": 1
+    },
+    {
+      "id": 10,
+      "parent": 9,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 33,
+      "x1": 36,
+      "y1": 34,
+      "life": 25,
+      "age": 7,
+      "birthStep": 10,
+      "depth": 1
+    },
+    {
+      "id": 11,
+      "parent": 10,
+      "type": "shootLeft",
+      "x0": 36,
+      "y0": 34,
+      "x1": 35,
+      "y1": 35,
+      "life": 24,
+      "age": 8,
+      "birthStep": 11,
+      "depth": 1
+    },
+    {
+      "id": 12,
+      "parent": 11,
+      "type": "shootLeft",
+      "x0": 35,
+      "y0": 35,
+      "x1": 33,
+      "y1": 35,
+      "life": 23,
+      "age": 9,
+      "birthStep": 12,
+      "depth": 1
+    },
+    {
+      "id": 13,
+      "parent": 12,
+      "type": "shootLeft",
+      "x0": 33,
+      "y0": 35,
+      "x1": 32,
+      "y1": 35,
+      "life": 22,
+      "age": 10,
+      "birthStep": 13,
+      "depth": 1
+    },
+    {
+      "id": 14,
+      "parent": 13,
+      "type": "shootLeft",
+      "x0": 32,
+      "y0": 35,
+      "x1": 30,
+      "y1": 35,
+      "life": 21,
+      "age": 11,
+      "birthStep": 14,
+      "depth": 1
+    },
+    {
+      "id": 15,
+      "parent": 14,
+      "type": "shootLeft",
+      "x0": 30,
+      "y0": 35,
+      "x1": 29,
+      "y1": 35,
+      "life": 20,
+      "age": 12,
+      "birthStep": 15,
+      "depth": 1
+    },
+    {
+      "id": 16,
+      "parent": 15,
+      "type": "shootLeft",
+      "x0": 29,
+      "y0": 35,
+      "x1": 29,
+      "y1": 35,
+      "life": 19,
+      "age": 13,
+      "birthStep": 16,
+      "depth": 1
+    },
+    {
+      "id": 17,
+      "parent": 16,
+      "type": "shootLeft",
+      "x0": 29,
+      "y0": 35,
+      "x1": 29,
+      "y1": 35,
+      "life": 18,
+      "age": 14,
+      "birthStep": 17,
+      "depth": 1
+    },
+    {
+      "id": 18,
+      "parent": 17,
+      "type": "shootLeft",
+      "x0": 29,
+      "y0": 35,
+      "x1": 29,
+      "y1": 34,
+      "life": 17,
+      "age": 15,
+      "birthStep": 18,
+      "depth": 1
+    },
+    {
+      "id": 19,
+      "parent": 18,
+      "type": "shootLeft",
+      "x0": 29,
+      "y0": 34,
+      "x1": 28,
+      "y1": 35,
+      "life": 16,
+      "age": 16,
+      "birthStep": 19,
+      "depth": 1
+    },
+    {
+      "id": 20,
+      "parent": 19,
+      "type": "shootLeft",
+      "x0": 28,
+      "y0": 35,
+      "x1": 27,
+      "y1": 35,
+      "life": 15,
+      "age": 17,
+      "birthStep": 20,
+      "depth": 1
+    },
+    {
+      "id": 21,
+      "parent": 20,
+      "type": "shootLeft",
+      "x0": 27,
+      "y0": 35,
+      "x1": 26,
+      "y1": 35,
+      "life": 14,
+      "age": 18,
+      "birthStep": 21,
+      "depth": 1
+    },
+    {
+      "id": 22,
+      "parent": 21,
+      "type": "shootLeft",
+      "x0": 26,
+      "y0": 35,
+      "x1": 26,
+      "y1": 35,
+      "life": 13,
+      "age": 19,
+      "birthStep": 22,
+      "depth": 1
+    },
+    {
+      "id": 23,
+      "parent": 22,
+      "type": "shootLeft",
+      "x0": 26,
+      "y0": 35,
+      "x1": 25,
+      "y1": 34,
+      "life": 12,
+      "age": 20,
+      "birthStep": 23,
+      "depth": 1
+    },
+    {
+      "id": 24,
+      "parent": 23,
+      "type": "shootLeft",
+      "x0": 25,
+      "y0": 34,
+      "x1": 23,
+      "y1": 34,
+      "life": 11,
+      "age": 21,
+      "birthStep": 24,
+      "depth": 1
+    },
+    {
+      "id": 25,
+      "parent": 24,
+      "type": "shootLeft",
+      "x0": 23,
+      "y0": 34,
+      "x1": 23,
+      "y1": 35,
+      "life": 10,
+      "age": 22,
+      "birthStep": 25,
+      "depth": 1
+    },
+    {
+      "id": 26,
+      "parent": 25,
+      "type": "shootLeft",
+      "x0": 23,
+      "y0": 35,
+      "x1": 23,
+      "y1": 35,
+      "life": 9,
+      "age": 23,
+      "birthStep": 26,
+      "depth": 1
+    },
+    {
+      "id": 27,
+      "parent": 26,
+      "type": "shootLeft",
+      "x0": 23,
+      "y0": 35,
+      "x1": 22,
+      "y1": 34,
+      "life": 8,
+      "age": 24,
+      "birthStep": 27,
+      "depth": 1
+    },
+    {
+      "id": 28,
+      "parent": 27,
+      "type": "shootLeft",
+      "x0": 22,
+      "y0": 34,
+      "x1": 21,
+      "y1": 34,
+      "life": 7,
+      "age": 25,
+      "birthStep": 28,
+      "depth": 1
+    },
+    {
+      "id": 29,
+      "parent": 28,
+      "type": "dying",
+      "x0": 21,
+      "y0": 34,
+      "x1": 19,
+      "y1": 34,
+      "life": 5,
+      "age": 27,
+      "birthStep": 29,
+      "depth": 2
+    },
+    {
+      "id": 30,
+      "parent": 29,
+      "type": "dying",
+      "x0": 19,
+      "y0": 34,
+      "x1": 22,
+      "y1": 34,
+      "life": 4,
+      "age": 28,
+      "birthStep": 30,
+      "depth": 2
+    },
+    {
+      "id": 31,
+      "parent": 30,
+      "type": "dying",
+      "x0": 22,
+      "y0": 34,
+      "x1": 21,
+      "y1": 34,
+      "life": 3,
+      "age": 29,
+      "birthStep": 31,
+      "depth": 2
+    },
+    {
+      "id": 32,
+      "parent": 31,
+      "type": "dead",
+      "x0": 21,
+      "y0": 34,
+      "x1": 21,
+      "y1": 33,
+      "life": 0,
+      "age": 32,
+      "birthStep": 32,
+      "depth": 4
+    },
+    {
+      "id": 33,
+      "parent": 31,
+      "type": "dead",
+      "x0": 21,
+      "y0": 34,
+      "x1": 20,
+      "y1": 33,
+      "life": 1,
+      "age": 31,
+      "birthStep": 33,
+      "depth": 3
+    },
+    {
+      "id": 34,
+      "parent": 33,
+      "type": "dead",
+      "x0": 20,
+      "y0": 33,
+      "x1": 20,
+      "y1": 33,
+      "life": 0,
+      "age": 32,
+      "birthStep": 34,
+      "depth": 3
+    },
+    {
+      "id": 35,
+      "parent": 31,
+      "type": "dying",
+      "x0": 21,
+      "y0": 34,
+      "x1": 21,
+      "y1": 34,
+      "life": 2,
+      "age": 30,
+      "birthStep": 35,
+      "depth": 2
+    },
+    {
+      "id": 36,
+      "parent": 35,
+      "type": "dead",
+      "x0": 21,
+      "y0": 34,
+      "x1": 20,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 36,
+      "depth": 3
+    },
+    {
+      "id": 37,
+      "parent": 35,
+      "type": "dying",
+      "x0": 21,
+      "y0": 34,
+      "x1": 23,
+      "y1": 34,
+      "life": 1,
+      "age": 31,
+      "birthStep": 37,
+      "depth": 2
+    },
+    {
+      "id": 38,
+      "parent": 37,
+      "type": "dying",
+      "x0": 23,
+      "y0": 34,
+      "x1": 21,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 38,
+      "depth": 2
+    },
+    {
+      "id": 39,
+      "parent": 28,
+      "type": "shootLeft",
+      "x0": 21,
+      "y0": 34,
+      "x1": 20,
+      "y1": 35,
+      "life": 6,
+      "age": 26,
+      "birthStep": 39,
+      "depth": 1
+    },
+    {
+      "id": 40,
+      "parent": 39,
+      "type": "dying",
+      "x0": 20,
+      "y0": 35,
+      "x1": 22,
+      "y1": 35,
+      "life": 4,
+      "age": 28,
+      "birthStep": 40,
+      "depth": 2
+    },
+    {
+      "id": 41,
+      "parent": 40,
+      "type": "dying",
+      "x0": 22,
+      "y0": 35,
+      "x1": 21,
+      "y1": 35,
+      "life": 3,
+      "age": 29,
+      "birthStep": 41,
+      "depth": 2
+    },
+    {
+      "id": 42,
+      "parent": 41,
+      "type": "dead",
+      "x0": 21,
+      "y0": 35,
+      "x1": 22,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 42,
+      "depth": 4
+    },
+    {
+      "id": 43,
+      "parent": 41,
+      "type": "dead",
+      "x0": 21,
+      "y0": 35,
+      "x1": 21,
+      "y1": 34,
+      "life": 1,
+      "age": 31,
+      "birthStep": 43,
+      "depth": 3
+    },
+    {
+      "id": 44,
+      "parent": 43,
+      "type": "dead",
+      "x0": 21,
+      "y0": 34,
+      "x1": 20,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 44,
+      "depth": 3
+    },
+    {
+      "id": 45,
+      "parent": 41,
+      "type": "dying",
+      "x0": 21,
+      "y0": 35,
+      "x1": 20,
+      "y1": 35,
+      "life": 2,
+      "age": 30,
+      "birthStep": 45,
+      "depth": 2
+    },
+    {
+      "id": 46,
+      "parent": 45,
+      "type": "dead",
+      "x0": 20,
+      "y0": 35,
+      "x1": 19,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 46,
+      "depth": 3
+    },
+    {
+      "id": 47,
+      "parent": 45,
+      "type": "dying",
+      "x0": 20,
+      "y0": 35,
+      "x1": 20,
+      "y1": 35,
+      "life": 1,
+      "age": 31,
+      "birthStep": 47,
+      "depth": 2
+    },
+    {
+      "id": 48,
+      "parent": 47,
+      "type": "dying",
+      "x0": 20,
+      "y0": 35,
+      "x1": 18,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 48,
+      "depth": 2
+    },
+    {
+      "id": 49,
+      "parent": 39,
+      "type": "shootLeft",
+      "x0": 20,
+      "y0": 35,
+      "x1": 18,
+      "y1": 35,
+      "life": 5,
+      "age": 27,
+      "birthStep": 49,
+      "depth": 1
+    },
+    {
+      "id": 50,
+      "parent": 49,
+      "type": "dying",
+      "x0": 18,
+      "y0": 35,
+      "x1": 20,
+      "y1": 35,
+      "life": 3,
+      "age": 29,
+      "birthStep": 50,
+      "depth": 2
+    },
+    {
+      "id": 51,
+      "parent": 50,
+      "type": "dead",
+      "x0": 20,
+      "y0": 35,
+      "x1": 21,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 51,
+      "depth": 4
+    },
+    {
+      "id": 52,
+      "parent": 50,
+      "type": "dead",
+      "x0": 20,
+      "y0": 35,
+      "x1": 20,
+      "y1": 35,
+      "life": 1,
+      "age": 31,
+      "birthStep": 52,
+      "depth": 3
+    },
+    {
+      "id": 53,
+      "parent": 52,
+      "type": "dead",
+      "x0": 20,
+      "y0": 35,
+      "x1": 19,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 53,
+      "depth": 3
+    },
+    {
+      "id": 54,
+      "parent": 50,
+      "type": "dying",
+      "x0": 20,
+      "y0": 35,
+      "x1": 19,
+      "y1": 35,
+      "life": 2,
+      "age": 30,
+      "birthStep": 54,
+      "depth": 2
+    },
+    {
+      "id": 55,
+      "parent": 54,
+      "type": "dead",
+      "x0": 19,
+      "y0": 35,
+      "x1": 18,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 55,
+      "depth": 3
+    },
+    {
+      "id": 56,
+      "parent": 54,
+      "type": "dying",
+      "x0": 19,
+      "y0": 35,
+      "x1": 22,
+      "y1": 35,
+      "life": 1,
+      "age": 31,
+      "birthStep": 56,
+      "depth": 2
+    },
+    {
+      "id": 57,
+      "parent": 56,
+      "type": "dying",
+      "x0": 22,
+      "y0": 35,
+      "x1": 22,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 57,
+      "depth": 2
+    },
+    {
+      "id": 58,
+      "parent": 49,
+      "type": "shootLeft",
+      "x0": 18,
+      "y0": 35,
+      "x1": 19,
+      "y1": 34,
+      "life": 4,
+      "age": 28,
+      "birthStep": 58,
+      "depth": 1
+    },
+    {
+      "id": 59,
+      "parent": 58,
+      "type": "dead",
+      "x0": 19,
+      "y0": 34,
+      "x1": 20,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 59,
+      "depth": 4
+    },
+    {
+      "id": 60,
+      "parent": 58,
+      "type": "dead",
+      "x0": 19,
+      "y0": 34,
+      "x1": 20,
+      "y1": 33,
+      "life": 1,
+      "age": 31,
+      "birthStep": 60,
+      "depth": 3
+    },
+    {
+      "id": 61,
+      "parent": 60,
+      "type": "dead",
+      "x0": 20,
+      "y0": 33,
+      "x1": 19,
+      "y1": 32,
+      "life": 0,
+      "age": 32,
+      "birthStep": 61,
+      "depth": 3
+    },
+    {
+      "id": 62,
+      "parent": 58,
+      "type": "dying",
+      "x0": 19,
+      "y0": 34,
+      "x1": 22,
+      "y1": 33,
+      "life": 2,
+      "age": 30,
+      "birthStep": 62,
+      "depth": 2
+    },
+    {
+      "id": 63,
+      "parent": 62,
+      "type": "dead",
+      "x0": 22,
+      "y0": 33,
+      "x1": 21,
+      "y1": 33,
+      "life": 0,
+      "age": 32,
+      "birthStep": 63,
+      "depth": 3
+    },
+    {
+      "id": 64,
+      "parent": 62,
+      "type": "dying",
+      "x0": 22,
+      "y0": 33,
+      "x1": 23,
+      "y1": 34,
+      "life": 1,
+      "age": 31,
+      "birthStep": 64,
+      "depth": 2
+    },
+    {
+      "id": 65,
+      "parent": 64,
+      "type": "dying",
+      "x0": 23,
+      "y0": 34,
+      "x1": 24,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 65,
+      "depth": 2
+    },
+    {
+      "id": 66,
+      "parent": 58,
+      "type": "shootLeft",
+      "x0": 19,
+      "y0": 34,
+      "x1": 18,
+      "y1": 34,
+      "life": 3,
+      "age": 29,
+      "birthStep": 66,
+      "depth": 1
+    },
+    {
+      "id": 67,
+      "parent": 66,
+      "type": "dead",
+      "x0": 18,
+      "y0": 34,
+      "x1": 17,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 67,
+      "depth": 3
+    },
+    {
+      "id": 68,
+      "parent": 66,
+      "type": "dead",
+      "x0": 18,
+      "y0": 34,
+      "x1": 17,
+      "y1": 34,
+      "life": 1,
+      "age": 31,
+      "birthStep": 68,
+      "depth": 2
+    },
+    {
+      "id": 69,
+      "parent": 68,
+      "type": "dead",
+      "x0": 17,
+      "y0": 34,
+      "x1": 16,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 69,
+      "depth": 2
+    },
+    {
+      "id": 70,
+      "parent": 66,
+      "type": "shootLeft",
+      "x0": 18,
+      "y0": 34,
+      "x1": 16,
+      "y1": 34,
+      "life": 2,
+      "age": 30,
+      "birthStep": 70,
+      "depth": 1
+    },
+    {
+      "id": 71,
+      "parent": 70,
+      "type": "dead",
+      "x0": 16,
+      "y0": 34,
+      "x1": 16,
+      "y1": 34,
+      "life": 0,
+      "age": 32,
+      "birthStep": 71,
+      "depth": 2
+    },
+    {
+      "id": 72,
+      "parent": 70,
+      "type": "shootLeft",
+      "x0": 16,
+      "y0": 34,
+      "x1": 14,
+      "y1": 35,
+      "life": 1,
+      "age": 31,
+      "birthStep": 72,
+      "depth": 1
+    },
+    {
+      "id": 73,
+      "parent": 72,
+      "type": "shootLeft",
+      "x0": 14,
+      "y0": 35,
+      "x1": 13,
+      "y1": 35,
+      "life": 0,
+      "age": 32,
+      "birthStep": 73,
+      "depth": 1
+    },
+    {
+      "id": 74,
+      "parent": 4,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 34,
+      "x1": 38,
+      "y1": 33,
+      "life": 26,
+      "age": 6,
+      "birthStep": 74,
+      "depth": 0
+    },
+    {
+      "id": 75,
+      "parent": 74,
+      "type": "trunk",
+      "x0": 38,
+      "y0": 33,
+      "x1": 39,
+      "y1": 33,
+      "life": 25,
+      "age": 7,
+      "birthStep": 75,
+      "depth": 0
+    },
+    {
+      "id": 76,
+      "parent": 75,
+      "type": "trunk",
+      "x0": 39,
+      "y0": 33,
+      "x1": 37,
+      "y1": 32,
+      "life": 24,
+      "age": 8,
+      "birthStep": 76,
+      "depth": 0
+    },
+    {
+      "id": 77,
+      "parent": 76,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 32,
+      "x1": 37,
+      "y1": 32,
+      "life": 23,
+      "age": 9,
+      "birthStep": 77,
+      "depth": 0
+    },
+    {
+      "id": 78,
+      "parent": 77,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 32,
+      "x1": 37,
+      "y1": 31,
+      "life": 22,
+      "age": 10,
+      "birthStep": 78,
+      "depth": 0
+    },
+    {
+      "id": 79,
+      "parent": 78,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 31,
+      "x1": 39,
+      "y1": 31,
+      "life": 21,
+      "age": 11,
+      "birthStep": 79,
+      "depth": 0
+    },
+    {
+      "id": 80,
+      "parent": 79,
+      "type": "trunk",
+      "x0": 39,
+      "y0": 31,
+      "x1": 38,
+      "y1": 30,
+      "life": 20,
+      "age": 12,
+      "birthStep": 80,
+      "depth": 0
+    },
+    {
+      "id": 81,
+      "parent": 80,
+      "type": "trunk",
+      "x0": 38,
+      "y0": 30,
+      "x1": 38,
+      "y1": 30,
+      "life": 19,
+      "age": 13,
+      "birthStep": 81,
+      "depth": 0
+    },
+    {
+      "id": 82,
+      "parent": 81,
+      "type": "trunk",
+      "x0": 38,
+      "y0": 30,
+      "x1": 37,
+      "y1": 29,
+      "life": 18,
+      "age": 14,
+      "birthStep": 82,
+      "depth": 0
+    },
+    {
+      "id": 83,
+      "parent": 82,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 29,
+      "x1": 37,
+      "y1": 28,
+      "life": 17,
+      "age": 15,
+      "birthStep": 83,
+      "depth": 0
+    },
+    {
+      "id": 84,
+      "parent": 83,
+      "type": "shootRight",
+      "x0": 37,
+      "y0": 28,
+      "x1": 38,
+      "y1": 29,
+      "life": 20,
+      "age": 12,
+      "birthStep": 84,
+      "depth": 1
+    },
+    {
+      "id": 85,
+      "parent": 84,
+      "type": "shootRight",
+      "x0": 38,
+      "y0": 29,
+      "x1": 37,
+      "y1": 29,
+      "life": 19,
+      "age": 13,
+      "birthStep": 85,
+      "depth": 1
+    },
+    {
+      "id": 86,
+      "parent": 85,
+      "type": "shootRight",
+      "x0": 37,
+      "y0": 29,
+      "x1": 39,
+      "y1": 29,
+      "life": 18,
+      "age": 14,
+      "birthStep": 86,
+      "depth": 1
+    },
+    {
+      "id": 87,
+      "parent": 86,
+      "type": "shootRight",
+      "x0": 39,
+      "y0": 29,
+      "x1": 39,
+      "y1": 29,
+      "life": 17,
+      "age": 15,
+      "birthStep": 87,
+      "depth": 1
+    },
+    {
+      "id": 88,
+      "parent": 87,
+      "type": "shootRight",
+      "x0": 39,
+      "y0": 29,
+      "x1": 40,
+      "y1": 28,
+      "life": 16,
+      "age": 16,
+      "birthStep": 88,
+      "depth": 1
+    },
+    {
+      "id": 89,
+      "parent": 88,
+      "type": "shootRight",
+      "x0": 40,
+      "y0": 28,
+      "x1": 40,
+      "y1": 28,
+      "life": 15,
+      "age": 17,
+      "birthStep": 89,
+      "depth": 1
+    },
+    {
+      "id": 90,
+      "parent": 89,
+      "type": "shootRight",
+      "x0": 40,
+      "y0": 28,
+      "x1": 41,
+      "y1": 27,
+      "life": 14,
+      "age": 18,
+      "birthStep": 90,
+      "depth": 1
+    },
+    {
+      "id": 91,
+      "parent": 90,
+      "type": "shootRight",
+      "x0": 41,
+      "y0": 27,
+      "x1": 42,
+      "y1": 27,
+      "life": 13,
+      "age": 19,
+      "birthStep": 91,
+      "depth": 1
+    },
+    {
+      "id": 92,
+      "parent": 91,
+      "type": "shootRight",
+      "x0": 42,
+      "y0": 27,
+      "x1": 42,
+      "y1": 27,
+      "life": 12,
+      "age": 20,
+      "birthStep": 92,
+      "depth": 1
+    },
+    {
+      "id": 93,
+      "parent": 92,
+      "type": "shootRight",
+      "x0": 42,
+      "y0": 27,
+      "x1": 44,
+      "y1": 27,
+      "life": 11,
+      "age": 21,
+      "birthStep": 93,
+      "depth": 1
+    },
+    {
+      "id": 94,
+      "parent": 93,
+      "type": "shootRight",
+      "x0": 44,
+      "y0": 27,
+      "x1": 45,
+      "y1": 27,
+      "life": 10,
+      "age": 22,
+      "birthStep": 94,
+      "depth": 1
+    },
+    {
+      "id": 95,
+      "parent": 94,
+      "type": "shootRight",
+      "x0": 45,
+      "y0": 27,
+      "x1": 46,
+      "y1": 27,
+      "life": 9,
+      "age": 23,
+      "birthStep": 95,
+      "depth": 1
+    },
+    {
+      "id": 96,
+      "parent": 95,
+      "type": "shootRight",
+      "x0": 46,
+      "y0": 27,
+      "x1": 46,
+      "y1": 28,
+      "life": 8,
+      "age": 24,
+      "birthStep": 96,
+      "depth": 1
+    },
+    {
+      "id": 97,
+      "parent": 96,
+      "type": "shootRight",
+      "x0": 46,
+      "y0": 28,
+      "x1": 46,
+      "y1": 27,
+      "life": 7,
+      "age": 25,
+      "birthStep": 97,
+      "depth": 1
+    },
+    {
+      "id": 98,
+      "parent": 97,
+      "type": "dying",
+      "x0": 46,
+      "y0": 27,
+      "x1": 43,
+      "y1": 27,
+      "life": 5,
+      "age": 27,
+      "birthStep": 98,
+      "depth": 2
+    },
+    {
+      "id": 99,
+      "parent": 98,
+      "type": "dying",
+      "x0": 43,
+      "y0": 27,
+      "x1": 41,
+      "y1": 27,
+      "life": 4,
+      "age": 28,
+      "birthStep": 99,
+      "depth": 2
+    },
+    {
+      "id": 100,
+      "parent": 99,
+      "type": "dying",
+      "x0": 41,
+      "y0": 27,
+      "x1": 41,
+      "y1": 27,
+      "life": 3,
+      "age": 29,
+      "birthStep": 100,
+      "depth": 2
+    },
+    {
+      "id": 101,
+      "parent": 100,
+      "type": "dead",
+      "x0": 41,
+      "y0": 27,
+      "x1": 40,
+      "y1": 26,
+      "life": 0,
+      "age": 32,
+      "birthStep": 101,
+      "depth": 4
+    },
+    {
+      "id": 102,
+      "parent": 100,
+      "type": "dead",
+      "x0": 41,
+      "y0": 27,
+      "x1": 40,
+      "y1": 27,
+      "life": 1,
+      "age": 31,
+      "birthStep": 102,
+      "depth": 3
+    },
+    {
+      "id": 103,
+      "parent": 102,
+      "type": "dead",
+      "x0": 40,
+      "y0": 27,
+      "x1": 41,
+      "y1": 27,
+      "life": 0,
+      "age": 32,
+      "birthStep": 103,
+      "depth": 3
+    },
+    {
+      "id": 104,
+      "parent": 100,
+      "type": "dying",
+      "x0": 41,
+      "y0": 27,
+      "x1": 42,
+      "y1": 26,
+      "life": 2,
+      "age": 30,
+      "birthStep": 104,
+      "depth": 2
+    },
+    {
+      "id": 105,
+      "parent": 104,
+      "type": "dead",
+      "x0": 42,
+      "y0": 26,
+      "x1": 42,
+      "y1": 27,
+      "life": 0,
+      "age": 32,
+      "birthStep": 105,
+      "depth": 3
+    },
+    {
+      "id": 106,
+      "parent": 104,
+      "type": "dying",
+      "x0": 42,
+      "y0": 26,
+      "x1": 42,
+      "y1": 26,
+      "life": 1,
+      "age": 31,
+      "birthStep": 106,
+      "depth": 2
+    },
+    {
+      "id": 107,
+      "parent": 106,
+      "type": "dying",
+      "x0": 42,
+      "y0": 26,
+      "x1": 43,
+      "y1": 26,
+      "life": 0,
+      "age": 32,
+      "birthStep": 107,
+      "depth": 2
+    },
+    {
+      "id": 108,
+      "parent": 97,
+      "type": "shootRight",
+      "x0": 46,
+      "y0": 27,
+      "x1": 45,
+      "y1": 27,
+      "life": 6,
+      "age": 26,
+      "birthStep": 108,
+      "depth": 1
+    },
+    {
+      "id": 109,
+      "parent": 108,
+      "type": "dying",
+      "x0": 45,
+      "y0": 27,
+      "x1": 42,
+      "y1": 27,
+      "life": 4,
+      "age": 28,
+      "birthStep": 109,
+      "depth": 2
+    },
+    {
+      "id": 110,
+      "parent": 109,
+      "type": "dying",
+      "x0": 42,
+      "y0": 27,
+      "x1": 44,
+      "y1": 26,
+      "life": 3,
+      "age": 29,
+      "birthStep": 110,
+      "depth": 2
+    },
+    {
+      "id": 111,
+      "parent": 110,
+      "type": "dead",
+      "x0": 44,
+      "y0": 26,
+      "x1": 45,
+      "y1": 27,
+      "life": 0,
+      "age": 32,
+      "birthStep": 111,
+      "depth": 4
+    },
+    {
+      "id": 112,
+      "parent": 110,
+      "type": "dead",
+      "x0": 44,
+      "y0": 26,
+      "x1": 45,
+      "y1": 25,
+      "life": 1,
+      "age": 31,
+      "birthStep": 112,
+      "depth": 3
+    },
+    {
+      "id": 113,
+      "parent": 112,
+      "type": "dead",
+      "x0": 45,
+      "y0": 25,
+      "x1": 44,
+      "y1": 25,
+      "life": 0,
+      "age": 32,
+      "birthStep": 113,
+      "depth": 3
+    },
+    {
+      "id": 114,
+      "parent": 110,
+      "type": "dying",
+      "x0": 44,
+      "y0": 26,
+      "x1": 42,
+      "y1": 27,
+      "life": 2,
+      "age": 30,
+      "birthStep": 114,
+      "depth": 2
+    },
+    {
+      "id": 115,
+      "parent": 114,
+      "type": "dead",
+      "x0": 42,
+      "y0": 27,
+      "x1": 42,
+      "y1": 26,
+      "life": 0,
+      "age": 32,
+      "birthStep": 115,
+      "depth": 3
+    },
+    {
+      "id": 116,
+      "parent": 114,
+      "type": "dying",
+      "x0": 42,
+      "y0": 27,
+      "x1": 40,
+      "y1": 27,
+      "life": 1,
+      "age": 31,
+      "birthStep": 116,
+      "depth": 2
+    },
+    {
+      "id": 117,
+      "parent": 116,
+      "type": "dying",
+      "x0": 40,
+      "y0": 27,
+      "x1": 38,
+      "y1": 26,
+      "life": 0,
+      "age": 32,
+      "birthStep": 117,
+      "depth": 2
+    },
+    {
+      "id": 118,
+      "parent": 108,
+      "type": "shootRight",
+      "x0": 45,
+      "y0": 27,
+      "x1": 47,
+      "y1": 28,
+      "life": 5,
+      "age": 27,
+      "birthStep": 118,
+      "depth": 1
+    },
+    {
+      "id": 119,
+      "parent": 118,
+      "type": "dying",
+      "x0": 47,
+      "y0": 28,
+      "x1": 48,
+      "y1": 28,
+      "life": 3,
+      "age": 29,
+      "birthStep": 119,
+      "depth": 2
+    },
+    {
+      "id": 120,
+      "parent": 119,
+      "type": "dead",
+      "x0": 48,
+      "y0": 28,
+      "x1": 48,
+      "y1": 29,
+      "life": 0,
+      "age": 32,
+      "birthStep": 120,
+      "depth": 4
+    },
+    {
+      "id": 121,
+      "parent": 119,
+      "type": "dead",
+      "x0": 48,
+      "y0": 28,
+      "x1": 49,
+      "y1": 27,
+      "life": 1,
+      "age": 31,
+      "birthStep": 121,
+      "depth": 3
+    },
+    {
+      "id": 122,
+      "parent": 121,
+      "type": "dead",
+      "x0": 49,
+      "y0": 27,
+      "x1": 50,
+      "y1": 26,
+      "life": 0,
+      "age": 32,
+      "birthStep": 122,
+      "depth": 3
+    },
+    {
+      "id": 123,
+      "parent": 119,
+      "type": "dying",
+      "x0": 48,
+      "y0": 28,
+      "x1": 49,
+      "y1": 28,
+      "life": 2,
+      "age": 30,
+      "birthStep": 123,
+      "depth": 2
+    },
+    {
+      "id": 124,
+      "parent": 123,
+      "type": "dead",
+      "x0": 49,
+      "y0": 28,
+      "x1": 48,
+      "y1": 27,
+      "life": 0,
+      "age": 32,
+      "birthStep": 124,
+      "depth": 3
+    },
+    {
+      "id": 125,
+      "parent": 123,
+      "type": "dying",
+      "x0": 49,
+      "y0": 28,
+      "x1": 49,
+      "y1": 28,
+      "life": 1,
+      "age": 31,
+      "birthStep": 125,
+      "depth": 2
+    },
+    {
+      "id": 126,
+      "parent": 125,
+      "type": "dying",
+      "x0": 49,
+      "y0": 28,
+      "x1": 49,
+      "y1": 27,
+      "life": 0,
+      "age": 32,
+      "birthStep": 126,
+      "depth": 2
+    },
+    {
+      "id": 127,
+      "parent": 118,
+      "type": "shootRight",
+      "x0": 47,
+      "y0": 28,
+      "x1": 47,
+      "y1": 29,
+      "life": 4,
+      "age": 28,
+      "birthStep": 127,
+      "depth": 1
+    },
+    {
+      "id": 128,
+      "parent": 127,
+      "type": "dead",
+      "x0": 47,
+      "y0": 29,
+      "x1": 48,
+      "y1": 29,
+      "life": 0,
+      "age": 32,
+      "birthStep": 128,
+      "depth": 4
+    },
+    {
+      "id": 129,
+      "parent": 127,
+      "type": "dead",
+      "x0": 47,
+      "y0": 29,
+      "x1": 47,
+      "y1": 29,
+      "life": 1,
+      "age": 31,
+      "birthStep": 129,
+      "depth": 3
+    },
+    {
+      "id": 130,
+      "parent": 129,
+      "type": "dead",
+      "x0": 47,
+      "y0": 29,
+      "x1": 48,
+      "y1": 29,
+      "life": 0,
+      "age": 32,
+      "birthStep": 130,
+      "depth": 3
+    },
+    {
+      "id": 131,
+      "parent": 127,
+      "type": "dying",
+      "x0": 47,
+      "y0": 29,
+      "x1": 47,
+      "y1": 30,
+      "life": 2,
+      "age": 30,
+      "birthStep": 131,
+      "depth": 2
+    },
+    {
+      "id": 132,
+      "parent": 131,
+      "type": "dead",
+      "x0": 47,
+      "y0": 30,
+      "x1": 46,
+      "y1": 31,
+      "life": 0,
+      "age": 32,
+      "birthStep": 132,
+      "depth": 3
+    },
+    {
+      "id": 133,
+      "parent": 131,
+      "type": "dying",
+      "x0": 47,
+      "y0": 30,
+      "x1": 46,
+      "y1": 29,
+      "life": 1,
+      "age": 31,
+      "birthStep": 133,
+      "depth": 2
+    },
+    {
+      "id": 134,
+      "parent": 133,
+      "type": "dying",
+      "x0": 46,
+      "y0": 29,
+      "x1": 46,
+      "y1": 28,
+      "life": 0,
+      "age": 32,
+      "birthStep": 134,
+      "depth": 2
+    },
+    {
+      "id": 135,
+      "parent": 127,
+      "type": "shootRight",
+      "x0": 47,
+      "y0": 29,
+      "x1": 48,
+      "y1": 30,
+      "life": 3,
+      "age": 29,
+      "birthStep": 135,
+      "depth": 1
+    },
+    {
+      "id": 136,
+      "parent": 135,
+      "type": "dead",
+      "x0": 48,
+      "y0": 30,
+      "x1": 47,
+      "y1": 31,
+      "life": 0,
+      "age": 32,
+      "birthStep": 136,
+      "depth": 3
+    },
+    {
+      "id": 137,
+      "parent": 135,
+      "type": "dead",
+      "x0": 48,
+      "y0": 30,
+      "x1": 47,
+      "y1": 31,
+      "life": 1,
+      "age": 31,
+      "birthStep": 137,
+      "depth": 2
+    },
+    {
+      "id": 138,
+      "parent": 137,
+      "type": "dead",
+      "x0": 47,
+      "y0": 31,
+      "x1": 48,
+      "y1": 30,
+      "life": 0,
+      "age": 32,
+      "birthStep": 138,
+      "depth": 2
+    },
+    {
+      "id": 139,
+      "parent": 135,
+      "type": "shootRight",
+      "x0": 48,
+      "y0": 30,
+      "x1": 49,
+      "y1": 29,
+      "life": 2,
+      "age": 30,
+      "birthStep": 139,
+      "depth": 1
+    },
+    {
+      "id": 140,
+      "parent": 139,
+      "type": "dead",
+      "x0": 49,
+      "y0": 29,
+      "x1": 50,
+      "y1": 29,
+      "life": 0,
+      "age": 32,
+      "birthStep": 140,
+      "depth": 2
+    },
+    {
+      "id": 141,
+      "parent": 139,
+      "type": "shootRight",
+      "x0": 49,
+      "y0": 29,
+      "x1": 49,
+      "y1": 28,
+      "life": 1,
+      "age": 31,
+      "birthStep": 141,
+      "depth": 1
+    },
+    {
+      "id": 142,
+      "parent": 141,
+      "type": "shootRight",
+      "x0": 49,
+      "y0": 28,
+      "x1": 50,
+      "y1": 28,
+      "life": 0,
+      "age": 32,
+      "birthStep": 142,
+      "depth": 1
+    },
+    {
+      "id": 143,
+      "parent": 83,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 28,
+      "x1": 36,
+      "y1": 27,
+      "life": 16,
+      "age": 16,
+      "birthStep": 143,
+      "depth": 0
+    },
+    {
+      "id": 144,
+      "parent": 143,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 27,
+      "x1": 35,
+      "y1": 26,
+      "life": 15,
+      "age": 17,
+      "birthStep": 144,
+      "depth": 0
+    },
+    {
+      "id": 145,
+      "parent": 144,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 26,
+      "x1": 34,
+      "y1": 25,
+      "life": 10,
+      "age": 22,
+      "birthStep": 145,
+      "depth": 2
+    },
+    {
+      "id": 146,
+      "parent": 145,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 25,
+      "x1": 33,
+      "y1": 25,
+      "life": 9,
+      "age": 23,
+      "birthStep": 146,
+      "depth": 2
+    },
+    {
+      "id": 147,
+      "parent": 146,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 25,
+      "x1": 32,
+      "y1": 24,
+      "life": 8,
+      "age": 24,
+      "birthStep": 147,
+      "depth": 2
+    },
+    {
+      "id": 148,
+      "parent": 147,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 24,
+      "x1": 31,
+      "y1": 23,
+      "life": 7,
+      "age": 25,
+      "birthStep": 148,
+      "depth": 2
+    },
+    {
+      "id": 149,
+      "parent": 148,
+      "type": "dying",
+      "x0": 31,
+      "y0": 23,
+      "x1": 30,
+      "y1": 22,
+      "life": 5,
+      "age": 27,
+      "birthStep": 149,
+      "depth": 3
+    },
+    {
+      "id": 150,
+      "parent": 149,
+      "type": "dying",
+      "x0": 30,
+      "y0": 22,
+      "x1": 29,
+      "y1": 22,
+      "life": 4,
+      "age": 28,
+      "birthStep": 150,
+      "depth": 3
+    },
+    {
+      "id": 151,
+      "parent": 150,
+      "type": "dying",
+      "x0": 29,
+      "y0": 22,
+      "x1": 28,
+      "y1": 22,
+      "life": 3,
+      "age": 29,
+      "birthStep": 151,
+      "depth": 3
+    },
+    {
+      "id": 152,
+      "parent": 151,
+      "type": "dead",
+      "x0": 28,
+      "y0": 22,
+      "x1": 29,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 152,
+      "depth": 5
+    },
+    {
+      "id": 153,
+      "parent": 151,
+      "type": "dead",
+      "x0": 28,
+      "y0": 22,
+      "x1": 29,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 153,
+      "depth": 4
+    },
+    {
+      "id": 154,
+      "parent": 153,
+      "type": "dead",
+      "x0": 29,
+      "y0": 22,
+      "x1": 28,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 154,
+      "depth": 4
+    },
+    {
+      "id": 155,
+      "parent": 151,
+      "type": "dying",
+      "x0": 28,
+      "y0": 22,
+      "x1": 25,
+      "y1": 22,
+      "life": 2,
+      "age": 30,
+      "birthStep": 155,
+      "depth": 3
+    },
+    {
+      "id": 156,
+      "parent": 155,
+      "type": "dead",
+      "x0": 25,
+      "y0": 22,
+      "x1": 26,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 156,
+      "depth": 4
+    },
+    {
+      "id": 157,
+      "parent": 155,
+      "type": "dying",
+      "x0": 25,
+      "y0": 22,
+      "x1": 27,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 157,
+      "depth": 3
+    },
+    {
+      "id": 158,
+      "parent": 157,
+      "type": "dying",
+      "x0": 27,
+      "y0": 21,
+      "x1": 29,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 158,
+      "depth": 3
+    },
+    {
+      "id": 159,
+      "parent": 148,
+      "type": "trunk",
+      "x0": 31,
+      "y0": 23,
+      "x1": 32,
+      "y1": 22,
+      "life": 6,
+      "age": 26,
+      "birthStep": 159,
+      "depth": 2
+    },
+    {
+      "id": 160,
+      "parent": 159,
+      "type": "dying",
+      "x0": 32,
+      "y0": 22,
+      "x1": 29,
+      "y1": 22,
+      "life": 4,
+      "age": 28,
+      "birthStep": 160,
+      "depth": 3
+    },
+    {
+      "id": 161,
+      "parent": 160,
+      "type": "dying",
+      "x0": 29,
+      "y0": 22,
+      "x1": 28,
+      "y1": 22,
+      "life": 3,
+      "age": 29,
+      "birthStep": 161,
+      "depth": 3
+    },
+    {
+      "id": 162,
+      "parent": 161,
+      "type": "dead",
+      "x0": 28,
+      "y0": 22,
+      "x1": 27,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 162,
+      "depth": 5
+    },
+    {
+      "id": 163,
+      "parent": 161,
+      "type": "dead",
+      "x0": 28,
+      "y0": 22,
+      "x1": 29,
+      "y1": 23,
+      "life": 1,
+      "age": 31,
+      "birthStep": 163,
+      "depth": 4
+    },
+    {
+      "id": 164,
+      "parent": 163,
+      "type": "dead",
+      "x0": 29,
+      "y0": 23,
+      "x1": 30,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 164,
+      "depth": 4
+    },
+    {
+      "id": 165,
+      "parent": 161,
+      "type": "dying",
+      "x0": 28,
+      "y0": 22,
+      "x1": 29,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 165,
+      "depth": 3
+    },
+    {
+      "id": 166,
+      "parent": 165,
+      "type": "dead",
+      "x0": 29,
+      "y0": 21,
+      "x1": 30,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 166,
+      "depth": 4
+    },
+    {
+      "id": 167,
+      "parent": 165,
+      "type": "dying",
+      "x0": 29,
+      "y0": 21,
+      "x1": 29,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 167,
+      "depth": 3
+    },
+    {
+      "id": 168,
+      "parent": 167,
+      "type": "dying",
+      "x0": 29,
+      "y0": 21,
+      "x1": 28,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 168,
+      "depth": 3
+    },
+    {
+      "id": 169,
+      "parent": 159,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 22,
+      "x1": 32,
+      "y1": 22,
+      "life": 5,
+      "age": 27,
+      "birthStep": 169,
+      "depth": 2
+    },
+    {
+      "id": 170,
+      "parent": 169,
+      "type": "dying",
+      "x0": 32,
+      "y0": 22,
+      "x1": 30,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 170,
+      "depth": 3
+    },
+    {
+      "id": 171,
+      "parent": 170,
+      "type": "dead",
+      "x0": 30,
+      "y0": 21,
+      "x1": 30,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 171,
+      "depth": 5
+    },
+    {
+      "id": 172,
+      "parent": 170,
+      "type": "dead",
+      "x0": 30,
+      "y0": 21,
+      "x1": 29,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 172,
+      "depth": 4
+    },
+    {
+      "id": 173,
+      "parent": 172,
+      "type": "dead",
+      "x0": 29,
+      "y0": 22,
+      "x1": 30,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 173,
+      "depth": 4
+    },
+    {
+      "id": 174,
+      "parent": 170,
+      "type": "dying",
+      "x0": 30,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 174,
+      "depth": 3
+    },
+    {
+      "id": 175,
+      "parent": 174,
+      "type": "dead",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 175,
+      "depth": 4
+    },
+    {
+      "id": 176,
+      "parent": 174,
+      "type": "dying",
+      "x0": 31,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 176,
+      "depth": 3
+    },
+    {
+      "id": 177,
+      "parent": 176,
+      "type": "dying",
+      "x0": 32,
+      "y0": 21,
+      "x1": 31,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 177,
+      "depth": 3
+    },
+    {
+      "id": 178,
+      "parent": 169,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 22,
+      "x1": 31,
+      "y1": 21,
+      "life": 4,
+      "age": 28,
+      "birthStep": 178,
+      "depth": 2
+    },
+    {
+      "id": 179,
+      "parent": 178,
+      "type": "dead",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 179,
+      "depth": 5
+    },
+    {
+      "id": 180,
+      "parent": 178,
+      "type": "dead",
+      "x0": 31,
+      "y0": 21,
+      "x1": 32,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 180,
+      "depth": 4
+    },
+    {
+      "id": 181,
+      "parent": 180,
+      "type": "dead",
+      "x0": 32,
+      "y0": 22,
+      "x1": 33,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 181,
+      "depth": 4
+    },
+    {
+      "id": 182,
+      "parent": 178,
+      "type": "dying",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 182,
+      "depth": 3
+    },
+    {
+      "id": 183,
+      "parent": 182,
+      "type": "dead",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 183,
+      "depth": 4
+    },
+    {
+      "id": 184,
+      "parent": 182,
+      "type": "dying",
+      "x0": 31,
+      "y0": 21,
+      "x1": 29,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 184,
+      "depth": 3
+    },
+    {
+      "id": 185,
+      "parent": 184,
+      "type": "dying",
+      "x0": 29,
+      "y0": 21,
+      "x1": 29,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 185,
+      "depth": 3
+    },
+    {
+      "id": 186,
+      "parent": 178,
+      "type": "trunk",
+      "x0": 31,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 186,
+      "depth": 2
+    },
+    {
+      "id": 187,
+      "parent": 186,
+      "type": "dead",
+      "x0": 32,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 187,
+      "depth": 4
+    },
+    {
+      "id": 188,
+      "parent": 186,
+      "type": "dead",
+      "x0": 32,
+      "y0": 21,
+      "x1": 33,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 188,
+      "depth": 3
+    },
+    {
+      "id": 189,
+      "parent": 188,
+      "type": "dead",
+      "x0": 33,
+      "y0": 21,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 189,
+      "depth": 3
+    },
+    {
+      "id": 190,
+      "parent": 186,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 21,
+      "x1": 33,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 190,
+      "depth": 2
+    },
+    {
+      "id": 191,
+      "parent": 190,
+      "type": "dead",
+      "x0": 33,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 191,
+      "depth": 3
+    },
+    {
+      "id": 192,
+      "parent": 190,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 192,
+      "depth": 2
+    },
+    {
+      "id": 193,
+      "parent": 192,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 193,
+      "depth": 2
+    },
+    {
+      "id": 194,
+      "parent": 144,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 26,
+      "x1": 35,
+      "y1": 25,
+      "life": 13,
+      "age": 19,
+      "birthStep": 194,
+      "depth": 1
+    },
+    {
+      "id": 195,
+      "parent": 194,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 25,
+      "x1": 35,
+      "y1": 25,
+      "life": 12,
+      "age": 20,
+      "birthStep": 195,
+      "depth": 1
+    },
+    {
+      "id": 196,
+      "parent": 195,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 25,
+      "x1": 35,
+      "y1": 24,
+      "life": 12,
+      "age": 20,
+      "birthStep": 196,
+      "depth": 2
+    },
+    {
+      "id": 197,
+      "parent": 196,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 24,
+      "x1": 35,
+      "y1": 23,
+      "life": 11,
+      "age": 21,
+      "birthStep": 197,
+      "depth": 2
+    },
+    {
+      "id": 198,
+      "parent": 197,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 35,
+      "y1": 22,
+      "life": 8,
+      "age": 24,
+      "birthStep": 198,
+      "depth": 3
+    },
+    {
+      "id": 199,
+      "parent": 198,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 22,
+      "x1": 34,
+      "y1": 21,
+      "life": 7,
+      "age": 25,
+      "birthStep": 199,
+      "depth": 3
+    },
+    {
+      "id": 200,
+      "parent": 199,
+      "type": "dying",
+      "x0": 34,
+      "y0": 21,
+      "x1": 33,
+      "y1": 21,
+      "life": 5,
+      "age": 27,
+      "birthStep": 200,
+      "depth": 4
+    },
+    {
+      "id": 201,
+      "parent": 200,
+      "type": "dying",
+      "x0": 33,
+      "y0": 21,
+      "x1": 32,
+      "y1": 22,
+      "life": 4,
+      "age": 28,
+      "birthStep": 201,
+      "depth": 4
+    },
+    {
+      "id": 202,
+      "parent": 201,
+      "type": "dying",
+      "x0": 32,
+      "y0": 22,
+      "x1": 33,
+      "y1": 22,
+      "life": 3,
+      "age": 29,
+      "birthStep": 202,
+      "depth": 4
+    },
+    {
+      "id": 203,
+      "parent": 202,
+      "type": "dead",
+      "x0": 33,
+      "y0": 22,
+      "x1": 32,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 203,
+      "depth": 6
+    },
+    {
+      "id": 204,
+      "parent": 202,
+      "type": "dead",
+      "x0": 33,
+      "y0": 22,
+      "x1": 34,
+      "y1": 23,
+      "life": 1,
+      "age": 31,
+      "birthStep": 204,
+      "depth": 5
+    },
+    {
+      "id": 205,
+      "parent": 204,
+      "type": "dead",
+      "x0": 34,
+      "y0": 23,
+      "x1": 35,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 205,
+      "depth": 5
+    },
+    {
+      "id": 206,
+      "parent": 202,
+      "type": "dying",
+      "x0": 33,
+      "y0": 22,
+      "x1": 33,
+      "y1": 22,
+      "life": 2,
+      "age": 30,
+      "birthStep": 206,
+      "depth": 4
+    },
+    {
+      "id": 207,
+      "parent": 206,
+      "type": "dead",
+      "x0": 33,
+      "y0": 22,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 207,
+      "depth": 5
+    },
+    {
+      "id": 208,
+      "parent": 206,
+      "type": "dying",
+      "x0": 33,
+      "y0": 22,
+      "x1": 36,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 208,
+      "depth": 4
+    },
+    {
+      "id": 209,
+      "parent": 208,
+      "type": "dying",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 209,
+      "depth": 4
+    },
+    {
+      "id": 210,
+      "parent": 199,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 21,
+      "x1": 34,
+      "y1": 20,
+      "life": 6,
+      "age": 26,
+      "birthStep": 210,
+      "depth": 3
+    },
+    {
+      "id": 211,
+      "parent": 210,
+      "type": "dying",
+      "x0": 34,
+      "y0": 20,
+      "x1": 36,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 211,
+      "depth": 4
+    },
+    {
+      "id": 212,
+      "parent": 211,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 37,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 212,
+      "depth": 4
+    },
+    {
+      "id": 213,
+      "parent": 212,
+      "type": "dead",
+      "x0": 37,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 213,
+      "depth": 6
+    },
+    {
+      "id": 214,
+      "parent": 212,
+      "type": "dead",
+      "x0": 37,
+      "y0": 20,
+      "x1": 38,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 214,
+      "depth": 5
+    },
+    {
+      "id": 215,
+      "parent": 214,
+      "type": "dead",
+      "x0": 38,
+      "y0": 19,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 215,
+      "depth": 5
+    },
+    {
+      "id": 216,
+      "parent": 212,
+      "type": "dying",
+      "x0": 37,
+      "y0": 20,
+      "x1": 36,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 216,
+      "depth": 4
+    },
+    {
+      "id": 217,
+      "parent": 216,
+      "type": "dead",
+      "x0": 36,
+      "y0": 20,
+      "x1": 37,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 217,
+      "depth": 5
+    },
+    {
+      "id": 218,
+      "parent": 216,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 218,
+      "depth": 4
+    },
+    {
+      "id": 219,
+      "parent": 218,
+      "type": "dying",
+      "x0": 38,
+      "y0": 20,
+      "x1": 37,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 219,
+      "depth": 4
+    },
+    {
+      "id": 220,
+      "parent": 210,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 5,
+      "age": 27,
+      "birthStep": 220,
+      "depth": 3
+    },
+    {
+      "id": 221,
+      "parent": 220,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 35,
+      "y1": 19,
+      "life": 3,
+      "age": 29,
+      "birthStep": 221,
+      "depth": 4
+    },
+    {
+      "id": 222,
+      "parent": 221,
+      "type": "dead",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 222,
+      "depth": 6
+    },
+    {
+      "id": 223,
+      "parent": 221,
+      "type": "dead",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 223,
+      "depth": 5
+    },
+    {
+      "id": 224,
+      "parent": 223,
+      "type": "dead",
+      "x0": 34,
+      "y0": 18,
+      "x1": 33,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 224,
+      "depth": 5
+    },
+    {
+      "id": 225,
+      "parent": 221,
+      "type": "dying",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 225,
+      "depth": 4
+    },
+    {
+      "id": 226,
+      "parent": 225,
+      "type": "dead",
+      "x0": 34,
+      "y0": 18,
+      "x1": 35,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 226,
+      "depth": 5
+    },
+    {
+      "id": 227,
+      "parent": 225,
+      "type": "dying",
+      "x0": 34,
+      "y0": 18,
+      "x1": 35,
+      "y1": 17,
+      "life": 1,
+      "age": 31,
+      "birthStep": 227,
+      "depth": 4
+    },
+    {
+      "id": 228,
+      "parent": 227,
+      "type": "dying",
+      "x0": 35,
+      "y0": 17,
+      "x1": 38,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 228,
+      "depth": 4
+    },
+    {
+      "id": 229,
+      "parent": 220,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 20,
+      "x1": 32,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 229,
+      "depth": 3
+    },
+    {
+      "id": 230,
+      "parent": 229,
+      "type": "dead",
+      "x0": 32,
+      "y0": 20,
+      "x1": 32,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 230,
+      "depth": 6
+    },
+    {
+      "id": 231,
+      "parent": 229,
+      "type": "dead",
+      "x0": 32,
+      "y0": 20,
+      "x1": 31,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 231,
+      "depth": 5
+    },
+    {
+      "id": 232,
+      "parent": 231,
+      "type": "dead",
+      "x0": 31,
+      "y0": 21,
+      "x1": 30,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 232,
+      "depth": 5
+    },
+    {
+      "id": 233,
+      "parent": 229,
+      "type": "dying",
+      "x0": 32,
+      "y0": 20,
+      "x1": 32,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 233,
+      "depth": 4
+    },
+    {
+      "id": 234,
+      "parent": 233,
+      "type": "dead",
+      "x0": 32,
+      "y0": 20,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 234,
+      "depth": 5
+    },
+    {
+      "id": 235,
+      "parent": 233,
+      "type": "dying",
+      "x0": 32,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 235,
+      "depth": 4
+    },
+    {
+      "id": 236,
+      "parent": 235,
+      "type": "dying",
+      "x0": 34,
+      "y0": 20,
+      "x1": 32,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 236,
+      "depth": 4
+    },
+    {
+      "id": 237,
+      "parent": 229,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 237,
+      "depth": 3
+    },
+    {
+      "id": 238,
+      "parent": 237,
+      "type": "dead",
+      "x0": 33,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 238,
+      "depth": 5
+    },
+    {
+      "id": 239,
+      "parent": 237,
+      "type": "dead",
+      "x0": 33,
+      "y0": 20,
+      "x1": 33,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 239,
+      "depth": 4
+    },
+    {
+      "id": 240,
+      "parent": 239,
+      "type": "dead",
+      "x0": 33,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 240,
+      "depth": 4
+    },
+    {
+      "id": 241,
+      "parent": 237,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 241,
+      "depth": 3
+    },
+    {
+      "id": 242,
+      "parent": 241,
+      "type": "dead",
+      "x0": 33,
+      "y0": 20,
+      "x1": 32,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 242,
+      "depth": 4
+    },
+    {
+      "id": 243,
+      "parent": 241,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 243,
+      "depth": 3
+    },
+    {
+      "id": 244,
+      "parent": 243,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 244,
+      "depth": 3
+    },
+    {
+      "id": 245,
+      "parent": 197,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 36,
+      "y1": 22,
+      "life": 10,
+      "age": 22,
+      "birthStep": 245,
+      "depth": 2
+    },
+    {
+      "id": 246,
+      "parent": 245,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 22,
+      "x1": 37,
+      "y1": 21,
+      "life": 9,
+      "age": 23,
+      "birthStep": 246,
+      "depth": 2
+    },
+    {
+      "id": 247,
+      "parent": 246,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 8,
+      "age": 24,
+      "birthStep": 247,
+      "depth": 2
+    },
+    {
+      "id": 248,
+      "parent": 247,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 21,
+      "x1": 37,
+      "y1": 21,
+      "life": 7,
+      "age": 25,
+      "birthStep": 248,
+      "depth": 2
+    },
+    {
+      "id": 249,
+      "parent": 248,
+      "type": "dying",
+      "x0": 37,
+      "y0": 21,
+      "x1": 38,
+      "y1": 21,
+      "life": 5,
+      "age": 27,
+      "birthStep": 249,
+      "depth": 3
+    },
+    {
+      "id": 250,
+      "parent": 249,
+      "type": "dying",
+      "x0": 38,
+      "y0": 21,
+      "x1": 40,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 250,
+      "depth": 3
+    },
+    {
+      "id": 251,
+      "parent": 250,
+      "type": "dying",
+      "x0": 40,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 251,
+      "depth": 3
+    },
+    {
+      "id": 252,
+      "parent": 251,
+      "type": "dead",
+      "x0": 38,
+      "y0": 20,
+      "x1": 39,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 252,
+      "depth": 5
+    },
+    {
+      "id": 253,
+      "parent": 251,
+      "type": "dead",
+      "x0": 38,
+      "y0": 20,
+      "x1": 39,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 253,
+      "depth": 4
+    },
+    {
+      "id": 254,
+      "parent": 253,
+      "type": "dead",
+      "x0": 39,
+      "y0": 19,
+      "x1": 40,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 254,
+      "depth": 4
+    },
+    {
+      "id": 255,
+      "parent": 251,
+      "type": "dying",
+      "x0": 38,
+      "y0": 20,
+      "x1": 40,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 255,
+      "depth": 3
+    },
+    {
+      "id": 256,
+      "parent": 255,
+      "type": "dead",
+      "x0": 40,
+      "y0": 20,
+      "x1": 41,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 256,
+      "depth": 4
+    },
+    {
+      "id": 257,
+      "parent": 255,
+      "type": "dying",
+      "x0": 40,
+      "y0": 20,
+      "x1": 42,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 257,
+      "depth": 3
+    },
+    {
+      "id": 258,
+      "parent": 257,
+      "type": "dying",
+      "x0": 42,
+      "y0": 20,
+      "x1": 42,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 258,
+      "depth": 3
+    },
+    {
+      "id": 259,
+      "parent": 248,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 21,
+      "x1": 38,
+      "y1": 20,
+      "life": 6,
+      "age": 26,
+      "birthStep": 259,
+      "depth": 2
+    },
+    {
+      "id": 260,
+      "parent": 259,
+      "type": "dying",
+      "x0": 38,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 260,
+      "depth": 3
+    },
+    {
+      "id": 261,
+      "parent": 260,
+      "type": "dying",
+      "x0": 38,
+      "y0": 20,
+      "x1": 35,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 261,
+      "depth": 3
+    },
+    {
+      "id": 262,
+      "parent": 261,
+      "type": "dead",
+      "x0": 35,
+      "y0": 20,
+      "x1": 34,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 262,
+      "depth": 5
+    },
+    {
+      "id": 263,
+      "parent": 261,
+      "type": "dead",
+      "x0": 35,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 263,
+      "depth": 4
+    },
+    {
+      "id": 264,
+      "parent": 263,
+      "type": "dead",
+      "x0": 34,
+      "y0": 20,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 264,
+      "depth": 4
+    },
+    {
+      "id": 265,
+      "parent": 261,
+      "type": "dying",
+      "x0": 35,
+      "y0": 20,
+      "x1": 34,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 265,
+      "depth": 3
+    },
+    {
+      "id": 266,
+      "parent": 265,
+      "type": "dead",
+      "x0": 34,
+      "y0": 20,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 266,
+      "depth": 4
+    },
+    {
+      "id": 267,
+      "parent": 265,
+      "type": "dying",
+      "x0": 34,
+      "y0": 20,
+      "x1": 32,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 267,
+      "depth": 3
+    },
+    {
+      "id": 268,
+      "parent": 267,
+      "type": "dying",
+      "x0": 32,
+      "y0": 19,
+      "x1": 33,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 268,
+      "depth": 3
+    },
+    {
+      "id": 269,
+      "parent": 259,
+      "type": "trunk",
+      "x0": 38,
+      "y0": 20,
+      "x1": 37,
+      "y1": 19,
+      "life": 5,
+      "age": 27,
+      "birthStep": 269,
+      "depth": 2
+    },
+    {
+      "id": 270,
+      "parent": 269,
+      "type": "dying",
+      "x0": 37,
+      "y0": 19,
+      "x1": 35,
+      "y1": 18,
+      "life": 3,
+      "age": 29,
+      "birthStep": 270,
+      "depth": 3
+    },
+    {
+      "id": 271,
+      "parent": 270,
+      "type": "dead",
+      "x0": 35,
+      "y0": 18,
+      "x1": 34,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 271,
+      "depth": 5
+    },
+    {
+      "id": 272,
+      "parent": 270,
+      "type": "dead",
+      "x0": 35,
+      "y0": 18,
+      "x1": 35,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 272,
+      "depth": 4
+    },
+    {
+      "id": 273,
+      "parent": 272,
+      "type": "dead",
+      "x0": 35,
+      "y0": 18,
+      "x1": 34,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 273,
+      "depth": 4
+    },
+    {
+      "id": 274,
+      "parent": 270,
+      "type": "dying",
+      "x0": 35,
+      "y0": 18,
+      "x1": 37,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 274,
+      "depth": 3
+    },
+    {
+      "id": 275,
+      "parent": 274,
+      "type": "dead",
+      "x0": 37,
+      "y0": 19,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 275,
+      "depth": 4
+    },
+    {
+      "id": 276,
+      "parent": 274,
+      "type": "dying",
+      "x0": 37,
+      "y0": 19,
+      "x1": 36,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 276,
+      "depth": 3
+    },
+    {
+      "id": 277,
+      "parent": 276,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 277,
+      "depth": 3
+    },
+    {
+      "id": 278,
+      "parent": 269,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 19,
+      "x1": 37,
+      "y1": 18,
+      "life": 4,
+      "age": 28,
+      "birthStep": 278,
+      "depth": 2
+    },
+    {
+      "id": 279,
+      "parent": 278,
+      "type": "dead",
+      "x0": 37,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 279,
+      "depth": 5
+    },
+    {
+      "id": 280,
+      "parent": 278,
+      "type": "dead",
+      "x0": 37,
+      "y0": 18,
+      "x1": 36,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 280,
+      "depth": 4
+    },
+    {
+      "id": 281,
+      "parent": 280,
+      "type": "dead",
+      "x0": 36,
+      "y0": 18,
+      "x1": 36,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 281,
+      "depth": 4
+    },
+    {
+      "id": 282,
+      "parent": 278,
+      "type": "dying",
+      "x0": 37,
+      "y0": 18,
+      "x1": 39,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 282,
+      "depth": 3
+    },
+    {
+      "id": 283,
+      "parent": 282,
+      "type": "dead",
+      "x0": 39,
+      "y0": 18,
+      "x1": 39,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 283,
+      "depth": 4
+    },
+    {
+      "id": 284,
+      "parent": 282,
+      "type": "dying",
+      "x0": 39,
+      "y0": 18,
+      "x1": 39,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 284,
+      "depth": 3
+    },
+    {
+      "id": 285,
+      "parent": 284,
+      "type": "dying",
+      "x0": 39,
+      "y0": 18,
+      "x1": 39,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 285,
+      "depth": 3
+    },
+    {
+      "id": 286,
+      "parent": 278,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 3,
+      "age": 29,
+      "birthStep": 286,
+      "depth": 2
+    },
+    {
+      "id": 287,
+      "parent": 286,
+      "type": "dead",
+      "x0": 37,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 287,
+      "depth": 4
+    },
+    {
+      "id": 288,
+      "parent": 286,
+      "type": "dead",
+      "x0": 37,
+      "y0": 18,
+      "x1": 37,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 288,
+      "depth": 3
+    },
+    {
+      "id": 289,
+      "parent": 288,
+      "type": "dead",
+      "x0": 37,
+      "y0": 19,
+      "x1": 37,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 289,
+      "depth": 3
+    },
+    {
+      "id": 290,
+      "parent": 286,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 18,
+      "x1": 36,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 290,
+      "depth": 2
+    },
+    {
+      "id": 291,
+      "parent": 290,
+      "type": "dead",
+      "x0": 36,
+      "y0": 18,
+      "x1": 36,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 291,
+      "depth": 3
+    },
+    {
+      "id": 292,
+      "parent": 290,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 292,
+      "depth": 2
+    },
+    {
+      "id": 293,
+      "parent": 292,
+      "type": "trunk",
+      "x0": 37,
+      "y0": 18,
+      "x1": 38,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 293,
+      "depth": 2
+    },
+    {
+      "id": 294,
+      "parent": 195,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 25,
+      "x1": 36,
+      "y1": 24,
+      "life": 11,
+      "age": 21,
+      "birthStep": 294,
+      "depth": 1
+    },
+    {
+      "id": 295,
+      "parent": 294,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 24,
+      "x1": 35,
+      "y1": 23,
+      "life": 10,
+      "age": 22,
+      "birthStep": 295,
+      "depth": 1
+    },
+    {
+      "id": 296,
+      "parent": 295,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 34,
+      "y1": 23,
+      "life": 10,
+      "age": 22,
+      "birthStep": 296,
+      "depth": 2
+    },
+    {
+      "id": 297,
+      "parent": 296,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 23,
+      "x1": 34,
+      "y1": 22,
+      "life": 9,
+      "age": 23,
+      "birthStep": 297,
+      "depth": 2
+    },
+    {
+      "id": 298,
+      "parent": 297,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 22,
+      "x1": 34,
+      "y1": 21,
+      "life": 8,
+      "age": 24,
+      "birthStep": 298,
+      "depth": 2
+    },
+    {
+      "id": 299,
+      "parent": 298,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 21,
+      "x1": 34,
+      "y1": 20,
+      "life": 7,
+      "age": 25,
+      "birthStep": 299,
+      "depth": 2
+    },
+    {
+      "id": 300,
+      "parent": 299,
+      "type": "dying",
+      "x0": 34,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 5,
+      "age": 27,
+      "birthStep": 300,
+      "depth": 3
+    },
+    {
+      "id": 301,
+      "parent": 300,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 301,
+      "depth": 3
+    },
+    {
+      "id": 302,
+      "parent": 301,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 34,
+      "y1": 19,
+      "life": 3,
+      "age": 29,
+      "birthStep": 302,
+      "depth": 3
+    },
+    {
+      "id": 303,
+      "parent": 302,
+      "type": "dead",
+      "x0": 34,
+      "y0": 19,
+      "x1": 33,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 303,
+      "depth": 5
+    },
+    {
+      "id": 304,
+      "parent": 302,
+      "type": "dead",
+      "x0": 34,
+      "y0": 19,
+      "x1": 34,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 304,
+      "depth": 4
+    },
+    {
+      "id": 305,
+      "parent": 304,
+      "type": "dead",
+      "x0": 34,
+      "y0": 18,
+      "x1": 34,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 305,
+      "depth": 4
+    },
+    {
+      "id": 306,
+      "parent": 302,
+      "type": "dying",
+      "x0": 34,
+      "y0": 19,
+      "x1": 31,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 306,
+      "depth": 3
+    },
+    {
+      "id": 307,
+      "parent": 306,
+      "type": "dead",
+      "x0": 31,
+      "y0": 19,
+      "x1": 30,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 307,
+      "depth": 4
+    },
+    {
+      "id": 308,
+      "parent": 306,
+      "type": "dying",
+      "x0": 31,
+      "y0": 19,
+      "x1": 29,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 308,
+      "depth": 3
+    },
+    {
+      "id": 309,
+      "parent": 308,
+      "type": "dying",
+      "x0": 29,
+      "y0": 19,
+      "x1": 30,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 309,
+      "depth": 3
+    },
+    {
+      "id": 310,
+      "parent": 299,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 6,
+      "age": 26,
+      "birthStep": 310,
+      "depth": 2
+    },
+    {
+      "id": 311,
+      "parent": 310,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 33,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 311,
+      "depth": 3
+    },
+    {
+      "id": 312,
+      "parent": 311,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 35,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 312,
+      "depth": 3
+    },
+    {
+      "id": 313,
+      "parent": 312,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 313,
+      "depth": 5
+    },
+    {
+      "id": 314,
+      "parent": 312,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 314,
+      "depth": 4
+    },
+    {
+      "id": 315,
+      "parent": 314,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 315,
+      "depth": 4
+    },
+    {
+      "id": 316,
+      "parent": 312,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 316,
+      "depth": 3
+    },
+    {
+      "id": 317,
+      "parent": 316,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 35,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 317,
+      "depth": 4
+    },
+    {
+      "id": 318,
+      "parent": 316,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 318,
+      "depth": 3
+    },
+    {
+      "id": 319,
+      "parent": 318,
+      "type": "dying",
+      "x0": 32,
+      "y0": 21,
+      "x1": 29,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 319,
+      "depth": 3
+    },
+    {
+      "id": 320,
+      "parent": 310,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 20,
+      "x1": 33,
+      "y1": 19,
+      "life": 5,
+      "age": 27,
+      "birthStep": 320,
+      "depth": 2
+    },
+    {
+      "id": 321,
+      "parent": 320,
+      "type": "dying",
+      "x0": 33,
+      "y0": 19,
+      "x1": 36,
+      "y1": 19,
+      "life": 3,
+      "age": 29,
+      "birthStep": 321,
+      "depth": 3
+    },
+    {
+      "id": 322,
+      "parent": 321,
+      "type": "dead",
+      "x0": 36,
+      "y0": 19,
+      "x1": 37,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 322,
+      "depth": 5
+    },
+    {
+      "id": 323,
+      "parent": 321,
+      "type": "dead",
+      "x0": 36,
+      "y0": 19,
+      "x1": 37,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 323,
+      "depth": 4
+    },
+    {
+      "id": 324,
+      "parent": 323,
+      "type": "dead",
+      "x0": 37,
+      "y0": 19,
+      "x1": 37,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 324,
+      "depth": 4
+    },
+    {
+      "id": 325,
+      "parent": 321,
+      "type": "dying",
+      "x0": 36,
+      "y0": 19,
+      "x1": 36,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 325,
+      "depth": 3
+    },
+    {
+      "id": 326,
+      "parent": 325,
+      "type": "dead",
+      "x0": 36,
+      "y0": 19,
+      "x1": 35,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 326,
+      "depth": 4
+    },
+    {
+      "id": 327,
+      "parent": 325,
+      "type": "dying",
+      "x0": 36,
+      "y0": 19,
+      "x1": 36,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 327,
+      "depth": 3
+    },
+    {
+      "id": 328,
+      "parent": 327,
+      "type": "dying",
+      "x0": 36,
+      "y0": 18,
+      "x1": 35,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 328,
+      "depth": 3
+    },
+    {
+      "id": 329,
+      "parent": 320,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 19,
+      "x1": 32,
+      "y1": 18,
+      "life": 4,
+      "age": 28,
+      "birthStep": 329,
+      "depth": 2
+    },
+    {
+      "id": 330,
+      "parent": 329,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 31,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 330,
+      "depth": 5
+    },
+    {
+      "id": 331,
+      "parent": 329,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 32,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 331,
+      "depth": 4
+    },
+    {
+      "id": 332,
+      "parent": 331,
+      "type": "dead",
+      "x0": 32,
+      "y0": 19,
+      "x1": 33,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 332,
+      "depth": 4
+    },
+    {
+      "id": 333,
+      "parent": 329,
+      "type": "dying",
+      "x0": 32,
+      "y0": 18,
+      "x1": 32,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 333,
+      "depth": 3
+    },
+    {
+      "id": 334,
+      "parent": 333,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 33,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 334,
+      "depth": 4
+    },
+    {
+      "id": 335,
+      "parent": 333,
+      "type": "dying",
+      "x0": 32,
+      "y0": 18,
+      "x1": 35,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 335,
+      "depth": 3
+    },
+    {
+      "id": 336,
+      "parent": 335,
+      "type": "dying",
+      "x0": 35,
+      "y0": 18,
+      "x1": 38,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 336,
+      "depth": 3
+    },
+    {
+      "id": 337,
+      "parent": 329,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 18,
+      "x1": 32,
+      "y1": 18,
+      "life": 3,
+      "age": 29,
+      "birthStep": 337,
+      "depth": 2
+    },
+    {
+      "id": 338,
+      "parent": 337,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 31,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 338,
+      "depth": 4
+    },
+    {
+      "id": 339,
+      "parent": 337,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 31,
+      "y1": 17,
+      "life": 1,
+      "age": 31,
+      "birthStep": 339,
+      "depth": 3
+    },
+    {
+      "id": 340,
+      "parent": 339,
+      "type": "dead",
+      "x0": 31,
+      "y0": 17,
+      "x1": 31,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 340,
+      "depth": 3
+    },
+    {
+      "id": 341,
+      "parent": 337,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 18,
+      "x1": 32,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 341,
+      "depth": 2
+    },
+    {
+      "id": 342,
+      "parent": 341,
+      "type": "dead",
+      "x0": 32,
+      "y0": 18,
+      "x1": 31,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 342,
+      "depth": 3
+    },
+    {
+      "id": 343,
+      "parent": 341,
+      "type": "trunk",
+      "x0": 32,
+      "y0": 18,
+      "x1": 31,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 343,
+      "depth": 2
+    },
+    {
+      "id": 344,
+      "parent": 343,
+      "type": "trunk",
+      "x0": 31,
+      "y0": 18,
+      "x1": 32,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 344,
+      "depth": 2
+    },
+    {
+      "id": 345,
+      "parent": 295,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 35,
+      "y1": 23,
+      "life": 9,
+      "age": 23,
+      "birthStep": 345,
+      "depth": 1
+    },
+    {
+      "id": 346,
+      "parent": 345,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 36,
+      "y1": 23,
+      "life": 8,
+      "age": 24,
+      "birthStep": 346,
+      "depth": 1
+    },
+    {
+      "id": 347,
+      "parent": 346,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 23,
+      "x1": 35,
+      "y1": 22,
+      "life": 7,
+      "age": 25,
+      "birthStep": 347,
+      "depth": 1
+    },
+    {
+      "id": 348,
+      "parent": 347,
+      "type": "dying",
+      "x0": 35,
+      "y0": 22,
+      "x1": 33,
+      "y1": 22,
+      "life": 5,
+      "age": 27,
+      "birthStep": 348,
+      "depth": 2
+    },
+    {
+      "id": 349,
+      "parent": 348,
+      "type": "dying",
+      "x0": 33,
+      "y0": 22,
+      "x1": 36,
+      "y1": 23,
+      "life": 4,
+      "age": 28,
+      "birthStep": 349,
+      "depth": 2
+    },
+    {
+      "id": 350,
+      "parent": 349,
+      "type": "dying",
+      "x0": 36,
+      "y0": 23,
+      "x1": 37,
+      "y1": 22,
+      "life": 3,
+      "age": 29,
+      "birthStep": 350,
+      "depth": 2
+    },
+    {
+      "id": 351,
+      "parent": 350,
+      "type": "dead",
+      "x0": 37,
+      "y0": 22,
+      "x1": 36,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 351,
+      "depth": 4
+    },
+    {
+      "id": 352,
+      "parent": 350,
+      "type": "dead",
+      "x0": 37,
+      "y0": 22,
+      "x1": 38,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 352,
+      "depth": 3
+    },
+    {
+      "id": 353,
+      "parent": 352,
+      "type": "dead",
+      "x0": 38,
+      "y0": 21,
+      "x1": 39,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 353,
+      "depth": 3
+    },
+    {
+      "id": 354,
+      "parent": 350,
+      "type": "dying",
+      "x0": 37,
+      "y0": 22,
+      "x1": 35,
+      "y1": 22,
+      "life": 2,
+      "age": 30,
+      "birthStep": 354,
+      "depth": 2
+    },
+    {
+      "id": 355,
+      "parent": 354,
+      "type": "dead",
+      "x0": 35,
+      "y0": 22,
+      "x1": 36,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 355,
+      "depth": 3
+    },
+    {
+      "id": 356,
+      "parent": 354,
+      "type": "dying",
+      "x0": 35,
+      "y0": 22,
+      "x1": 35,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 356,
+      "depth": 2
+    },
+    {
+      "id": 357,
+      "parent": 356,
+      "type": "dying",
+      "x0": 35,
+      "y0": 22,
+      "x1": 34,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 357,
+      "depth": 2
+    },
+    {
+      "id": 358,
+      "parent": 347,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 22,
+      "x1": 35,
+      "y1": 21,
+      "life": 6,
+      "age": 26,
+      "birthStep": 358,
+      "depth": 1
+    },
+    {
+      "id": 359,
+      "parent": 358,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 4,
+      "age": 28,
+      "birthStep": 359,
+      "depth": 2
+    },
+    {
+      "id": 360,
+      "parent": 359,
+      "type": "dying",
+      "x0": 32,
+      "y0": 21,
+      "x1": 33,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 360,
+      "depth": 2
+    },
+    {
+      "id": 361,
+      "parent": 360,
+      "type": "dead",
+      "x0": 33,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 361,
+      "depth": 4
+    },
+    {
+      "id": 362,
+      "parent": 360,
+      "type": "dead",
+      "x0": 33,
+      "y0": 21,
+      "x1": 32,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 362,
+      "depth": 3
+    },
+    {
+      "id": 363,
+      "parent": 362,
+      "type": "dead",
+      "x0": 32,
+      "y0": 20,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 363,
+      "depth": 3
+    },
+    {
+      "id": 364,
+      "parent": 360,
+      "type": "dying",
+      "x0": 33,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 364,
+      "depth": 2
+    },
+    {
+      "id": 365,
+      "parent": 364,
+      "type": "dead",
+      "x0": 32,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 365,
+      "depth": 3
+    },
+    {
+      "id": 366,
+      "parent": 364,
+      "type": "dying",
+      "x0": 32,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 366,
+      "depth": 2
+    },
+    {
+      "id": 367,
+      "parent": 366,
+      "type": "dying",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 367,
+      "depth": 2
+    },
+    {
+      "id": 368,
+      "parent": 358,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 20,
+      "life": 5,
+      "age": 27,
+      "birthStep": 368,
+      "depth": 1
+    },
+    {
+      "id": 369,
+      "parent": 368,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 37,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 369,
+      "depth": 2
+    },
+    {
+      "id": 370,
+      "parent": 369,
+      "type": "dead",
+      "x0": 37,
+      "y0": 20,
+      "x1": 38,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 370,
+      "depth": 4
+    },
+    {
+      "id": 371,
+      "parent": 369,
+      "type": "dead",
+      "x0": 37,
+      "y0": 20,
+      "x1": 36,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 371,
+      "depth": 3
+    },
+    {
+      "id": 372,
+      "parent": 371,
+      "type": "dead",
+      "x0": 36,
+      "y0": 20,
+      "x1": 37,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 372,
+      "depth": 3
+    },
+    {
+      "id": 373,
+      "parent": 369,
+      "type": "dying",
+      "x0": 37,
+      "y0": 20,
+      "x1": 34,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 373,
+      "depth": 2
+    },
+    {
+      "id": 374,
+      "parent": 373,
+      "type": "dead",
+      "x0": 34,
+      "y0": 19,
+      "x1": 33,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 374,
+      "depth": 3
+    },
+    {
+      "id": 375,
+      "parent": 373,
+      "type": "dying",
+      "x0": 34,
+      "y0": 19,
+      "x1": 37,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 375,
+      "depth": 2
+    },
+    {
+      "id": 376,
+      "parent": 375,
+      "type": "dying",
+      "x0": 37,
+      "y0": 20,
+      "x1": 38,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 376,
+      "depth": 2
+    },
+    {
+      "id": 377,
+      "parent": 368,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 20,
+      "x1": 36,
+      "y1": 19,
+      "life": 4,
+      "age": 28,
+      "birthStep": 377,
+      "depth": 1
+    },
+    {
+      "id": 378,
+      "parent": 377,
+      "type": "dead",
+      "x0": 36,
+      "y0": 19,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 378,
+      "depth": 4
+    },
+    {
+      "id": 379,
+      "parent": 377,
+      "type": "dead",
+      "x0": 36,
+      "y0": 19,
+      "x1": 35,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 379,
+      "depth": 3
+    },
+    {
+      "id": 380,
+      "parent": 379,
+      "type": "dead",
+      "x0": 35,
+      "y0": 18,
+      "x1": 36,
+      "y1": 17,
+      "life": 0,
+      "age": 32,
+      "birthStep": 380,
+      "depth": 3
+    },
+    {
+      "id": 381,
+      "parent": 377,
+      "type": "dying",
+      "x0": 36,
+      "y0": 19,
+      "x1": 38,
+      "y1": 18,
+      "life": 2,
+      "age": 30,
+      "birthStep": 381,
+      "depth": 2
+    },
+    {
+      "id": 382,
+      "parent": 381,
+      "type": "dead",
+      "x0": 38,
+      "y0": 18,
+      "x1": 38,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 382,
+      "depth": 3
+    },
+    {
+      "id": 383,
+      "parent": 381,
+      "type": "dying",
+      "x0": 38,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 1,
+      "age": 31,
+      "birthStep": 383,
+      "depth": 2
+    },
+    {
+      "id": 384,
+      "parent": 383,
+      "type": "dying",
+      "x0": 37,
+      "y0": 18,
+      "x1": 37,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 384,
+      "depth": 2
+    },
+    {
+      "id": 385,
+      "parent": 377,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 19,
+      "x1": 35,
+      "y1": 19,
+      "life": 3,
+      "age": 29,
+      "birthStep": 385,
+      "depth": 1
+    },
+    {
+      "id": 386,
+      "parent": 385,
+      "type": "dead",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 386,
+      "depth": 3
+    },
+    {
+      "id": 387,
+      "parent": 385,
+      "type": "dead",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 387,
+      "depth": 2
+    },
+    {
+      "id": 388,
+      "parent": 387,
+      "type": "dead",
+      "x0": 34,
+      "y0": 19,
+      "x1": 33,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 388,
+      "depth": 2
+    },
+    {
+      "id": 389,
+      "parent": 385,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 19,
+      "x1": 34,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 389,
+      "depth": 1
+    },
+    {
+      "id": 390,
+      "parent": 389,
+      "type": "dead",
+      "x0": 34,
+      "y0": 19,
+      "x1": 34,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 390,
+      "depth": 2
+    },
+    {
+      "id": 391,
+      "parent": 389,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 19,
+      "x1": 33,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 391,
+      "depth": 1
+    },
+    {
+      "id": 392,
+      "parent": 391,
+      "type": "trunk",
+      "x0": 33,
+      "y0": 19,
+      "x1": 32,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 392,
+      "depth": 1
+    },
+    {
+      "id": 393,
+      "parent": 144,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 26,
+      "x1": 34,
+      "y1": 26,
+      "life": 14,
+      "age": 18,
+      "birthStep": 393,
+      "depth": 0
+    },
+    {
+      "id": 394,
+      "parent": 393,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 26,
+      "x1": 34,
+      "y1": 25,
+      "life": 13,
+      "age": 19,
+      "birthStep": 394,
+      "depth": 0
+    },
+    {
+      "id": 395,
+      "parent": 394,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 25,
+      "x1": 34,
+      "y1": 24,
+      "life": 12,
+      "age": 20,
+      "birthStep": 395,
+      "depth": 0
+    },
+    {
+      "id": 396,
+      "parent": 395,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 24,
+      "x1": 35,
+      "y1": 23,
+      "life": 11,
+      "age": 21,
+      "birthStep": 396,
+      "depth": 0
+    },
+    {
+      "id": 397,
+      "parent": 396,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 35,
+      "y1": 23,
+      "life": 10,
+      "age": 22,
+      "birthStep": 397,
+      "depth": 0
+    },
+    {
+      "id": 398,
+      "parent": 397,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 23,
+      "x1": 35,
+      "y1": 22,
+      "life": 9,
+      "age": 23,
+      "birthStep": 398,
+      "depth": 0
+    },
+    {
+      "id": 399,
+      "parent": 398,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 22,
+      "x1": 36,
+      "y1": 21,
+      "life": 8,
+      "age": 24,
+      "birthStep": 399,
+      "depth": 0
+    },
+    {
+      "id": 400,
+      "parent": 399,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 7,
+      "age": 25,
+      "birthStep": 400,
+      "depth": 0
+    },
+    {
+      "id": 401,
+      "parent": 400,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 20,
+      "life": 5,
+      "age": 27,
+      "birthStep": 401,
+      "depth": 1
+    },
+    {
+      "id": 402,
+      "parent": 401,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 36,
+      "y1": 20,
+      "life": 4,
+      "age": 28,
+      "birthStep": 402,
+      "depth": 1
+    },
+    {
+      "id": 403,
+      "parent": 402,
+      "type": "dying",
+      "x0": 36,
+      "y0": 20,
+      "x1": 39,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 403,
+      "depth": 1
+    },
+    {
+      "id": 404,
+      "parent": 403,
+      "type": "dead",
+      "x0": 39,
+      "y0": 20,
+      "x1": 40,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 404,
+      "depth": 3
+    },
+    {
+      "id": 405,
+      "parent": 403,
+      "type": "dead",
+      "x0": 39,
+      "y0": 20,
+      "x1": 38,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 405,
+      "depth": 2
+    },
+    {
+      "id": 406,
+      "parent": 405,
+      "type": "dead",
+      "x0": 38,
+      "y0": 19,
+      "x1": 38,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 406,
+      "depth": 2
+    },
+    {
+      "id": 407,
+      "parent": 403,
+      "type": "dying",
+      "x0": 39,
+      "y0": 20,
+      "x1": 38,
+      "y1": 19,
+      "life": 2,
+      "age": 30,
+      "birthStep": 407,
+      "depth": 1
+    },
+    {
+      "id": 408,
+      "parent": 407,
+      "type": "dead",
+      "x0": 38,
+      "y0": 19,
+      "x1": 38,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 408,
+      "depth": 2
+    },
+    {
+      "id": 409,
+      "parent": 407,
+      "type": "dying",
+      "x0": 38,
+      "y0": 19,
+      "x1": 38,
+      "y1": 19,
+      "life": 1,
+      "age": 31,
+      "birthStep": 409,
+      "depth": 1
+    },
+    {
+      "id": 410,
+      "parent": 409,
+      "type": "dying",
+      "x0": 38,
+      "y0": 19,
+      "x1": 40,
+      "y1": 18,
+      "life": 0,
+      "age": 32,
+      "birthStep": 410,
+      "depth": 1
+    },
+    {
+      "id": 411,
+      "parent": 400,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 6,
+      "age": 26,
+      "birthStep": 411,
+      "depth": 0
+    },
+    {
+      "id": 412,
+      "parent": 411,
+      "type": "dying",
+      "x0": 34,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 4,
+      "age": 28,
+      "birthStep": 412,
+      "depth": 1
+    },
+    {
+      "id": 413,
+      "parent": 412,
+      "type": "dying",
+      "x0": 34,
+      "y0": 21,
+      "x1": 33,
+      "y1": 20,
+      "life": 3,
+      "age": 29,
+      "birthStep": 413,
+      "depth": 1
+    },
+    {
+      "id": 414,
+      "parent": 413,
+      "type": "dead",
+      "x0": 33,
+      "y0": 20,
+      "x1": 32,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 414,
+      "depth": 3
+    },
+    {
+      "id": 415,
+      "parent": 413,
+      "type": "dead",
+      "x0": 33,
+      "y0": 20,
+      "x1": 32,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 415,
+      "depth": 2
+    },
+    {
+      "id": 416,
+      "parent": 415,
+      "type": "dead",
+      "x0": 32,
+      "y0": 21,
+      "x1": 33,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 416,
+      "depth": 2
+    },
+    {
+      "id": 417,
+      "parent": 413,
+      "type": "dying",
+      "x0": 33,
+      "y0": 20,
+      "x1": 32,
+      "y1": 20,
+      "life": 2,
+      "age": 30,
+      "birthStep": 417,
+      "depth": 1
+    },
+    {
+      "id": 418,
+      "parent": 417,
+      "type": "dead",
+      "x0": 32,
+      "y0": 20,
+      "x1": 33,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 418,
+      "depth": 2
+    },
+    {
+      "id": 419,
+      "parent": 417,
+      "type": "dying",
+      "x0": 32,
+      "y0": 20,
+      "x1": 33,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 419,
+      "depth": 1
+    },
+    {
+      "id": 420,
+      "parent": 419,
+      "type": "dying",
+      "x0": 33,
+      "y0": 21,
+      "x1": 30,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 420,
+      "depth": 1
+    },
+    {
+      "id": 421,
+      "parent": 411,
+      "type": "trunk",
+      "x0": 34,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 5,
+      "age": 27,
+      "birthStep": 421,
+      "depth": 0
+    },
+    {
+      "id": 422,
+      "parent": 421,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 422,
+      "depth": 1
+    },
+    {
+      "id": 423,
+      "parent": 422,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 37,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 423,
+      "depth": 3
+    },
+    {
+      "id": 424,
+      "parent": 422,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 424,
+      "depth": 2
+    },
+    {
+      "id": 425,
+      "parent": 424,
+      "type": "dead",
+      "x0": 35,
+      "y0": 22,
+      "x1": 35,
+      "y1": 23,
+      "life": 0,
+      "age": 32,
+      "birthStep": 425,
+      "depth": 2
+    },
+    {
+      "id": 426,
+      "parent": 422,
+      "type": "dying",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 426,
+      "depth": 1
+    },
+    {
+      "id": 427,
+      "parent": 426,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 34,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 427,
+      "depth": 2
+    },
+    {
+      "id": 428,
+      "parent": 426,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 37,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 428,
+      "depth": 1
+    },
+    {
+      "id": 429,
+      "parent": 428,
+      "type": "dying",
+      "x0": 37,
+      "y0": 20,
+      "x1": 35,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 429,
+      "depth": 1
+    },
+    {
+      "id": 430,
+      "parent": 421,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 21,
+      "x1": 35,
+      "y1": 21,
+      "life": 4,
+      "age": 28,
+      "birthStep": 430,
+      "depth": 0
+    },
+    {
+      "id": 431,
+      "parent": 430,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 34,
+      "y1": 22,
+      "life": 0,
+      "age": 32,
+      "birthStep": 431,
+      "depth": 3
+    },
+    {
+      "id": 432,
+      "parent": 430,
+      "type": "dead",
+      "x0": 35,
+      "y0": 21,
+      "x1": 34,
+      "y1": 22,
+      "life": 1,
+      "age": 31,
+      "birthStep": 432,
+      "depth": 2
+    },
+    {
+      "id": 433,
+      "parent": 432,
+      "type": "dead",
+      "x0": 34,
+      "y0": 22,
+      "x1": 33,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 433,
+      "depth": 2
+    },
+    {
+      "id": 434,
+      "parent": 430,
+      "type": "dying",
+      "x0": 35,
+      "y0": 21,
+      "x1": 32,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 434,
+      "depth": 1
+    },
+    {
+      "id": 435,
+      "parent": 434,
+      "type": "dead",
+      "x0": 32,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 435,
+      "depth": 2
+    },
+    {
+      "id": 436,
+      "parent": 434,
+      "type": "dying",
+      "x0": 32,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 436,
+      "depth": 1
+    },
+    {
+      "id": 437,
+      "parent": 436,
+      "type": "dying",
+      "x0": 31,
+      "y0": 21,
+      "x1": 31,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 437,
+      "depth": 1
+    },
+    {
+      "id": 438,
+      "parent": 430,
+      "type": "trunk",
+      "x0": 35,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 3,
+      "age": 29,
+      "birthStep": 438,
+      "depth": 0
+    },
+    {
+      "id": 439,
+      "parent": 438,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 35,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 439,
+      "depth": 2
+    },
+    {
+      "id": 440,
+      "parent": 438,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 36,
+      "y1": 20,
+      "life": 1,
+      "age": 31,
+      "birthStep": 440,
+      "depth": 1
+    },
+    {
+      "id": 441,
+      "parent": 440,
+      "type": "dead",
+      "x0": 36,
+      "y0": 20,
+      "x1": 36,
+      "y1": 19,
+      "life": 0,
+      "age": 32,
+      "birthStep": 441,
+      "depth": 1
+    },
+    {
+      "id": 442,
+      "parent": 438,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 2,
+      "age": 30,
+      "birthStep": 442,
+      "depth": 0
+    },
+    {
+      "id": 443,
+      "parent": 442,
+      "type": "dead",
+      "x0": 36,
+      "y0": 21,
+      "x1": 36,
+      "y1": 20,
+      "life": 0,
+      "age": 32,
+      "birthStep": 443,
+      "depth": 1
+    },
+    {
+      "id": 444,
+      "parent": 442,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 21,
+      "x1": 36,
+      "y1": 21,
+      "life": 1,
+      "age": 31,
+      "birthStep": 444,
+      "depth": 0
+    },
+    {
+      "id": 445,
+      "parent": 444,
+      "type": "trunk",
+      "x0": 36,
+      "y0": 21,
+      "x1": 37,
+      "y1": 21,
+      "life": 0,
+      "age": 32,
+      "birthStep": 445,
+      "depth": 0
+    }
+  ],
+  "leaves": [
+    {
+      "x": 19,
+      "y": 34,
+      "birthStep": 29,
+      "segmentId": 29
+    },
+    {
+      "x": 22,
+      "y": 34,
+      "birthStep": 30,
+      "segmentId": 30
+    },
+    {
+      "x": 21,
+      "y": 34,
+      "birthStep": 31,
+      "segmentId": 31
+    },
+    {
+      "x": 21,
+      "y": 33,
+      "birthStep": 32,
+      "segmentId": 32
+    },
+    {
+      "x": 20,
+      "y": 33,
+      "birthStep": 33,
+      "segmentId": 33
+    },
+    {
+      "x": 20,
+      "y": 33,
+      "birthStep": 34,
+      "segmentId": 34
+    },
+    {
+      "x": 21,
+      "y": 34,
+      "birthStep": 35,
+      "segmentId": 35
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 36,
+      "segmentId": 36
+    },
+    {
+      "x": 23,
+      "y": 34,
+      "birthStep": 37,
+      "segmentId": 37
+    },
+    {
+      "x": 21,
+      "y": 34,
+      "birthStep": 38,
+      "segmentId": 38
+    },
+    {
+      "x": 22,
+      "y": 35,
+      "birthStep": 40,
+      "segmentId": 40
+    },
+    {
+      "x": 21,
+      "y": 35,
+      "birthStep": 41,
+      "segmentId": 41
+    },
+    {
+      "x": 22,
+      "y": 35,
+      "birthStep": 42,
+      "segmentId": 42
+    },
+    {
+      "x": 21,
+      "y": 34,
+      "birthStep": 43,
+      "segmentId": 43
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 44,
+      "segmentId": 44
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 45,
+      "segmentId": 45
+    },
+    {
+      "x": 19,
+      "y": 34,
+      "birthStep": 46,
+      "segmentId": 46
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 47,
+      "segmentId": 47
+    },
+    {
+      "x": 18,
+      "y": 35,
+      "birthStep": 48,
+      "segmentId": 48
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 50,
+      "segmentId": 50
+    },
+    {
+      "x": 21,
+      "y": 35,
+      "birthStep": 51,
+      "segmentId": 51
+    },
+    {
+      "x": 20,
+      "y": 35,
+      "birthStep": 52,
+      "segmentId": 52
+    },
+    {
+      "x": 19,
+      "y": 34,
+      "birthStep": 53,
+      "segmentId": 53
+    },
+    {
+      "x": 19,
+      "y": 35,
+      "birthStep": 54,
+      "segmentId": 54
+    },
+    {
+      "x": 18,
+      "y": 35,
+      "birthStep": 55,
+      "segmentId": 55
+    },
+    {
+      "x": 22,
+      "y": 35,
+      "birthStep": 56,
+      "segmentId": 56
+    },
+    {
+      "x": 22,
+      "y": 34,
+      "birthStep": 57,
+      "segmentId": 57
+    },
+    {
+      "x": 20,
+      "y": 34,
+      "birthStep": 59,
+      "segmentId": 59
+    },
+    {
+      "x": 20,
+      "y": 33,
+      "birthStep": 60,
+      "segmentId": 60
+    },
+    {
+      "x": 19,
+      "y": 32,
+      "birthStep": 61,
+      "segmentId": 61
+    },
+    {
+      "x": 22,
+      "y": 33,
+      "birthStep": 62,
+      "segmentId": 62
+    },
+    {
+      "x": 21,
+      "y": 33,
+      "birthStep": 63,
+      "segmentId": 63
+    },
+    {
+      "x": 23,
+      "y": 34,
+      "birthStep": 64,
+      "segmentId": 64
+    },
+    {
+      "x": 24,
+      "y": 35,
+      "birthStep": 65,
+      "segmentId": 65
+    },
+    {
+      "x": 18,
+      "y": 34,
+      "birthStep": 66,
+      "segmentId": 66
+    },
+    {
+      "x": 17,
+      "y": 35,
+      "birthStep": 67,
+      "segmentId": 67
+    },
+    {
+      "x": 17,
+      "y": 34,
+      "birthStep": 68,
+      "segmentId": 68
+    },
+    {
+      "x": 16,
+      "y": 34,
+      "birthStep": 69,
+      "segmentId": 69
+    },
+    {
+      "x": 16,
+      "y": 34,
+      "birthStep": 70,
+      "segmentId": 70
+    },
+    {
+      "x": 16,
+      "y": 34,
+      "birthStep": 71,
+      "segmentId": 71
+    },
+    {
+      "x": 14,
+      "y": 35,
+      "birthStep": 72,
+      "segmentId": 72
+    },
+    {
+      "x": 13,
+      "y": 35,
+      "birthStep": 73,
+      "segmentId": 73
+    },
+    {
+      "x": 43,
+      "y": 27,
+      "birthStep": 98,
+      "segmentId": 98
+    },
+    {
+      "x": 41,
+      "y": 27,
+      "birthStep": 99,
+      "segmentId": 99
+    },
+    {
+      "x": 41,
+      "y": 27,
+      "birthStep": 100,
+      "segmentId": 100
+    },
+    {
+      "x": 40,
+      "y": 26,
+      "birthStep": 101,
+      "segmentId": 101
+    },
+    {
+      "x": 40,
+      "y": 27,
+      "birthStep": 102,
+      "segmentId": 102
+    },
+    {
+      "x": 41,
+      "y": 27,
+      "birthStep": 103,
+      "segmentId": 103
+    },
+    {
+      "x": 42,
+      "y": 26,
+      "birthStep": 104,
+      "segmentId": 104
+    },
+    {
+      "x": 42,
+      "y": 27,
+      "birthStep": 105,
+      "segmentId": 105
+    },
+    {
+      "x": 42,
+      "y": 26,
+      "birthStep": 106,
+      "segmentId": 106
+    },
+    {
+      "x": 43,
+      "y": 26,
+      "birthStep": 107,
+      "segmentId": 107
+    },
+    {
+      "x": 42,
+      "y": 27,
+      "birthStep": 109,
+      "segmentId": 109
+    },
+    {
+      "x": 44,
+      "y": 26,
+      "birthStep": 110,
+      "segmentId": 110
+    },
+    {
+      "x": 45,
+      "y": 27,
+      "birthStep": 111,
+      "segmentId": 111
+    },
+    {
+      "x": 45,
+      "y": 25,
+      "birthStep": 112,
+      "segmentId": 112
+    },
+    {
+      "x": 44,
+      "y": 25,
+      "birthStep": 113,
+      "segmentId": 113
+    },
+    {
+      "x": 42,
+      "y": 27,
+      "birthStep": 114,
+      "segmentId": 114
+    },
+    {
+      "x": 42,
+      "y": 26,
+      "birthStep": 115,
+      "segmentId": 115
+    },
+    {
+      "x": 40,
+      "y": 27,
+      "birthStep": 116,
+      "segmentId": 116
+    },
+    {
+      "x": 38,
+      "y": 26,
+      "birthStep": 117,
+      "segmentId": 117
+    },
+    {
+      "x": 48,
+      "y": 28,
+      "birthStep": 119,
+      "segmentId": 119
+    },
+    {
+      "x": 48,
+      "y": 29,
+      "birthStep": 120,
+      "segmentId": 120
+    },
+    {
+      "x": 49,
+      "y": 27,
+      "birthStep": 121,
+      "segmentId": 121
+    },
+    {
+      "x": 50,
+      "y": 26,
+      "birthStep": 122,
+      "segmentId": 122
+    },
+    {
+      "x": 49,
+      "y": 28,
+      "birthStep": 123,
+      "segmentId": 123
+    },
+    {
+      "x": 48,
+      "y": 27,
+      "birthStep": 124,
+      "segmentId": 124
+    },
+    {
+      "x": 49,
+      "y": 28,
+      "birthStep": 125,
+      "segmentId": 125
+    },
+    {
+      "x": 49,
+      "y": 27,
+      "birthStep": 126,
+      "segmentId": 126
+    },
+    {
+      "x": 48,
+      "y": 29,
+      "birthStep": 128,
+      "segmentId": 128
+    },
+    {
+      "x": 47,
+      "y": 29,
+      "birthStep": 129,
+      "segmentId": 129
+    },
+    {
+      "x": 48,
+      "y": 29,
+      "birthStep": 130,
+      "segmentId": 130
+    },
+    {
+      "x": 47,
+      "y": 30,
+      "birthStep": 131,
+      "segmentId": 131
+    },
+    {
+      "x": 46,
+      "y": 31,
+      "birthStep": 132,
+      "segmentId": 132
+    },
+    {
+      "x": 46,
+      "y": 29,
+      "birthStep": 133,
+      "segmentId": 133
+    },
+    {
+      "x": 46,
+      "y": 28,
+      "birthStep": 134,
+      "segmentId": 134
+    },
+    {
+      "x": 48,
+      "y": 30,
+      "birthStep": 135,
+      "segmentId": 135
+    },
+    {
+      "x": 47,
+      "y": 31,
+      "birthStep": 136,
+      "segmentId": 136
+    },
+    {
+      "x": 47,
+      "y": 31,
+      "birthStep": 137,
+      "segmentId": 137
+    },
+    {
+      "x": 48,
+      "y": 30,
+      "birthStep": 138,
+      "segmentId": 138
+    },
+    {
+      "x": 49,
+      "y": 29,
+      "birthStep": 139,
+      "segmentId": 139
+    },
+    {
+      "x": 50,
+      "y": 29,
+      "birthStep": 140,
+      "segmentId": 140
+    },
+    {
+      "x": 49,
+      "y": 28,
+      "birthStep": 141,
+      "segmentId": 141
+    },
+    {
+      "x": 50,
+      "y": 28,
+      "birthStep": 142,
+      "segmentId": 142
+    },
+    {
+      "x": 30,
+      "y": 22,
+      "birthStep": 149,
+      "segmentId": 149
+    },
+    {
+      "x": 29,
+      "y": 22,
+      "birthStep": 150,
+      "segmentId": 150
+    },
+    {
+      "x": 28,
+      "y": 22,
+      "birthStep": 151,
+      "segmentId": 151
+    },
+    {
+      "x": 29,
+      "y": 22,
+      "birthStep": 152,
+      "segmentId": 152
+    },
+    {
+      "x": 29,
+      "y": 22,
+      "birthStep": 153,
+      "segmentId": 153
+    },
+    {
+      "x": 28,
+      "y": 23,
+      "birthStep": 154,
+      "segmentId": 154
+    },
+    {
+      "x": 25,
+      "y": 22,
+      "birthStep": 155,
+      "segmentId": 155
+    },
+    {
+      "x": 26,
+      "y": 23,
+      "birthStep": 156,
+      "segmentId": 156
+    },
+    {
+      "x": 27,
+      "y": 21,
+      "birthStep": 157,
+      "segmentId": 157
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 158,
+      "segmentId": 158
+    },
+    {
+      "x": 29,
+      "y": 22,
+      "birthStep": 160,
+      "segmentId": 160
+    },
+    {
+      "x": 28,
+      "y": 22,
+      "birthStep": 161,
+      "segmentId": 161
+    },
+    {
+      "x": 27,
+      "y": 22,
+      "birthStep": 162,
+      "segmentId": 162
+    },
+    {
+      "x": 29,
+      "y": 23,
+      "birthStep": 163,
+      "segmentId": 163
+    },
+    {
+      "x": 30,
+      "y": 22,
+      "birthStep": 164,
+      "segmentId": 164
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 165,
+      "segmentId": 165
+    },
+    {
+      "x": 30,
+      "y": 22,
+      "birthStep": 166,
+      "segmentId": 166
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 167,
+      "segmentId": 167
+    },
+    {
+      "x": 28,
+      "y": 21,
+      "birthStep": 168,
+      "segmentId": 168
+    },
+    {
+      "x": 30,
+      "y": 21,
+      "birthStep": 170,
+      "segmentId": 170
+    },
+    {
+      "x": 30,
+      "y": 21,
+      "birthStep": 171,
+      "segmentId": 171
+    },
+    {
+      "x": 29,
+      "y": 22,
+      "birthStep": 172,
+      "segmentId": 172
+    },
+    {
+      "x": 30,
+      "y": 21,
+      "birthStep": 173,
+      "segmentId": 173
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 174,
+      "segmentId": 174
+    },
+    {
+      "x": 31,
+      "y": 20,
+      "birthStep": 175,
+      "segmentId": 175
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 176,
+      "segmentId": 176
+    },
+    {
+      "x": 31,
+      "y": 22,
+      "birthStep": 177,
+      "segmentId": 177
+    },
+    {
+      "x": 31,
+      "y": 22,
+      "birthStep": 179,
+      "segmentId": 179
+    },
+    {
+      "x": 32,
+      "y": 22,
+      "birthStep": 180,
+      "segmentId": 180
+    },
+    {
+      "x": 33,
+      "y": 23,
+      "birthStep": 181,
+      "segmentId": 181
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 182,
+      "segmentId": 182
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 183,
+      "segmentId": 183
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 184,
+      "segmentId": 184
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 185,
+      "segmentId": 185
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 186,
+      "segmentId": 186
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 187,
+      "segmentId": 187
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 188,
+      "segmentId": 188
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 189,
+      "segmentId": 189
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 190,
+      "segmentId": 190
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 191,
+      "segmentId": 191
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 192,
+      "segmentId": 192
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 193,
+      "segmentId": 193
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 200,
+      "segmentId": 200
+    },
+    {
+      "x": 32,
+      "y": 22,
+      "birthStep": 201,
+      "segmentId": 201
+    },
+    {
+      "x": 33,
+      "y": 22,
+      "birthStep": 202,
+      "segmentId": 202
+    },
+    {
+      "x": 32,
+      "y": 23,
+      "birthStep": 203,
+      "segmentId": 203
+    },
+    {
+      "x": 34,
+      "y": 23,
+      "birthStep": 204,
+      "segmentId": 204
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 205,
+      "segmentId": 205
+    },
+    {
+      "x": 33,
+      "y": 22,
+      "birthStep": 206,
+      "segmentId": 206
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 207,
+      "segmentId": 207
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 208,
+      "segmentId": 208
+    },
+    {
+      "x": 35,
+      "y": 21,
+      "birthStep": 209,
+      "segmentId": 209
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 211,
+      "segmentId": 211
+    },
+    {
+      "x": 37,
+      "y": 20,
+      "birthStep": 212,
+      "segmentId": 212
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 213,
+      "segmentId": 213
+    },
+    {
+      "x": 38,
+      "y": 19,
+      "birthStep": 214,
+      "segmentId": 214
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 215,
+      "segmentId": 215
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 216,
+      "segmentId": 216
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 217,
+      "segmentId": 217
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 218,
+      "segmentId": 218
+    },
+    {
+      "x": 37,
+      "y": 20,
+      "birthStep": 219,
+      "segmentId": 219
+    },
+    {
+      "x": 35,
+      "y": 19,
+      "birthStep": 221,
+      "segmentId": 221
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 222,
+      "segmentId": 222
+    },
+    {
+      "x": 34,
+      "y": 18,
+      "birthStep": 223,
+      "segmentId": 223
+    },
+    {
+      "x": 33,
+      "y": 17,
+      "birthStep": 224,
+      "segmentId": 224
+    },
+    {
+      "x": 34,
+      "y": 18,
+      "birthStep": 225,
+      "segmentId": 225
+    },
+    {
+      "x": 35,
+      "y": 18,
+      "birthStep": 226,
+      "segmentId": 226
+    },
+    {
+      "x": 35,
+      "y": 17,
+      "birthStep": 227,
+      "segmentId": 227
+    },
+    {
+      "x": 38,
+      "y": 17,
+      "birthStep": 228,
+      "segmentId": 228
+    },
+    {
+      "x": 32,
+      "y": 20,
+      "birthStep": 230,
+      "segmentId": 230
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 231,
+      "segmentId": 231
+    },
+    {
+      "x": 30,
+      "y": 20,
+      "birthStep": 232,
+      "segmentId": 232
+    },
+    {
+      "x": 32,
+      "y": 20,
+      "birthStep": 233,
+      "segmentId": 233
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 234,
+      "segmentId": 234
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 235,
+      "segmentId": 235
+    },
+    {
+      "x": 32,
+      "y": 20,
+      "birthStep": 236,
+      "segmentId": 236
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 237,
+      "segmentId": 237
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 238,
+      "segmentId": 238
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 239,
+      "segmentId": 239
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 240,
+      "segmentId": 240
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 241,
+      "segmentId": 241
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 242,
+      "segmentId": 242
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 243,
+      "segmentId": 243
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 244,
+      "segmentId": 244
+    },
+    {
+      "x": 38,
+      "y": 21,
+      "birthStep": 249,
+      "segmentId": 249
+    },
+    {
+      "x": 40,
+      "y": 20,
+      "birthStep": 250,
+      "segmentId": 250
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 251,
+      "segmentId": 251
+    },
+    {
+      "x": 39,
+      "y": 20,
+      "birthStep": 252,
+      "segmentId": 252
+    },
+    {
+      "x": 39,
+      "y": 19,
+      "birthStep": 253,
+      "segmentId": 253
+    },
+    {
+      "x": 40,
+      "y": 18,
+      "birthStep": 254,
+      "segmentId": 254
+    },
+    {
+      "x": 40,
+      "y": 20,
+      "birthStep": 255,
+      "segmentId": 255
+    },
+    {
+      "x": 41,
+      "y": 20,
+      "birthStep": 256,
+      "segmentId": 256
+    },
+    {
+      "x": 42,
+      "y": 20,
+      "birthStep": 257,
+      "segmentId": 257
+    },
+    {
+      "x": 42,
+      "y": 20,
+      "birthStep": 258,
+      "segmentId": 258
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 260,
+      "segmentId": 260
+    },
+    {
+      "x": 35,
+      "y": 20,
+      "birthStep": 261,
+      "segmentId": 261
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 262,
+      "segmentId": 262
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 263,
+      "segmentId": 263
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 264,
+      "segmentId": 264
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 265,
+      "segmentId": 265
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 266,
+      "segmentId": 266
+    },
+    {
+      "x": 32,
+      "y": 19,
+      "birthStep": 267,
+      "segmentId": 267
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "birthStep": 268,
+      "segmentId": 268
+    },
+    {
+      "x": 35,
+      "y": 18,
+      "birthStep": 270,
+      "segmentId": 270
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 271,
+      "segmentId": 271
+    },
+    {
+      "x": 35,
+      "y": 18,
+      "birthStep": 272,
+      "segmentId": 272
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 273,
+      "segmentId": 273
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 274,
+      "segmentId": 274
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 275,
+      "segmentId": 275
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 276,
+      "segmentId": 276
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 277,
+      "segmentId": 277
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 279,
+      "segmentId": 279
+    },
+    {
+      "x": 36,
+      "y": 18,
+      "birthStep": 280,
+      "segmentId": 280
+    },
+    {
+      "x": 36,
+      "y": 18,
+      "birthStep": 281,
+      "segmentId": 281
+    },
+    {
+      "x": 39,
+      "y": 18,
+      "birthStep": 282,
+      "segmentId": 282
+    },
+    {
+      "x": 39,
+      "y": 17,
+      "birthStep": 283,
+      "segmentId": 283
+    },
+    {
+      "x": 39,
+      "y": 18,
+      "birthStep": 284,
+      "segmentId": 284
+    },
+    {
+      "x": 39,
+      "y": 18,
+      "birthStep": 285,
+      "segmentId": 285
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 286,
+      "segmentId": 286
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 287,
+      "segmentId": 287
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 288,
+      "segmentId": 288
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 289,
+      "segmentId": 289
+    },
+    {
+      "x": 36,
+      "y": 18,
+      "birthStep": 290,
+      "segmentId": 290
+    },
+    {
+      "x": 36,
+      "y": 17,
+      "birthStep": 291,
+      "segmentId": 291
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 292,
+      "segmentId": 292
+    },
+    {
+      "x": 38,
+      "y": 18,
+      "birthStep": 293,
+      "segmentId": 293
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 300,
+      "segmentId": 300
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 301,
+      "segmentId": 301
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 302,
+      "segmentId": 302
+    },
+    {
+      "x": 33,
+      "y": 18,
+      "birthStep": 303,
+      "segmentId": 303
+    },
+    {
+      "x": 34,
+      "y": 18,
+      "birthStep": 304,
+      "segmentId": 304
+    },
+    {
+      "x": 34,
+      "y": 18,
+      "birthStep": 305,
+      "segmentId": 305
+    },
+    {
+      "x": 31,
+      "y": 19,
+      "birthStep": 306,
+      "segmentId": 306
+    },
+    {
+      "x": 30,
+      "y": 19,
+      "birthStep": 307,
+      "segmentId": 307
+    },
+    {
+      "x": 29,
+      "y": 19,
+      "birthStep": 308,
+      "segmentId": 308
+    },
+    {
+      "x": 30,
+      "y": 18,
+      "birthStep": 309,
+      "segmentId": 309
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 311,
+      "segmentId": 311
+    },
+    {
+      "x": 35,
+      "y": 21,
+      "birthStep": 312,
+      "segmentId": 312
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 313,
+      "segmentId": 313
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 314,
+      "segmentId": 314
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 315,
+      "segmentId": 315
+    },
+    {
+      "x": 35,
+      "y": 21,
+      "birthStep": 316,
+      "segmentId": 316
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 317,
+      "segmentId": 317
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 318,
+      "segmentId": 318
+    },
+    {
+      "x": 29,
+      "y": 21,
+      "birthStep": 319,
+      "segmentId": 319
+    },
+    {
+      "x": 36,
+      "y": 19,
+      "birthStep": 321,
+      "segmentId": 321
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 322,
+      "segmentId": 322
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 323,
+      "segmentId": 323
+    },
+    {
+      "x": 37,
+      "y": 19,
+      "birthStep": 324,
+      "segmentId": 324
+    },
+    {
+      "x": 36,
+      "y": 19,
+      "birthStep": 325,
+      "segmentId": 325
+    },
+    {
+      "x": 35,
+      "y": 19,
+      "birthStep": 326,
+      "segmentId": 326
+    },
+    {
+      "x": 36,
+      "y": 18,
+      "birthStep": 327,
+      "segmentId": 327
+    },
+    {
+      "x": 35,
+      "y": 17,
+      "birthStep": 328,
+      "segmentId": 328
+    },
+    {
+      "x": 31,
+      "y": 19,
+      "birthStep": 330,
+      "segmentId": 330
+    },
+    {
+      "x": 32,
+      "y": 19,
+      "birthStep": 331,
+      "segmentId": 331
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 332,
+      "segmentId": 332
+    },
+    {
+      "x": 32,
+      "y": 18,
+      "birthStep": 333,
+      "segmentId": 333
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "birthStep": 334,
+      "segmentId": 334
+    },
+    {
+      "x": 35,
+      "y": 18,
+      "birthStep": 335,
+      "segmentId": 335
+    },
+    {
+      "x": 38,
+      "y": 17,
+      "birthStep": 336,
+      "segmentId": 336
+    },
+    {
+      "x": 32,
+      "y": 18,
+      "birthStep": 337,
+      "segmentId": 337
+    },
+    {
+      "x": 31,
+      "y": 19,
+      "birthStep": 338,
+      "segmentId": 338
+    },
+    {
+      "x": 31,
+      "y": 17,
+      "birthStep": 339,
+      "segmentId": 339
+    },
+    {
+      "x": 31,
+      "y": 18,
+      "birthStep": 340,
+      "segmentId": 340
+    },
+    {
+      "x": 32,
+      "y": 18,
+      "birthStep": 341,
+      "segmentId": 341
+    },
+    {
+      "x": 31,
+      "y": 18,
+      "birthStep": 342,
+      "segmentId": 342
+    },
+    {
+      "x": 31,
+      "y": 18,
+      "birthStep": 343,
+      "segmentId": 343
+    },
+    {
+      "x": 32,
+      "y": 18,
+      "birthStep": 344,
+      "segmentId": 344
+    },
+    {
+      "x": 33,
+      "y": 22,
+      "birthStep": 348,
+      "segmentId": 348
+    },
+    {
+      "x": 36,
+      "y": 23,
+      "birthStep": 349,
+      "segmentId": 349
+    },
+    {
+      "x": 37,
+      "y": 22,
+      "birthStep": 350,
+      "segmentId": 350
+    },
+    {
+      "x": 36,
+      "y": 22,
+      "birthStep": 351,
+      "segmentId": 351
+    },
+    {
+      "x": 38,
+      "y": 21,
+      "birthStep": 352,
+      "segmentId": 352
+    },
+    {
+      "x": 39,
+      "y": 22,
+      "birthStep": 353,
+      "segmentId": 353
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 354,
+      "segmentId": 354
+    },
+    {
+      "x": 36,
+      "y": 23,
+      "birthStep": 355,
+      "segmentId": 355
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 356,
+      "segmentId": 356
+    },
+    {
+      "x": 34,
+      "y": 22,
+      "birthStep": 357,
+      "segmentId": 357
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 359,
+      "segmentId": 359
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 360,
+      "segmentId": 360
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 361,
+      "segmentId": 361
+    },
+    {
+      "x": 32,
+      "y": 20,
+      "birthStep": 362,
+      "segmentId": 362
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 363,
+      "segmentId": 363
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 364,
+      "segmentId": 364
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 365,
+      "segmentId": 365
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 366,
+      "segmentId": 366
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 367,
+      "segmentId": 367
+    },
+    {
+      "x": 37,
+      "y": 20,
+      "birthStep": 369,
+      "segmentId": 369
+    },
+    {
+      "x": 38,
+      "y": 19,
+      "birthStep": 370,
+      "segmentId": 370
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 371,
+      "segmentId": 371
+    },
+    {
+      "x": 37,
+      "y": 21,
+      "birthStep": 372,
+      "segmentId": 372
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 373,
+      "segmentId": 373
+    },
+    {
+      "x": 33,
+      "y": 18,
+      "birthStep": 374,
+      "segmentId": 374
+    },
+    {
+      "x": 37,
+      "y": 20,
+      "birthStep": 375,
+      "segmentId": 375
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 376,
+      "segmentId": 376
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 378,
+      "segmentId": 378
+    },
+    {
+      "x": 35,
+      "y": 18,
+      "birthStep": 379,
+      "segmentId": 379
+    },
+    {
+      "x": 36,
+      "y": 17,
+      "birthStep": 380,
+      "segmentId": 380
+    },
+    {
+      "x": 38,
+      "y": 18,
+      "birthStep": 381,
+      "segmentId": 381
+    },
+    {
+      "x": 38,
+      "y": 18,
+      "birthStep": 382,
+      "segmentId": 382
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 383,
+      "segmentId": 383
+    },
+    {
+      "x": 37,
+      "y": 18,
+      "birthStep": 384,
+      "segmentId": 384
+    },
+    {
+      "x": 35,
+      "y": 19,
+      "birthStep": 385,
+      "segmentId": 385
+    },
+    {
+      "x": 34,
+      "y": 20,
+      "birthStep": 386,
+      "segmentId": 386
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 387,
+      "segmentId": 387
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "birthStep": 388,
+      "segmentId": 388
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 389,
+      "segmentId": 389
+    },
+    {
+      "x": 34,
+      "y": 19,
+      "birthStep": 390,
+      "segmentId": 390
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "birthStep": 391,
+      "segmentId": 391
+    },
+    {
+      "x": 32,
+      "y": 19,
+      "birthStep": 392,
+      "segmentId": 392
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 401,
+      "segmentId": 401
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 402,
+      "segmentId": 402
+    },
+    {
+      "x": 39,
+      "y": 20,
+      "birthStep": 403,
+      "segmentId": 403
+    },
+    {
+      "x": 40,
+      "y": 21,
+      "birthStep": 404,
+      "segmentId": 404
+    },
+    {
+      "x": 38,
+      "y": 19,
+      "birthStep": 405,
+      "segmentId": 405
+    },
+    {
+      "x": 38,
+      "y": 20,
+      "birthStep": 406,
+      "segmentId": 406
+    },
+    {
+      "x": 38,
+      "y": 19,
+      "birthStep": 407,
+      "segmentId": 407
+    },
+    {
+      "x": 38,
+      "y": 18,
+      "birthStep": 408,
+      "segmentId": 408
+    },
+    {
+      "x": 38,
+      "y": 19,
+      "birthStep": 409,
+      "segmentId": 409
+    },
+    {
+      "x": 40,
+      "y": 18,
+      "birthStep": 410,
+      "segmentId": 410
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 412,
+      "segmentId": 412
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 413,
+      "segmentId": 413
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 414,
+      "segmentId": 414
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 415,
+      "segmentId": 415
+    },
+    {
+      "x": 33,
+      "y": 20,
+      "birthStep": 416,
+      "segmentId": 416
+    },
+    {
+      "x": 32,
+      "y": 20,
+      "birthStep": 417,
+      "segmentId": 417
+    },
+    {
+      "x": 33,
+      "y": 19,
+      "birthStep": 418,
+      "segmentId": 418
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 419,
+      "segmentId": 419
+    },
+    {
+      "x": 30,
+      "y": 21,
+      "birthStep": 420,
+      "segmentId": 420
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 422,
+      "segmentId": 422
+    },
+    {
+      "x": 37,
+      "y": 21,
+      "birthStep": 423,
+      "segmentId": 423
+    },
+    {
+      "x": 35,
+      "y": 22,
+      "birthStep": 424,
+      "segmentId": 424
+    },
+    {
+      "x": 35,
+      "y": 23,
+      "birthStep": 425,
+      "segmentId": 425
+    },
+    {
+      "x": 35,
+      "y": 21,
+      "birthStep": 426,
+      "segmentId": 426
+    },
+    {
+      "x": 34,
+      "y": 21,
+      "birthStep": 427,
+      "segmentId": 427
+    },
+    {
+      "x": 37,
+      "y": 20,
+      "birthStep": 428,
+      "segmentId": 428
+    },
+    {
+      "x": 35,
+      "y": 20,
+      "birthStep": 429,
+      "segmentId": 429
+    },
+    {
+      "x": 34,
+      "y": 22,
+      "birthStep": 431,
+      "segmentId": 431
+    },
+    {
+      "x": 34,
+      "y": 22,
+      "birthStep": 432,
+      "segmentId": 432
+    },
+    {
+      "x": 33,
+      "y": 21,
+      "birthStep": 433,
+      "segmentId": 433
+    },
+    {
+      "x": 32,
+      "y": 21,
+      "birthStep": 434,
+      "segmentId": 434
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 435,
+      "segmentId": 435
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 436,
+      "segmentId": 436
+    },
+    {
+      "x": 31,
+      "y": 21,
+      "birthStep": 437,
+      "segmentId": 437
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 438,
+      "segmentId": 438
+    },
+    {
+      "x": 35,
+      "y": 20,
+      "birthStep": 439,
+      "segmentId": 439
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 440,
+      "segmentId": 440
+    },
+    {
+      "x": 36,
+      "y": 19,
+      "birthStep": 441,
+      "segmentId": 441
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 442,
+      "segmentId": 442
+    },
+    {
+      "x": 36,
+      "y": 20,
+      "birthStep": 443,
+      "segmentId": 443
+    },
+    {
+      "x": 36,
+      "y": 21,
+      "birthStep": 444,
+      "segmentId": 444
+    },
+    {
+      "x": 37,
+      "y": 21,
+      "birthStep": 445,
+      "segmentId": 445
+    }
+  ],
+  "totalSteps": 446,
+  "meta": {
+    "generator": "tools/export-skeleton.mjs",
+    "source": {
+      "src/ascii/bonsai.js": "e3216a2f340dab3949f6346a087e0da3b3e815b74e72dfeaf29505ab2125152c",
+      "src/shared/glibc-rand.js": "760c64f2fc9c2a63b71450723d570cd5644640faa8a192646596447f9e9baf92"
+    },
+    "terminalRows": 40,
+    "terminalCols": 80,
+    "baseRows": 4,
+    "treeOriginRow": 0,
+    "treeOriginCol": 0,
+    "groundRow": 35,
+    "rootX": 40,
+    "rootY": 35,
+    "lifeStart": 32,
+    "multiplier": 5,
+    "baseType": 1,
+    "leafGlyphs": [
+      "&"
+    ],
+    "colors": [
+      2,
+      3,
+      10,
+      11
+    ],
+    "branchCount": 160,
+    "cbonsaiBranchCount": 320,
+    "cbonsaiShootCount": 2,
+    "maxDepth": 6,
+    "segmentCount": 446,
+    "leafCount": 336,
+    "visibleFrom": "stepsApplied > birthStep"
+  }
+}

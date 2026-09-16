@@ -1,0 +1,1978 @@
+{
+  "config": {
+    "tag": "preflight",
+    "pageDuration": 3600,
+    "speed": 40,
+    "soakSeconds": 90,
+    "sampleEvery": 10,
+    "hideAt": 30,
+    "hideFor": 12,
+    "shotAt": [
+      0,
+      22.5,
+      45,
+      67.5
+    ],
+    "logFile": "C:\\aha\\ascii art\\proof\\M4\\preflight-log.txt",
+    "jsonFile": "C:\\aha\\ascii art\\proof\\M4\\preflight-samples.jsonl",
+    "shotDir": "C:\\aha\\ascii art\\proof\\M4\\preflight",
+    "shotPrefix": "pre"
+  },
+  "url": "http://127.0.0.1:8137/?duration=3600&speed=40&seed=42",
+  "headless": true,
+  "chrome": "Chrome/152.0.7977.83",
+  "anchorWall": 1789572835521,
+  "anchorIso": "2026-09-16 15:33:55.521Z",
+  "endIso": "2026-09-16 15:35:36.674Z",
+  "sampleCount": 12,
+  "drift": {
+    "max": 0.000043333,
+    "maxMs": 155.9988,
+    "mean": 0.00002620366666666667,
+    "final": 0,
+    "maxRendered": 0.002048889,
+    "maxRenderedMs": 7376.0004,
+    "oneRafFrameT": 0.000004638888888888888,
+    "oneLadderFrameT": 0.001669449081803005,
+    "everExceededOneRafFrame": true,
+    "everExceededOneLadderFrame": false
+  },
+  "heap": {
+    "firstBytes": 2139619,
+    "medianBytes": 2315259,
+    "peakBytes": 6097605,
+    "finalBytes": 2320843,
+    "deltaBytes": 181224
+  },
+  "cache": {
+    "first": 25,
+    "peak": 27,
+    "final": 3,
+    "finalBytes": 243406,
+    "fetchedTotal": 545,
+    "evictedTotal": 542,
+    "failedTotal": 0
+  },
+  "dom": {
+    "first": 117,
+    "final": 283
+  },
+  "errors": {
+    "consoleErrors": 0,
+    "consoleWarnings": 0,
+    "exceptions": 0,
+    "logErrors": 0,
+    "logWarnings": 0,
+    "messages": []
+  },
+  "longTasks": {
+    "total": 5,
+    "totalMs": 946,
+    "max": 272
+  },
+  "raf": {
+    "totalCalls": 4326,
+    "totalFires": 4326,
+    "scheduledAfterDone": 0
+  },
+  "finale": {
+    "clockDone": true,
+    "frameDone": true,
+    "t": 1,
+    "bodyState": "held",
+    "fillWidth": "100%",
+    "step": "512/512",
+    "plateFrames": "599/599",
+    "baseIndex": 599,
+    "plateState": "held",
+    "rafScheduledAfterDone": 0,
+    "cacheHeld": 3,
+    "cacheBytes": 243406
+  },
+  "n8": {
+    "hideWall": 1789572865574,
+    "restoreWall": 1789572877636,
+    "hiddenMs": 12062,
+    "visibilityWhileHidden": "hidden",
+    "tBeforeHide": 0.3346511111107138,
+    "tBeforeShow": 0.46827333333293597,
+    "tAfterRestore": 0.5191399999996027,
+    "modelSecondsMissed": 481.0399999999999,
+    "stepBefore": 171,
+    "stepAfterFirstFrame": 240,
+    "stepAfter": 265,
+    "frameBefore": 200,
+    "frameAfter": 310,
+    "maxRafGapMs": 12087.700000047684,
+    "firstFrameDtMs": 0,
+    "recoveryMs": 329.2,
+    "recoveredBase": 283,
+    "blankFrames": 0,
+    "framesRecorded": 239,
+    "baseSequence": [
+      201,
+      281,
+      283,
+      284,
+      285,
+      286,
+      287,
+      288,
+      289,
+      290,
+      291,
+      292,
+      293,
+      294,
+      295,
+      296,
+      297,
+      298,
+      299,
+      300,
+      301,
+      302,
+      303,
+      304,
+      305,
+      306,
+      307
+    ],
+    "plateStateSequence": [
+      "resyncing",
+      "ready"
+    ],
+    "visibilityEvents": [
+      {
+        "perf": 30258.799999952316,
+        "wall": 1789572865604,
+        "state": "hidden"
+      },
+      {
+        "perf": 42311.5,
+        "wall": 1789572877656,
+        "state": "visible"
+      }
+    ],
+    "hideEventWall": 1789572865604,
+    "showEventWall": 1789572877656,
+    "expectedStepAfterRestore": 239,
+    "recoverySamples": [
+      {
+        "dt": 0,
+        "wall": 1789572877665,
+        "t": 0.4690711111108462,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 200,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/32f29c64-68d4-4376-bd33-a7969786e505",
+            "op": 0,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 14.4,
+        "wall": 1789572877679,
+        "t": 0.4692277777777778,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 280,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/8dbb008d-6733-4777-b78b-55375a9a11f3",
+            "op": 0,
+            "complete": false,
+            "nw": 0
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 32,
+        "wall": 1789572877697,
+        "t": 0.46942222222222224,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 0,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 106.2,
+        "wall": 1789572877771,
+        "t": 0.4702466666665342,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 116.2,
+        "wall": 1789572877781,
+        "t": 0.4703588888883591,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 129,
+        "wall": 1789572877794,
+        "t": 0.47050222222208976,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 144.7,
+        "wall": 1789572877810,
+        "t": 0.4706755555550257,
+        "step": 240,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 162.7,
+        "wall": 1789572877828,
+        "t": 0.47087555555502575,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 178.2,
+        "wall": 1789572877843,
+        "t": 0.471047777777248,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 195.5,
+        "wall": 1789572877860,
+        "t": 0.47123999999960264,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 211.5,
+        "wall": 1789572877876,
+        "t": 0.47141777777738036,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 232,
+        "wall": 1789572877897,
+        "t": 0.4716455555551582,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 244.7,
+        "wall": 1789572877910,
+        "t": 0.47178666666613683,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 261.6,
+        "wall": 1789572877926,
+        "t": 0.47197333333293595,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 279.1,
+        "wall": 1789572877944,
+        "t": 0.4721677777773804,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 295.6,
+        "wall": 1789572877961,
+        "t": 0.4723522222220898,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 201,
+        "top": 281,
+        "baseOp": 1,
+        "topOp": 1,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/31251aff-e27b-4b0d-a786-026249231b85",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 312.3,
+        "wall": 1789572877977,
+        "t": 0.47253666666613686,
+        "step": 241,
+        "lo": 200,
+        "hi": 201,
+        "frac": 0.5172,
+        "base": 281,
+        "top": 283,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "resyncing",
+        "recovering": true,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/b6e333b0-d5d4-4cea-9f39-c07bbe61f739",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 0,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 329.2,
+        "wall": 1789572877994,
+        "t": 0.47272555555502577,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.154,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.154,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.154,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 345.1,
+        "wall": 1789572878010,
+        "t": 0.4729066666662693,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.2644,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.2644,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.2644,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 362,
+        "wall": 1789572878027,
+        "t": 0.4730911111109786,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.3789,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.3789,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.3789,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 378.8,
+        "wall": 1789572878044,
+        "t": 0.47327777777777774,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.4874,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.4874,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.4874,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 394.8,
+        "wall": 1789572878060,
+        "t": 0.47345444444417956,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.5972,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.5972,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.5972,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 411.5,
+        "wall": 1789572878076,
+        "t": 0.4736388888888889,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.7077,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.7077,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.7077,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 429.6,
+        "wall": 1789572878095,
+        "t": 0.47384111111097865,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.8195,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.8195,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.8195,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 445.7,
+        "wall": 1789572878111,
+        "t": 0.4740188888887565,
+        "step": 242,
+        "lo": 283,
+        "hi": 284,
+        "frac": 0.9313,
+        "base": 283,
+        "top": 284,
+        "baseOp": 1,
+        "topOp": 0.9313,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 0.9313,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/e75beae5-1489-4231-a79c-ac3789e5deb7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 462.9,
+        "wall": 1789572878128,
+        "t": 0.47421111111111114,
+        "step": 242,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.0458,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 478.2,
+        "wall": 1789572878143,
+        "t": 0.4743822222219573,
+        "step": 242,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.153,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.153,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.153,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 495.4,
+        "wall": 1789572878160,
+        "t": 0.47457222222222223,
+        "step": 242,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.2674,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.2674,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.2674,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 512.6,
+        "wall": 1789572878178,
+        "t": 0.47476444444391463,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.3739,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.3739,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.3739,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 530.6,
+        "wall": 1789572878196,
+        "t": 0.4749644444439146,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.4904,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.4904,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.4904,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 544.9,
+        "wall": 1789572878210,
+        "t": 0.4751222222222222,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.5962,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.5962,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.5962,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 562.6,
+        "wall": 1789572878228,
+        "t": 0.47531999999947017,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.714,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.714,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.714,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 578.3,
+        "wall": 1789572878243,
+        "t": 0.4754933333330684,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.8192,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.8192,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.8192,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 594.8,
+        "wall": 1789572878260,
+        "t": 0.47567666666640174,
+        "step": 243,
+        "lo": 284,
+        "hi": 285,
+        "frac": 0.9283,
+        "base": 284,
+        "top": 285,
+        "baseOp": 1,
+        "topOp": 0.9283,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/ed78dbaa-e7c3-4b08-b5b6-39a0647fdc2f",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 0.9283,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 612.2,
+        "wall": 1789572878277,
+        "t": 0.47586999999947016,
+        "step": 243,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.0401,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 628.1,
+        "wall": 1789572878293,
+        "t": 0.4760466666665342,
+        "step": 243,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.15,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0.15,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0.15,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 645.5,
+        "wall": 1789572878311,
+        "t": 0.47625,
+        "step": 243,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.2658,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0.2658,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0.2658,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 662.3,
+        "wall": 1789572878327,
+        "t": 0.47642666666640177,
+        "step": 243,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.3736,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0.3736,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0.3736,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 679.4,
+        "wall": 1789572878344,
+        "t": 0.47661555555529067,
+        "step": 244,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.4847,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0.4847,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0.4847,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      },
+      {
+        "dt": 694.9,
+        "wall": 1789572878360,
+        "t": 0.47678777777751286,
+        "step": 244,
+        "lo": 285,
+        "hi": 286,
+        "frac": 0.5945,
+        "base": 285,
+        "top": 286,
+        "baseOp": 1,
+        "topOp": 0.5945,
+        "state": "ready",
+        "recovering": false,
+        "painted": true,
+        "imgs": [
+          {
+            "src": "blob:http://127.0.0.1:8137/c7c6e580-1615-41ba-a2a7-7eca2229f14b",
+            "op": 0.5945,
+            "complete": true,
+            "nw": 900
+          },
+          {
+            "src": "blob:http://127.0.0.1:8137/7e8e65f1-1153-4b12-aba0-7e4a144581d7",
+            "op": 1,
+            "complete": true,
+            "nw": 900
+          }
+        ]
+      }
+    ]
+  },
+  "shots": [
+    {
+      "file": "C:\\aha\\ascii art\\proof\\M4\\preflight\\pre-t0.00.png",
+      "t": 0.06085,
+      "wall": 1789572840929,
+      "w": 1582,
+      "h": 904
+    },
+    {
+      "file": "C:\\aha\\ascii art\\proof\\M4\\preflight\\pre-t0.25.png",
+      "t": 0.2563177777773804,
+      "wall": 1789572858520,
+      "w": 1582,
+      "h": 904
+    },
+    {
+      "file": "C:\\aha\\ascii art\\proof\\M4\\preflight\\pre-t0.52.png",
+      "t": 0.5299833333333334,
+      "wall": 1789572883149,
+      "w": 1582,
+      "h": 904
+    },
+    {
+      "file": "C:\\aha\\ascii art\\proof\\M4\\preflight\\pre-t0.75.png",
+      "t": 0.7563577777776453,
+      "wall": 1789572903523,
+      "w": 1582,
+      "h": 904
+    },
+    {
+      "file": "C:\\aha\\ascii art\\proof\\M4\\preflight\\pre-t1.00.png",
+      "t": 1,
+      "wall": 1789572926200,
+      "w": 1582,
+      "h": 904
+    }
+  ],
+  "samples": [
+    {
+      "n": 1,
+      "label": "",
+      "wall": 1789572835669,
+      "wallIso": "2026-09-16 15:33:55.669Z",
+      "elapsed": 0.215,
+      "expectedT": 0.002392222,
+      "t": 0.0024355555554231006,
+      "tRendered": 0.00034333333306842383,
+      "drift": 0.000043333,
+      "driftMs": 156,
+      "driftRendered": 0.002048889,
+      "driftRenderedMs": 7376,
+      "visibility": "visible",
+      "phase": "seed",
+      "step": 0,
+      "stepCount": 512,
+      "lo": -1,
+      "hi": -1,
+      "frac": 0,
+      "baseIndex": null,
+      "topIndex": 0,
+      "plateState": "loading",
+      "bodyState": "running",
+      "fillWidth": "0.034%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2139619,
+      "heapTotal": 4545735,
+      "cdpHeapUsed": 1797248,
+      "cdpHeapTotal": 4194304,
+      "cacheHeld": 25,
+      "cacheBytes": 762369,
+      "cacheFetched": 25,
+      "cacheEvicted": 0,
+      "cacheFailed": 0,
+      "domNodes": 117,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 1,
+      "longTasksTotal": 1,
+      "longTaskMsTotal": 66,
+      "longTaskMax": 66,
+      "rafCalls": 2,
+      "rafFires": 0,
+      "maxRafGap": 0
+    },
+    {
+      "n": 2,
+      "label": "",
+      "wall": 1789572845459,
+      "wallIso": "2026-09-16 15:34:05.459Z",
+      "elapsed": 10.005,
+      "expectedT": 0.11117,
+      "t": 0.11120555555555554,
+      "tRendered": 0.11105444444417954,
+      "drift": 0.000035556,
+      "driftMs": 128,
+      "driftRendered": 0.000115556,
+      "driftRenderedMs": 416,
+      "visibility": "visible",
+      "phase": "sapling",
+      "step": 56,
+      "stepCount": 512,
+      "lo": 66,
+      "hi": 67,
+      "frac": 0.5216,
+      "baseIndex": 66,
+      "topIndex": 67,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "11.105%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2388055,
+      "heapTotal": 7520859,
+      "cdpHeapUsed": 1953788,
+      "cdpHeapTotal": 7077888,
+      "cacheHeld": 27,
+      "cacheBytes": 1029808,
+      "cacheFetched": 91,
+      "cacheEvicted": 64,
+      "cacheFailed": 0,
+      "domNodes": 149,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 1,
+      "longTasksTotal": 2,
+      "longTaskMsTotal": 215,
+      "longTaskMax": 149,
+      "rafCalls": 303,
+      "rafFires": 302,
+      "maxRafGap": 773
+    },
+    {
+      "n": 3,
+      "label": "",
+      "wall": 1789572855468,
+      "wallIso": "2026-09-16 15:34:15.468Z",
+      "elapsed": 20.014,
+      "expectedT": 0.222381111,
+      "t": 0.22241444444391464,
+      "tRendered": 0.22235000000000002,
+      "drift": 0.000033333,
+      "driftMs": 120,
+      "driftRendered": 0.000031111,
+      "driftRenderedMs": 112,
+      "visibility": "visible",
+      "phase": "sapling",
+      "step": 113,
+      "stepCount": 512,
+      "lo": 133,
+      "hi": 134,
+      "frac": 0.1877,
+      "baseIndex": 133,
+      "topIndex": 134,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "22.235%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 4233822,
+      "heapTotal": 8049518,
+      "cdpHeapUsed": 3788856,
+      "cdpHeapTotal": 7602176,
+      "cacheHeld": 27,
+      "cacheBytes": 1277130,
+      "cacheFetched": 158,
+      "cacheEvicted": 131,
+      "cacheFailed": 0,
+      "domNodes": 180,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 2,
+      "longTaskMsTotal": 215,
+      "longTaskMax": 149,
+      "rafCalls": 904,
+      "rafFires": 903,
+      "maxRafGap": 773
+    },
+    {
+      "n": 4,
+      "label": "",
+      "wall": 1789572865472,
+      "wallIso": "2026-09-16 15:34:25.472Z",
+      "elapsed": 30.018,
+      "expectedT": 0.333536667,
+      "t": 0.33356555555529066,
+      "tRendered": 0.33345222222208976,
+      "drift": 0.000028889,
+      "driftMs": 104,
+      "driftRendered": 0.000084444,
+      "driftRenderedMs": 304,
+      "visibility": "visible",
+      "phase": "branching",
+      "step": 170,
+      "stepCount": 512,
+      "lo": 199,
+      "hi": 200,
+      "frac": 0.7379,
+      "baseIndex": 199,
+      "topIndex": 200,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "33.345%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 6097605,
+      "heapTotal": 9492777,
+      "cdpHeapUsed": 5520232,
+      "cdpHeapTotal": 8912896,
+      "cacheHeld": 27,
+      "cacheBytes": 1380260,
+      "cacheFetched": 224,
+      "cacheEvicted": 197,
+      "cacheFailed": 0,
+      "domNodes": 192,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 1,
+      "longTasksTotal": 3,
+      "longTaskMsTotal": 487,
+      "longTaskMax": 272,
+      "rafCalls": 1482,
+      "rafFires": 1481,
+      "maxRafGap": 773
+    },
+    {
+      "n": 5,
+      "label": "",
+      "wall": 1789572882580,
+      "wallIso": "2026-09-16 15:34:42.580Z",
+      "elapsed": 47.126,
+      "expectedT": 0.523625556,
+      "t": 0.5236666666666667,
+      "tRendered": 0.5236388888888889,
+      "drift": 0.000041111,
+      "driftMs": 148,
+      "driftRendered": 0.000013333,
+      "driftRenderedMs": 48,
+      "visibility": "visible",
+      "phase": "branching",
+      "step": 268,
+      "stepCount": 512,
+      "lo": 313,
+      "hi": 314,
+      "frac": 0.6597,
+      "baseIndex": 313,
+      "topIndex": 314,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "52.364%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2093595,
+      "heapTotal": 5327711,
+      "cdpHeapUsed": 1749000,
+      "cdpHeapTotal": 4980736,
+      "cacheHeld": 27,
+      "cacheBytes": 1699794,
+      "cacheFetched": 283,
+      "cacheEvicted": 256,
+      "cacheFailed": 0,
+      "domNodes": 220,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 3,
+      "longTaskMsTotal": 487,
+      "longTaskMax": 272,
+      "rafCalls": 1782,
+      "rafFires": 1781,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 6,
+      "label": "",
+      "wall": 1789572885464,
+      "wallIso": "2026-09-16 15:34:45.464Z",
+      "elapsed": 50.01,
+      "expectedT": 0.55567,
+      "t": 0.5557088888883591,
+      "tRendered": 0.5556811111105813,
+      "drift": 0.000038889,
+      "driftMs": 140,
+      "driftRendered": 0.000011111,
+      "driftRenderedMs": 40,
+      "visibility": "visible",
+      "phase": "branching",
+      "step": 284,
+      "stepCount": 512,
+      "lo": 332,
+      "hi": 333,
+      "frac": 0.853,
+      "baseIndex": 332,
+      "topIndex": 333,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "55.568%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2055209,
+      "heapTotal": 6017945,
+      "cdpHeapUsed": 1823868,
+      "cdpHeapTotal": 5767168,
+      "cacheHeld": 27,
+      "cacheBytes": 1723781,
+      "cacheFetched": 302,
+      "cacheEvicted": 275,
+      "cacheFailed": 0,
+      "domNodes": 228,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 1,
+      "longTasksTotal": 4,
+      "longTaskMsTotal": 755,
+      "longTaskMax": 272,
+      "rafCalls": 1941,
+      "rafFires": 1940,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 7,
+      "label": "",
+      "wall": 1789572895464,
+      "wallIso": "2026-09-16 15:34:55.464Z",
+      "elapsed": 60.01,
+      "expectedT": 0.666781111,
+      "t": 0.6668155555552907,
+      "tRendered": 0.666784444444047,
+      "drift": 0.000034444,
+      "driftMs": 124,
+      "driftRendered": 0.000003333,
+      "driftRenderedMs": 12,
+      "visibility": "visible",
+      "phase": "mature",
+      "step": 341,
+      "stepCount": 512,
+      "lo": 399,
+      "hi": 400,
+      "frac": 0.4039,
+      "baseIndex": 399,
+      "topIndex": 400,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "66.678%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2158655,
+      "heapTotal": 6655347,
+      "cdpHeapUsed": 1816348,
+      "cdpHeapTotal": 6291456,
+      "cacheHeld": 27,
+      "cacheBytes": 1824493,
+      "cacheFetched": 369,
+      "cacheEvicted": 342,
+      "cacheFailed": 0,
+      "domNodes": 246,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 4,
+      "longTaskMsTotal": 755,
+      "longTaskMax": 272,
+      "rafCalls": 2536,
+      "rafFires": 2535,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 8,
+      "label": "",
+      "wall": 1789572905466,
+      "wallIso": "2026-09-16 15:35:05.466Z",
+      "elapsed": 70.012,
+      "expectedT": 0.777914444,
+      "t": 0.7779466666665342,
+      "tRendered": 0.7778933333330683,
+      "drift": 0.000032222,
+      "driftMs": 116,
+      "driftRendered": 0.000021111,
+      "driftRenderedMs": 76,
+      "visibility": "visible",
+      "phase": "mature",
+      "step": 398,
+      "stepCount": 512,
+      "lo": 465,
+      "hi": 466,
+      "frac": 0.9581,
+      "baseIndex": 465,
+      "topIndex": 466,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "77.789%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 3491961,
+      "heapTotal": 6376549,
+      "cdpHeapUsed": 3166308,
+      "cdpHeapTotal": 6029312,
+      "cacheHeld": 27,
+      "cacheBytes": 1922222,
+      "cacheFetched": 435,
+      "cacheEvicted": 408,
+      "cacheFailed": 0,
+      "domNodes": 264,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 1,
+      "longTasksTotal": 5,
+      "longTaskMsTotal": 946,
+      "longTaskMax": 272,
+      "rafCalls": 3126,
+      "rafFires": 3125,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 9,
+      "label": "",
+      "wall": 1789572915468,
+      "wallIso": "2026-09-16 15:35:15.468Z",
+      "elapsed": 80.014,
+      "expectedT": 0.889047778,
+      "t": 0.8890744444443119,
+      "tRendered": 0.8889988888886239,
+      "drift": 0.000026667,
+      "driftMs": 96,
+      "driftRendered": 0.000048889,
+      "driftRenderedMs": 176,
+      "visibility": "visible",
+      "phase": "bloom",
+      "step": 455,
+      "stepCount": 512,
+      "lo": 532,
+      "hi": 533,
+      "frac": 0.5103,
+      "baseIndex": 532,
+      "topIndex": 533,
+      "plateState": "ready",
+      "bodyState": "running",
+      "fillWidth": "88.9%",
+      "done": false,
+      "clockDone": false,
+      "heapUsed": 2069687,
+      "heapTotal": 7852951,
+      "cdpHeapUsed": 1840496,
+      "cdpHeapTotal": 7602176,
+      "cacheHeld": 27,
+      "cacheBytes": 1980561,
+      "cacheFetched": 502,
+      "cacheEvicted": 475,
+      "cacheFailed": 0,
+      "domNodes": 284,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 5,
+      "longTaskMsTotal": 946,
+      "longTaskMax": 272,
+      "rafCalls": 3726,
+      "rafFires": 3725,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 10,
+      "label": "",
+      "wall": 1789572925472,
+      "wallIso": "2026-09-16 15:35:25.472Z",
+      "elapsed": 90.018,
+      "expectedT": 1,
+      "t": 1,
+      "tRendered": 1,
+      "drift": 0,
+      "driftMs": 0,
+      "driftRendered": 0,
+      "driftRenderedMs": 0,
+      "visibility": "visible",
+      "phase": "bloom",
+      "step": 512,
+      "stepCount": 512,
+      "lo": 599,
+      "hi": 599,
+      "frac": 0,
+      "baseIndex": 599,
+      "topIndex": 598,
+      "plateState": "held",
+      "bodyState": "held",
+      "fillWidth": "100%",
+      "done": true,
+      "clockDone": true,
+      "heapUsed": 2277285,
+      "heapTotal": 8129697,
+      "cdpHeapUsed": 2033480,
+      "cdpHeapTotal": 7864320,
+      "cacheHeld": 3,
+      "cacheBytes": 243406,
+      "cacheFetched": 545,
+      "cacheEvicted": 542,
+      "cacheFailed": 0,
+      "domNodes": 283,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 5,
+      "longTaskMsTotal": 946,
+      "longTaskMax": 272,
+      "rafCalls": 4325,
+      "rafFires": 4325,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 11,
+      "label": "t=1 reached",
+      "wall": 1789572926265,
+      "wallIso": "2026-09-16 15:35:26.265Z",
+      "elapsed": 90.811,
+      "expectedT": 1,
+      "t": 1,
+      "tRendered": 1,
+      "drift": 0,
+      "driftMs": 0,
+      "driftRendered": 0,
+      "driftRenderedMs": 0,
+      "visibility": "visible",
+      "phase": "bloom",
+      "step": 512,
+      "stepCount": 512,
+      "lo": 599,
+      "hi": 599,
+      "frac": 0,
+      "baseIndex": 599,
+      "topIndex": 598,
+      "plateState": "held",
+      "bodyState": "held",
+      "fillWidth": "100%",
+      "done": true,
+      "clockDone": true,
+      "heapUsed": 2315259,
+      "heapTotal": 8129819,
+      "cdpHeapUsed": 2052108,
+      "cdpHeapTotal": 7864320,
+      "cacheHeld": 3,
+      "cacheBytes": 243406,
+      "cacheFetched": 545,
+      "cacheEvicted": 542,
+      "cacheFailed": 0,
+      "domNodes": 283,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 5,
+      "longTaskMsTotal": 946,
+      "longTaskMax": 272,
+      "rafCalls": 4326,
+      "rafFires": 4326,
+      "maxRafGap": 12087.7
+    },
+    {
+      "n": 12,
+      "label": "+10s after t=1",
+      "wall": 1789572936349,
+      "wallIso": "2026-09-16 15:35:36.349Z",
+      "elapsed": 100.895,
+      "expectedT": 1,
+      "t": 1,
+      "tRendered": 1,
+      "drift": 0,
+      "driftMs": 0,
+      "driftRendered": 0,
+      "driftRenderedMs": 0,
+      "visibility": "visible",
+      "phase": "bloom",
+      "step": 512,
+      "stepCount": 512,
+      "lo": 599,
+      "hi": 599,
+      "frac": 0,
+      "baseIndex": 599,
+      "topIndex": 598,
+      "plateState": "held",
+      "bodyState": "held",
+      "fillWidth": "100%",
+      "done": true,
+      "clockDone": true,
+      "heapUsed": 2320843,
+      "heapTotal": 8129819,
+      "cdpHeapUsed": 2057712,
+      "cdpHeapTotal": 7864320,
+      "cacheHeld": 3,
+      "cacheBytes": 243406,
+      "cacheFetched": 545,
+      "cacheEvicted": 542,
+      "cacheFailed": 0,
+      "domNodes": 283,
+      "errorsSinceLast": 0,
+      "warningsSinceLast": 0,
+      "errorsTotal": 0,
+      "longTasksSinceLast": 0,
+      "longTasksTotal": 5,
+      "longTaskMsTotal": 946,
+      "longTaskMax": 272,
+      "rafCalls": 4326,
+      "rafFires": 4326,
+      "maxRafGap": 12087.7
+    }
+  ]
+}

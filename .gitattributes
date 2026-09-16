@@ -1,0 +1,26 @@
+# Default: normalise to LF in the repository.
+* text=auto eol=lf
+
+# ---------------------------------------------------------------------------
+# Byte-exact reference data — DO NOT let Git touch these.
+#
+# proof/M1/golden/ holds the raw stdout of the real cbonsai binary, captured in
+# Docker at a pinned 80x40. tools/diff-fidelity.mjs compares the JS port against
+# these byte for byte, and they contain ncurses escape sequences (including the
+# malformed ESC[3-1m that cbonsai emits when fg is -1). Any line-ending or
+# encoding conversion corrupts the reference and the fidelity check becomes
+# meaningless. `-text` disables all conversion.
+# ---------------------------------------------------------------------------
+proof/M1/golden/** -text
+proof/M0/glibc-golden*.txt -text
+
+# Rendered assets and images
+*.jpg  binary
+*.jpeg binary
+*.png  binary
+*.webm binary
+*.blend binary
+
+# Shell scripts must stay LF or they break in Docker
+*.sh text eol=lf
+tools/Dockerfile.cbonsai text eol=lf

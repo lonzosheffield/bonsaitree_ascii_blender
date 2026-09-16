@@ -1,0 +1,38 @@
+# Golden-output harness image for Bonsai Duet (BRIEF non-negotiables N2/N3).
+#
+# Builds the REAL cbonsai from the vendored source at vendor/cbonsai and pins
+# terminal geometry to COLUMNS=80 LINES=40 so that branch length / tree shape
+# (which are functions of the ncurses window size) are reproducible.
+#
+# Build context MUST be <repo>/vendor/cbonsai .
+FROM debian:bookworm-slim
+
+RUN apt-get update \
+ && apt-get install -y --no-install-recommends \
+      gcc \
+      make \
+      libc6-dev \
+      libncurses-dev \
+      pkg-config \
+ && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /build
+COPY . /build/
+
+# Build with the project's own POSIX Makefile (ncursesw + panelw).
+RUN make clean >/dev/null 2>&1 || true \
+ && make \
+ && install -m 0755 cbonsai /usr/local/bin/cbonsai \
+ && /usr/local/bin/cbonsai --help >/dev/null
+
+# N2: terminal geometry is an INPUT to the algorithm. ncurses' setupterm()
+# honours the LINES / COLUMNS environment variables (use_env() is never
+# disabled by cbonsai), so stdscr is exactly 40 rows x 80 cols regardless of
+# whether stdout is a tty.
+ENV TERM=xterm-256color \
+    COLUMNS=80 \
+    LINES=40 \
+    LC_ALL=C.UTF-8 \
+    LANG=C.UTF-8
+
+ENTRYPOINT ["/usr/local/bin/cbonsai"]

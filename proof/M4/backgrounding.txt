@@ -1,0 +1,155 @@
+N8 — BACKGROUNDING RECOVERY: MEASURED IN A REAL BROWSER
+=======================================================
+Date        2026-09-16
+Build       src/blender/panel.js + index.html (N8 changes); all frozen files untouched
+Server      node server.mjs on 127.0.0.1:8137 (canonical port)
+Browser     Chrome (Claude-in-Chrome extension), Windows 11, 1536x826 viewport
+Hide method REAL. The Chrome window is minimised with user32 ShowWindow(SW_MINIMIZE)
+            and restored with SW_RESTORE + SetForegroundWindow. The page observes a
+            genuine visibilitychange -> "hidden"/"visible" and requestAnimationFrame
+            is genuinely suspended -- proved below by the measured rAF gap, which
+            matches the hide duration to within ~120 ms. No synthetic event was
+            dispatched and no clock was faked.
+
+The clock was NOT paused (N8: the semantics are correct and must not change).
+Time away is real time away, and the growth shown on return is the growth that
+happened while nobody was looking.
+
+
+-----------------------------------------------------------------------------
+RUN B -- the primary, fully instrumented run
+-----------------------------------------------------------------------------
+URL   http://127.0.0.1:8137/?duration=3600&speed=20&seed=42
+      (compressed per N6: 3600 model seconds in 180 real seconds)
+
+                          t            clock        ASCII header      plate header
+  BEFORE (hide)    0.697668      t+41:52       step 357 / 512     frame 418 / 600
+  AFTER  (show)    0.808949      t+48:32       step 415 / 512     frame 486 / 600
+
+  hidden, real time ......................  20 030 ms
+  hidden, MODEL time .....................  400.6 s  (6 min 41 s of growth)
+                                            >= the 60 s the brief requires
+  max gap between rAF callbacks ..........  20 149 ms
+        (rAF really was suspended for the whole hide; this is the proof the
+         hide was real rather than a dispatched event)
+
+  RECOVERY TIME ..........................  381 ms
+        measured from the visibilitychange("visible") event to the first
+        animation frame on which the plate's opaque base layer is the frame
+        the playhead actually wants, with no recovery or dissolve outstanding.
+        The panel's own instrumentation agrees: stats().lastResyncMs = 376 ms.
+
+  Recovery broken down (all offsets from the visibility event):
+        +  0 ms  ASCII panel is ALREADY on step index 414, the correct step for
+                 t = 0.808949 (floor(0.808949 * 512) = 414). It re-rendered
+                 straight to it inside the visibilitychange handler, before any
+                 paint. It did not animate through the 58 skipped steps: the
+                 sampled step trace starts at 414 and then advances 415, 416,
+                 417 ... one step every ~350 ms, which is simply normal growth
+                 at speed 20.
+        +  0 ms  plate enters data-state="resyncing", keeps frame 417 (the last
+                 good frame) on screen at opacity 1, and re-seats its prefetch
+                 window on the new playhead. While the wanted frame is missing
+                 it requests that ONE frame and primes that ONE decode; the rest
+                 of the window is refilled only afterwards.
+        + 64 ms  the wanted frame has been fetched and decoded; the dissolve
+                 starts.
+        + 64 ms to +364 ms: dissolve observed on 17 consecutive animation frames
+                 (240 ms CSS opacity transition + the timer's safety margin).
+                 The old frame stays underneath at opacity 1 for the whole
+                 transition, so nothing dips toward the background (N5).
+        +381 ms  the revealed layer is promoted to base; state returns to
+                 "ready"; normal crossfade scrubbing resumes.
+
+  NO BLANK.        900 sampled animation frames after the restore:
+                   blank frames = 0; min(base layer opacity) = 1.000; the base
+                   <img> was complete, non-zero naturalWidth and src-bearing on
+                   every single sample.
+  NO "STALLED".    data-state transitions for the whole run were exactly:
+                   "resyncing" (t=0.808948) -> "ready" (t=0.811034) -> "held"
+                   (t=1). The string "stalled" was never written once.
+  NO VISIBLE SNAP. The only base-layer change during recovery was 417 -> 485,
+                   and it happened at the END of a 240 ms cross-dissolve, not as
+                   a cut. Before this fix the promote was instantaneous.
+
+  BOTH PANELS LAND ON THE CORRECT t. At the moment recovery completed
+  (t = 0.811062):
+        ASCII step index  expected floor(t * 512) = 415   got 415   OK
+        plate frame index expected floor(t * 599) = 485   got 485   OK
+        headers: "step 416 / 512"  and  "frame 486 / 600"
+
+  FINALE UNAFFECTED. The same run was allowed to finish:
+        t = 1, body data-state="held", data-settled="true",
+        ASCII "step 512 / 512", plate "frame 600 / 600",
+        base layer = public/frames/frame-0599.jpg at opacity 1, top at 0,
+        cache collapsed to 3 entries / 243 406 bytes.
+  CONSOLE. Zero messages of any kind (no errors, no warnings) for the page load
+        and the whole run.
+
+
+-----------------------------------------------------------------------------
+RUN A -- an independent, longer hide (17 minutes of model time)
+-----------------------------------------------------------------------------
+URL   http://127.0.0.1:8137/?duration=3600&speed=15&seed=42
+
+                          t            clock        ASCII header      plate header
+  BEFORE (hide)    0.620873      t+37:15       step 318 / 512     frame 372 / 600
+  AFTER  (show)    0.904497      t+54:16       step 464 / 512     frame 542 / 600
+
+  hidden, real time ......................  68 070 ms
+  hidden, MODEL time .....................  1021.0 s  (17 min 01 s of growth)
+  max gap between rAF callbacks ..........  68 066 ms
+  RECOVERY TIME ..........................  371 ms  (panel-internal: 357 ms)
+  blank frames ...........................  0   (min base opacity 1.000)
+  data-state trace .......................  "resyncing" -> "ready"; no "stalled"
+
+  This is the N8 scenario verbatim: away for the best part of twenty minutes,
+  and what comes back is twenty minutes of growth -- arriving as a dissolve,
+  not a jump-cut, with the previous frame held on screen throughout.
+
+
+-----------------------------------------------------------------------------
+WHAT CHANGED (and what deliberately did not)
+-----------------------------------------------------------------------------
+UNCHANGED, on purpose:
+  - GrowthClock still tracks wall-clock time and is never paused on hide.
+  - src/shared/*, src/ascii/*, tools/, blender/, public/* are untouched.
+  - The ASCII renderer needed no change: renderStep() paints the tree AS IT
+    STANDS at a step index, so "catching up" is one buffer replay and exactly
+    one repaint. It only needed to be TOLD the new t promptly, which is what
+    the shell's visibilitychange -> clock.tick() now does, synchronously,
+    before the first restored animation frame.
+
+index.html
+  - visibilitychange/pageshow -> clock.tick(): one synchronous emit lands the
+    true t on every subscriber a frame earlier than the clock's own loop could.
+  - Header counters are now both 1-based ("which of the N you are on", index+1
+    capped at N). They read "STEP 001 / 512" beside "FRAME 001 / 600" at t=0
+    (verified by screenshot) and "STEP 512 / 512" beside "FRAME 600 / 600" at
+    t=1. The M3 gate's mixed-base wart ("STEP 000 / 512" next to
+    "FRAME 001 / 600") is gone.
+
+src/blender/panel.js
+  - resume detection: a gap > policy.resumeGapMs (700 ms) between two presents
+    means the PAGE was suspended, not that the network stalled. Belt and braces
+    with an explicit visibilitychange/pageshow listener, so recovery also works
+    where visibilitychange never fires (occlusion, minimise, screenshot pumps).
+  - panel.resync(t): recompute t from the clock, re-seat the prefetch window,
+    hold the last good frame.
+  - priority: while recovering and the wanted frame is missing, the panel asks
+    for that ONE frame and primes that ONE decode. Refilling the window first
+    would put five other requests ahead of it on a six-connection budget and
+    pay for them with the hold the viewer actually sees.
+  - stall suppression: data-state="resyncing", never "stalled", for a resume.
+    The stall timer is restarted on resume so the suspended minutes cannot be
+    mistaken for a fault.
+  - jump dissolve: a cold promote across >= 3 frames is faded in over 240 ms
+    instead of cut in. The base holds at opacity 1 underneath for the whole
+    transition, so the N5 "no background leak" rule still holds.
+  - FrameCache now frees a connection slot the instant an in-flight fetch is
+    aborted by the window re-seat (it used to wait for the abort to settle, so
+    the one urgent frame could be refused a slot). This also closes a latent
+    double-decrement of inFlight.
+
+Regression check: `node --test test/clock.test.mjs test/glibc-rand.test.mjs
+test/terminal.test.mjs` -> 73 pass, 0 fail.

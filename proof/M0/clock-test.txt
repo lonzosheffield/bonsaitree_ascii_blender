@@ -1,0 +1,58 @@
+Bonsai Duet — M0 proof: GrowthClock (src/shared/clock.js)
+date (UTC) : 2026-09-16T05:02:53Z
+cwd        : C:/aha/ascii art
+node       : v24.19.0   platform: win32 x64
+
+============================================================
+1. Unit tests — node --test, no dependencies
+============================================================
+$ node --test test/clock.test.mjs
+✔ t is exactly 0 at start (1.7539ms)
+✔ t is exactly 0 at start regardless of the time source origin (0.3762ms)
+✔ t is exactly 0.5 at the midpoint of the default 3600s duration (0.2744ms)
+✔ t is exactly 1.0 at the end (0.1976ms)
+✔ t clamps at 1.0 past the end and never wraps (0.3849ms)
+✔ t never exceeds 1 and never decreases across a full sampled run (5.9865ms)
+✔ the clock stops: the rAF loop is not rescheduled after t reaches 1 (1.1528ms)
+✔ duration param: a 60-second compressed run hits 0, 0.5, 1 exactly (0.1966ms)
+✔ speed param: speed=60 completes a 3600s run in 60 real seconds (0.2038ms)
+✔ speed param: speed=0.5 halves progress for the same real time (0.3487ms)
+✔ speed and duration combine: duration=60&speed=2 ends in 30 real seconds (0.1728ms)
+✔ seed is carried through to every frame (0.1929ms)
+✔ parseParams defaults are duration=3600, speed=1, seed=42 (0.4807ms)
+✔ parseParams reads ?duration=&speed=&seed= (0.3213ms)
+✔ parseParams falls back to defaults on junk values (0.1577ms)
+✔ createGrowthClock builds from a query string; explicit options win (0.2882ms)
+✔ phases run seed -> sapling -> branching -> mature -> bloom (0.1682ms)
+✔ phases advance monotonically over a run and end in bloom (0.8443ms)
+✔ same params + same time sequence -> identical frames (deterministic) (0.7692ms)
+✔ no wall-clock reads: sampling repeatedly without advancing never changes t (25.2937ms)
+✔ frames are immutable and downstream growth cannot mutate the clock (0.5938ms)
+✔ a time source that jumps backwards cannot rewind growth (0.1484ms)
+✔ pause holds t; resume does not credit paused time (0.2152ms)
+✔ subscribe fires immediately, then per frame, and unsubscribe stops it (0.2331ms)
+✔ both panels subscribed to one clock see the identical frame (0.2161ms)
+✔ subscribe rejects a non-function (0.1206ms)
+✔ normalizedTime and clamp01 are exact and clamped (0.4221ms)
+ℹ tests 27
+ℹ suites 0
+ℹ pass 27
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1290.8406
+$ echo $?
+0
+
+============================================================
+2. Browser code path — simulated location.search,
+   performance.now() and requestAnimationFrame.
+   Script: proof/M0/browser-smoke.mjs
+============================================================
+$ node proof/M0/browser-smoke.mjs
+params from location: 60 60 7
+frames: 0.0000 seed | 0.1000 sapling | 0.2000 sapling | 0.3000 branching | 0.4000 branching | 0.5000 branching | 0.6000 branching | 0.7000 mature | 0.8000 mature | 0.9000 bloom | 1.0000 bloom
+rAF still queued after t=1: 0 | done: true | t: 1
+$ echo $?
+0

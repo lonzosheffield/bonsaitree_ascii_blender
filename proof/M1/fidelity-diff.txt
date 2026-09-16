@@ -1,0 +1,118 @@
+M1 FIDELITY DIFF — JS port vs. REAL cbonsai golden text
+========================================================================
+generated       : 2026-09-16T06:33:45.912Z
+port            : src/ascii/bonsai.js  (run-to-completion, frameAt(t=1))
+golden          : proof/M1/golden/seed-<N>.txt  (cbonsai -p -s <N>, Docker)
+geometry        : 80 cols x 40 rows (BRIEF N2)
+seeds           : 1, 42, 1337, 99999, 2147483647
+node            : v24.19.0
+
+normalization applied (and NOTHING else):
+  - CRLF/CR -> LF
+  - trailing whitespace per line; trailing blank lines
+  - SGR escapes stripped FROM THE GOLDEN via /\x1b\[[0-9;-]*m/g
+    (tolerant of cbonsai's malformed ESC[3-1m, BRIEF N3 addendum)
+  characters are compared by code point; nothing else is touched.
+
+------------------------------------------------------------------------
+SEED 1
+------------------------------------------------------------------------
+  golden grid   : 40 lines, widths 0..56
+  port grid     : 40 lines, widths 0..56
+  plain-grid cross-check: OK (stripped seed-N.txt === seed-N.plain.txt)
+  growth steps  : 196  branches: 120  shoots: 2
+
+  EXACT MATCH   : YES
+
+  strict checks (ZERO normalization):
+    vs seed-N.plain.txt : BYTE-FOR-BYTE IDENTICAL
+      port   sha256 4350ace96b73cbdc8473cdb5d959b4f7c7d5c4742e6e23c6dc0d7dedf5bbf70e  (3240 bytes)
+      golden sha256 4350ace96b73cbdc8473cdb5d959b4f7c7d5c4742e6e23c6dc0d7dedf5bbf70e
+    vs seed-N.txt (SGR stripped, untrimmed) : identical except the golden
+      carries one extra trailing "\n" — printstdscr()'s final ESC[0m reset
+      line (cbonsai.c:767), which is not a grid cell. No cell differs.
+
+------------------------------------------------------------------------
+SEED 42
+------------------------------------------------------------------------
+  golden grid   : 40 lines, widths 0..68
+  port grid     : 40 lines, widths 0..68
+  plain-grid cross-check: OK (stripped seed-N.txt === seed-N.plain.txt)
+  growth steps  : 512  branches: 360  shoots: 3
+
+  EXACT MATCH   : YES
+
+  strict checks (ZERO normalization):
+    vs seed-N.plain.txt : BYTE-FOR-BYTE IDENTICAL
+      port   sha256 24fc4bde908fd8246395dc99d5b811d4a2e7739f940e6f1b295c9f1859f01233  (3240 bytes)
+      golden sha256 24fc4bde908fd8246395dc99d5b811d4a2e7739f940e6f1b295c9f1859f01233
+    vs seed-N.txt (SGR stripped, untrimmed) : identical except the golden
+      carries one extra trailing "\n" — printstdscr()'s final ESC[0m reset
+      line (cbonsai.c:767), which is not a grid cell. No cell differs.
+
+------------------------------------------------------------------------
+SEED 1337
+------------------------------------------------------------------------
+  golden grid   : 40 lines, widths 0..56
+  port grid     : 40 lines, widths 0..56
+  plain-grid cross-check: OK (stripped seed-N.txt === seed-N.plain.txt)
+  growth steps  : 446  branches: 320  shoots: 2
+
+  EXACT MATCH   : YES
+
+  strict checks (ZERO normalization):
+    vs seed-N.plain.txt : BYTE-FOR-BYTE IDENTICAL
+      port   sha256 7629b35fbd92f5adca0516de8872e097e26a8c5b72fc749e3430e9a3c0d50b11  (3240 bytes)
+      golden sha256 7629b35fbd92f5adca0516de8872e097e26a8c5b72fc749e3430e9a3c0d50b11
+    vs seed-N.txt (SGR stripped, untrimmed) : identical except the golden
+      carries one extra trailing "\n" — printstdscr()'s final ESC[0m reset
+      line (cbonsai.c:767), which is not a grid cell. No cell differs.
+
+------------------------------------------------------------------------
+SEED 99999
+------------------------------------------------------------------------
+  golden grid   : 40 lines, widths 0..65
+  port grid     : 40 lines, widths 0..65
+  plain-grid cross-check: OK (stripped seed-N.txt === seed-N.plain.txt)
+  growth steps  : 952  branches: 680  shoots: 6
+
+  EXACT MATCH   : YES
+
+  strict checks (ZERO normalization):
+    vs seed-N.plain.txt : BYTE-FOR-BYTE IDENTICAL
+      port   sha256 e127975d23af85d28d7709a54f51a13a18af5fcbf9b0c0f18dd50409fa73a313  (3240 bytes)
+      golden sha256 e127975d23af85d28d7709a54f51a13a18af5fcbf9b0c0f18dd50409fa73a313
+    vs seed-N.txt (SGR stripped, untrimmed) : identical except the golden
+      carries one extra trailing "\n" — printstdscr()'s final ESC[0m reset
+      line (cbonsai.c:767), which is not a grid cell. No cell differs.
+
+------------------------------------------------------------------------
+SEED 2147483647
+------------------------------------------------------------------------
+  golden grid   : 40 lines, widths 0..69
+  port grid     : 40 lines, widths 0..69
+  plain-grid cross-check: OK (stripped seed-N.txt === seed-N.plain.txt)
+  growth steps  : 357  branches: 240  shoots: 3
+
+  EXACT MATCH   : YES
+
+  strict checks (ZERO normalization):
+    vs seed-N.plain.txt : BYTE-FOR-BYTE IDENTICAL
+      port   sha256 22a555e24d8f7f9572deec37d15c42d2a9647db848655e11aaa23218ef6b0851  (3240 bytes)
+      golden sha256 22a555e24d8f7f9572deec37d15c42d2a9647db848655e11aaa23218ef6b0851
+    vs seed-N.txt (SGR stripped, untrimmed) : identical except the golden
+      carries one extra trailing "\n" — printstdscr()'s final ESC[0m reset
+      line (cbonsai.c:767), which is not a grid cell. No cell differs.
+
+========================================================================
+SUMMARY
+========================================================================
+  seed          1 : MATCH  
+  seed         42 : MATCH  
+  seed       1337 : MATCH  
+  seed      99999 : MATCH  
+  seed 2147483647 : MATCH  
+
+  5 of 5 seeds match the real cbonsai character grid exactly.
+  M1 fidelity gate: PASS
+

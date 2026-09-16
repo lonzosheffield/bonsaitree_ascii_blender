@@ -1,0 +1,22 @@
+[04:49:45] ==========================================================================
+[04:49:45] bonsai_growth.py | blender 5.2.1 LTS
+[04:49:45] skeleton=C:\aha\ascii art\public\skeleton-42.json
+[04:49:45] out=C:\aha\ascii art\proof\M2\preview res=450x600 samples=24 format=PNG
+[04:49:45] frames=600 rendering 12 frame(s): [0, 54, 109, 163, 218, 272] ...
+[04:49:45] skeleton seed=42 segments=512 chains=180 leafCards=3024 blossomSites=482 steps=512
+[04:49:45] camera FIXED at (0.2095, -2.487889, 0.372077) rot=(86.0, 0.0, 4.0) lens=85.0mm
+[04:49:45] framing frame_w=0.5294 frame_h=0.7059  pot_rim_v=0.8112 canopy_top_v=0.2104 ground_v=0.7800  (v = fraction down from top of frame; M3 alignment uses these)
+[04:49:51] frame 0000/0599 t=0.00000   5.90s  elapsed=    5.9s  eta=   64.9s  -> frame_0000
+[04:49:54] frame 0054/0599 t=0.09015   3.79s  elapsed=    9.7s  eta=   48.5s  -> frame_0054
+[04:49:58] frame 0109/0599 t=0.18197   3.73s  elapsed=   13.4s  eta=   40.3s  -> frame_0109
+[04:50:01] frame 0163/0599 t=0.27212   3.18s  elapsed=   16.6s  eta=   33.2s  -> frame_0163
+[04:50:05] frame 0218/0599 t=0.36394   3.35s  elapsed=   20.0s  eta=   27.9s  -> frame_0218
+[04:50:08] frame 0272/0599 t=0.45409   3.12s  elapsed=   23.1s  eta=   23.1s  -> frame_0272
+[04:50:11] frame 0327/0599 t=0.54591   3.04s  elapsed=   26.1s  eta=   18.7s  -> frame_0327
+[04:50:14] frame 0381/0599 t=0.63606   3.30s  elapsed=   29.4s  eta=   14.7s  -> frame_0381
+[04:50:17] frame 0436/0599 t=0.72788   3.06s  elapsed=   32.5s  eta=   10.8s  -> frame_0436
+[04:50:21] frame 0490/0599 t=0.81803   3.32s  elapsed=   35.8s  eta=    7.2s  -> frame_0490
+[04:50:25] frame 0545/0599 t=0.90985   4.02s  elapsed=   39.8s  eta=    3.6s  -> frame_0545
+[04:50:28] frame 0599/0599 t=1.00000   3.72s  elapsed=   43.5s  eta=    0.0s  -> frame_0599
+[04:50:28] DONE 12 frame(s) in 43.5s (3.63s/frame)
+[04:50:28] ==========================================================================

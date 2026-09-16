@@ -1,0 +1,1072 @@
+/* ============================================================================
+   Bonsai Duet — page shell
+   ----------------------------------------------------------------------------
+   Two views of ONE artifact. The left panel is a phosphor terminal, the right
+   is a dark studio plate. They share the same black, the same grain, the same
+   hairline rules, the same type scale — only the light source differs.
+
+   The cbonsai colour tokens below are not decorative. cbonsai's default
+   `--colors` is "2,3,10,11" (cbonsai.c:858) mapped as:
+       pair 1 LEAF_DARK   = 2   pair 2 WOOD_DARK   = 3
+       pair 3 LEAF_BRIGHT = 10  pair 4 WOOD_BRIGHT = 11
+       pair 5 TEXT        = 8   (256-colour terminals; cbonsai.c:686)
+   Those are xterm-256 indices. The hex values here are the canonical xterm
+   renderings of exactly those indices, so the browser paints what a real
+   terminal paints. src/ascii/terminal.js should colour cells with these
+   tokens and nothing else. A_BOLD is modelled as the --cb-*-bold variants.
+   ========================================================================= */
+
+:root {
+  /* --- cbonsai palette: load-bearing, do not retune ---------------------- */
+  --cb-leaf-dark: #008000;   /* xterm 2  */
+  --cb-wood-dark: #808000;   /* xterm 3  */
+  --cb-leaf-bright: #00ff00; /* xterm 10 */
+  --cb-wood-bright: #ffff00; /* xterm 11 */
+  --cb-text: #808080;        /* xterm 8  */
+
+  /* A_BOLD in a 256-colour terminal brightens the glyph rather than the hue. */
+  --cb-leaf-dark-bold: #00c000;
+  --cb-wood-dark-bold: #c0c000;
+  --cb-leaf-bright-bold: #9cff9c;
+  --cb-wood-bright-bold: #ffff9c;
+  --cb-text-bold: #c8c8c8;
+
+  /* --- shared chrome ---------------------------------------------------- */
+  --ink-void: #050706;       /* the black behind everything */
+  --ink-panel: #080b0a;
+  --ink-raise: #0d1211;
+  --rule: rgba(0, 255, 0, 0.14);
+  --rule-soft: rgba(160, 200, 175, 0.09);
+  --hud: #6f8a7d;            /* label grey-green */
+  --hud-dim: #3f524a;
+  --hud-hot: var(--cb-leaf-bright);
+
+  --phosphor: #00ff6a;
+  --glow-near: rgba(0, 255, 106, 0.42);
+  --glow-far: rgba(0, 255, 106, 0.12);
+
+  --font-mono: ui-monospace, "Cascadia Mono", "Consolas", "SF Mono",
+               "DejaVu Sans Mono", "Liberation Mono", "Menlo", monospace;
+
+  /* --- terminal grid (N2) ----------------------------------------------- */
+  /* --cell-w / --cell-h are overwritten in px by the fit routine in
+     index.html. These defaults keep the grid exact before JS runs. */
+  --cols: 80;
+  --rows: 40;
+  --cell-w: 9.6px;
+  --cell-h: 20px;
+  --cell-font-size: 16px;
+
+  --timeline-h: 86px;
+
+  /* --- plate alignment (M3 composition note) -----------------------------
+     Overwritten in px by fitPlate() in index.html, which solves the two-point
+     fit between the ASCII grid's measured landmarks and the plate's measured
+     landmarks. The fallbacks below are only what the first paint uses before
+     the fit routine has run once; they are not the measured values. */
+  --plate-top: 6%;
+  --plate-h: 84%;
+  --guide-canopy: 0px;
+  --guide-rim: 0px;
+
+  /* One grain field, reused by both panels. Same paper, two exposures. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================================
+   Reset / page
+   ========================================================================= */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--ink-void);
+  color: var(--hud);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr var(--timeline-h);
+  grid-template-areas:
+    "ascii blender"
+    "timeline timeline";
+}
+
+/* ============================================================================
+   Panels — shared skeleton
+   ========================================================================= */
+
+.panel {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+/* The shared grain. Identical field, identical blend, different exposure —
+   this is the main thing that reads the two panels as one artifact. */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 40;
+}
+
+/* The divider itself is NEUTRAL — neither the terminal's green nor the
+   studio's cool white. A green edge here reads as the left panel bleeding
+   onto the right one; a plain hairline reads as a fold. The light that makes
+   the fold legible is #seam, below, and it is a gradient, which a border
+   cannot be. */
+#ascii-panel {
+  grid-area: ascii;
+  background:
+    radial-gradient(120% 90% at 50% 46%, #0b1410 0%, #070a09 55%, #040605 100%);
+  border-right: 1px solid rgba(160, 200, 175, 0.11);
+}
+
+/* Deliberately NOT green. The left panel is phosphor; this one is a lit
+   studio. What ties them together is the black, the grain, the hairlines and
+   the type — not the hue. A second green panel would read as one widget
+   duplicated; a neutral plate beside a phosphor tube reads as two exposures
+   of the same subject, which is the point. */
+#blender-panel {
+  grid-area: blender;
+  background:
+    /* key light, high and slightly behind. Kept low: the plate itself is a
+       near-black JPEG, and a brighter wall would turn its edge into a seam. */
+    radial-gradient(72% 48% at 50% 14%, rgba(226, 234, 245, 0.055) 0%, rgba(226, 234, 245, 0) 62%),
+    /* warm bounce off the floor */
+    radial-gradient(85% 45% at 50% 98%, rgba(255, 238, 214, 0.05) 0%, rgba(0, 0, 0, 0) 68%),
+    /* cyclorama: wall graduating into floor, no visible seam */
+    linear-gradient(180deg, #0a0c0e 0%, #060708 46%, #0a0b0c 73%, #030304 100%);
+}
+
+/* Vignette, plus the single cool rim that keeps the plate from going flat. */
+#blender-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(55% 38% at 50% 72%, rgba(255, 252, 244, 0.045) 0%, rgba(0, 0, 0, 0) 72%),
+    radial-gradient(120% 100% at 50% 50%, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, 0.78) 100%);
+  pointer-events: none;
+  z-index: 30;
+}
+
+/* ============================================================================
+   The fold, and the ground
+
+   #seam is the diptych's hinge. It is dark at top and bottom and carries its
+   light across the middle band — the band both trees occupy — so the eye
+   crosses between the panels where there is something to compare, and the
+   page reads as one plate folded rather than two windows abutted.
+
+   #ground-line is the composition's whole argument made visible: a single
+   hairline at --guide-rim, the y that fitPlate() SOLVED so that the ASCII
+   pot's lip and the rendered pot's rim land on the same row. It is drawn
+   across the full width, brightest at the seam, so the two trees are seen to
+   be standing on one surface. It is deliberately at the threshold of
+   visibility: on a screenshot you notice it only after you notice that both
+   pots sit on it, which is the right order.
+   ========================================================================= */
+
+#seam,
+#ground-line {
+  position: fixed;
+  z-index: 39;
+  pointer-events: none;
+}
+
+#seam {
+  top: 0;
+  bottom: var(--timeline-h);
+  left: 50%;
+  width: 1px;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 255, 106, 0) 0%,
+    rgba(0, 255, 106, 0.07) 14%,
+    rgba(0, 255, 106, 0.26) 52%,
+    rgba(0, 255, 106, 0.09) 86%,
+    rgba(0, 255, 106, 0) 100%
+  );
+  box-shadow: 0 0 26px rgba(0, 255, 106, 0.09);
+}
+
+#ground-line {
+  left: 0;
+  right: 0;
+  top: var(--guide-rim);
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    rgba(170, 205, 185, 0) 0%,
+    rgba(170, 205, 185, 0.05) 18%,
+    rgba(170, 205, 185, 0.15) 50%,
+    rgba(170, 205, 185, 0.05) 82%,
+    rgba(170, 205, 185, 0) 100%
+  );
+  transition: background 2600ms ease-out;
+}
+
+/* ============================================================================
+   Panel headers — one type system across both sides
+   ========================================================================= */
+
+.panel-head {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 35;
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  padding: 14px 18px;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--hud-dim);
+  pointer-events: none;
+}
+
+.panel-head .idx {
+  color: var(--hud);
+  border: 1px solid var(--rule-soft);
+  padding: 2px 6px;
+  letter-spacing: 0.12em;
+}
+
+.panel-head .title { color: var(--hud); }
+.panel-head .spacer { flex: 1; }
+
+/* FORMAT · LIVE COUNTER, identical on both sides. The counters are the piece's
+   thesis in two numbers: one clock, two representations, crossing their totals
+   together. Zero-padded and tabular, so nothing shifts as they climb. */
+.panel-head .meta {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--hud-dim);
+  letter-spacing: 0.16em;
+}
+
+.panel-head .meta .dot { color: var(--hud-dim); opacity: 0.55; letter-spacing: 0; }
+
+.panel-head .meta .count {
+  color: var(--hud);
+  font-variant-numeric: tabular-nums;
+  transition: color 2600ms ease-out, text-shadow 2600ms ease-out;
+}
+
+/* The solved cell size is a measurement, not a caption — it rides along only
+   when the alignment guides are up. */
+.panel-head .meta .px { display: none; letter-spacing: 0.08em; opacity: 0.7; }
+body[data-guides="on"] .panel-head .meta .px { display: inline; }
+
+#ascii-panel .panel-head .title {
+  color: var(--cb-leaf-bright);
+  text-shadow: 0 0 10px var(--glow-near);
+}
+
+/* ============================================================================
+   LEFT — the terminal
+   ========================================================================= */
+
+.terminal {
+  position: relative;
+  z-index: 10;
+  padding: 10px 12px;
+  background: rgba(2, 5, 4, 0.55);
+  border: 1px solid var(--rule);
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.6),
+    0 0 60px -12px rgba(0, 255, 106, 0.22),
+    inset 0 0 90px -30px rgba(0, 255, 106, 0.3);
+}
+
+/* --- N2: EXACTLY 80 columns x 40 rows of monospace cells ------------------
+   Geometry, not styling. --cell-w is one glyph advance and --cell-h is one
+   row, both measured in px by the fit routine; width/height are integer
+   multiples of them, line-height equals --cell-h exactly, and nothing here
+   may introduce letter-spacing, ligatures or kerning that would desync a
+   glyph from its cell. Changing any of this invalidates the M1 pixel diff. */
+#tree {
+  margin: 0;
+  display: block;
+  width: calc(var(--cols) * var(--cell-w));
+  height: calc(var(--rows) * var(--cell-h));
+  font-family: var(--font-mono);
+  font-size: var(--cell-font-size);
+  line-height: var(--cell-h);
+  letter-spacing: 0;
+  word-spacing: 0;
+  font-kerning: none;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0, "calt" 0;
+  font-variant-numeric: tabular-nums;
+  text-rendering: optimizeSpeed;
+  white-space: pre;
+  overflow: hidden;
+  tab-size: 1;
+  color: var(--cb-leaf-bright);
+  text-shadow:
+    0 0 1px rgba(0, 255, 106, 0.55),
+    0 0 8px var(--glow-far);
+  contain: layout paint;
+}
+
+/* Offscreen glyph-advance probe used by the fit routine. Must never be a
+   grid item on <body>, hence position: fixed from the very first paint. */
+#metrics-probe {
+  position: fixed;
+  left: -10000px;
+  top: 0;
+  visibility: hidden;
+  white-space: pre;
+  letter-spacing: 0;
+  pointer-events: none;
+}
+
+/* Spans that src/ascii/terminal.js emits. Kept here so the renderer only has
+   to pick a class name per cbonsai colour pair. */
+#tree .leaf-dark    { color: var(--cb-leaf-dark); }
+#tree .wood-dark    { color: var(--cb-wood-dark); }
+#tree .leaf-bright  { color: var(--cb-leaf-bright); }
+#tree .wood-bright  { color: var(--cb-wood-bright); }
+#tree .txt          { color: var(--cb-text); }
+#tree .b.leaf-dark   { color: var(--cb-leaf-dark-bold); }
+#tree .b.wood-dark   { color: var(--cb-wood-dark-bold); }
+#tree .b.leaf-bright { color: var(--cb-leaf-bright-bold); }
+#tree .b.wood-bright { color: var(--cb-wood-bright-bold); }
+#tree .b.txt         { color: var(--cb-text-bold); }
+
+/* CRT texture: scanlines + shadow-mask + a slow phosphor breath. */
+.crt-scanlines,
+.crt-mask {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20;
+}
+
+.crt-scanlines {
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0px,
+    rgba(0, 0, 0, 0) 2px,
+    rgba(0, 0, 0, 0.34) 3px,
+    rgba(0, 0, 0, 0.34) 4px
+  );
+  opacity: 0.55;
+  mix-blend-mode: multiply;
+}
+
+.crt-mask {
+  background: repeating-linear-gradient(
+    to right,
+    rgba(255, 0, 0, 0.05) 0px,
+    rgba(0, 255, 0, 0.05) 1px,
+    rgba(0, 0, 255, 0.05) 2px
+  );
+  opacity: 0.35;
+  animation: phosphor-breath 7.5s ease-in-out infinite;
+}
+
+@keyframes phosphor-breath {
+  0%, 100% { opacity: 0.30; }
+  50%      { opacity: 0.42; }
+}
+
+/* ============================================================================
+   RIGHT — the studio plate
+   ========================================================================= */
+
+/* GEOMETRY, NOT DECORATION — see the M3 composition note in docs/BRIEF.md.
+   The stage is NOT centred in its panel and its size is not a design choice.
+   fitPlate() in index.html measures the ASCII pot rim and canopy top in device
+   pixels and solves for the height/top that puts the plate's own measured
+   rim (v = 0.9050) and canopy (v = 0.4542) on the very same panel-local rows.
+   The box is exactly 900:1200, so the frame it draws IS the image's edge and
+   `object-fit: contain` fills it without letterboxing: image v maps linearly
+   onto box v, which is what makes the two ground lines agree.
+   Do not re-centre this box, and do not give it a max-width — either one
+   breaks the mapping. Change the plate framing in bonsai_growth.py instead. */
+#blender-stage {
+  position: absolute;
+  top: var(--plate-top);
+  left: 50%;
+  transform: translateX(-50%);
+  height: var(--plate-h);
+  aspect-ratio: 900 / 1200;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  /* An OUTLINE, not a border: a border would shrink the content box by 1px on
+     every side and the image inside it with it, which is enough to throw the
+     ground line off by ~0.7px. The frame must not cost the plate any area. */
+  outline: 1px solid var(--rule-soft);
+  background:
+    radial-gradient(58% 40% at 50% 28%, rgba(222, 232, 244, 0.055) 0%, rgba(0, 0, 0, 0) 72%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.34));
+  box-shadow:
+    0 0 0 1px rgba(0, 0, 0, 0.55),
+    /* light spilling from behind the plate, so the frame is lit rather than
+       pasted — the studio answer to the terminal's phosphor bloom */
+    0 0 110px -18px rgba(198, 220, 245, 0.11),
+    0 40px 90px -40px rgba(0, 0, 0, 0.95),
+    inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  overflow: hidden;
+}
+
+/* The JPEG ladder (N4/N5) lands here: two stacked <img> crossfading. */
+#blender-stage img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Corner ticks — a framing chart, the studio rhyme of the terminal's border. */
+#blender-stage::before,
+#blender-stage::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  border: 1px solid var(--rule);
+  opacity: 0.5;
+  pointer-events: none;
+}
+#blender-stage::before { top: 10px; left: 10px; border-right: 0; border-bottom: 0; }
+#blender-stage::after { bottom: 10px; right: 10px; border-left: 0; border-top: 0; }
+
+/* ============================================================================
+   Placeholders — other agents replace these wholesale
+   ========================================================================= */
+
+.placeholder-note {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 36;
+  text-align: center;
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hud-dim);
+  pointer-events: none;
+}
+
+.placeholder-note b {
+  color: var(--hud);
+  font-weight: 400;
+}
+
+#blender-stage .stage-placeholder {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  text-align: center;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hud-dim);
+  padding: 24px;
+}
+
+#blender-stage .stage-placeholder .glyph {
+  font-size: 42px;
+  line-height: 1;
+  letter-spacing: 0;
+  color: var(--hud-dim);
+  opacity: 0.5;
+}
+
+/* ============================================================================
+   Timeline — the third face of the same object
+
+   The rail is not a separate widget parked under two pictures. It repeats the
+   panels' own language: the same hairline, the same grain, the same 10px
+   uppercase HUD type at the same 18px side gutter as `.panel-head`, and the
+   panel seam continues one tick down into it.
+
+   Geometry that matters: every phase label is positioned at its OWN normalized
+   start on the same axis the fill travels (`--at`, written by buildRail() from
+   the clock's PHASES table), and drops a hairline onto the tick the track draws
+   at that exact fraction. Label, tick and fill edge are therefore the same
+   coordinate three times over — the fill arrives at BRANCHING at the instant
+   the phase does. Evenly-spaced labels would be a lie about the clock.
+   ========================================================================= */
+
+#timeline {
+  grid-area: timeline;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: center;
+  gap: 11px 30px;
+  padding: 15px 18px 17px;
+  background: linear-gradient(180deg, #090d0b 0%, #050706 100%);
+  border-top: 1px solid var(--rule);
+  box-shadow: 0 -18px 40px -26px rgba(0, 255, 106, 0.35);
+  isolation: isolate;
+}
+
+/* The same grain field the panels carry, at the same exposure. */
+#timeline::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: var(--grain);
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  z-index: 4;
+}
+
+/* The seam between the two panels drips one tick into the rail. */
+#timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 1px;
+  height: 10px;
+  background: var(--rule);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+/* --- phase rail ------------------------------------------------------- */
+
+#phase-rail {
+  grid-column: 1;
+  grid-row: 1;
+  position: relative;
+  height: 21px;
+  min-width: 0;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* Anchored at its own start fraction on the fill's axis. The chip's left
+   border, the drop line and the track tick are all exactly `--at`. */
+.phase {
+  position: absolute;
+  top: 0;
+  left: var(--at, 0%);
+  display: block;
+  padding: 4px 8px 3px;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  color: var(--hud-dim);
+  background: transparent;
+  transition: color 300ms ease, border-color 300ms ease,
+              background-color 300ms ease, text-shadow 300ms ease;
+}
+
+/* The drop line onto the track's tick. */
+.phase::after {
+  content: "";
+  position: absolute;
+  left: -1px;
+  top: 100%;
+  width: 1px;
+  height: 12px;
+  background: var(--rule-soft);
+  transition: background-color 300ms ease, box-shadow 300ms ease;
+}
+
+.phase[data-state="done"] {
+  color: var(--hud);
+  border-color: rgba(160, 200, 175, 0.16);
+  background: rgba(120, 200, 160, 0.045);
+}
+.phase[data-state="done"]::after { background: var(--rule); }
+
+/* Unmistakable: the only lit chip on the rail, ringed and burning. */
+.phase[data-state="active"] {
+  color: var(--cb-leaf-bright);
+  border-color: rgba(0, 255, 106, 0.55);
+  background: rgba(0, 255, 106, 0.1);
+  text-shadow: 0 0 12px var(--glow-near);
+  box-shadow: 0 0 18px -4px var(--glow-near), inset 0 0 12px -6px var(--glow-near);
+}
+
+.phase[data-state="active"]::after {
+  background: var(--phosphor);
+  box-shadow: 0 0 8px var(--glow-near);
+}
+
+.phase[data-name="bloom"][data-state="active"] {
+  color: var(--cb-wood-bright);
+  border-color: rgba(255, 255, 0, 0.6);
+  background: rgba(255, 255, 0, 0.11);
+  text-shadow: 0 0 14px rgba(255, 255, 0, 0.5);
+  animation: bloom-pulse 2.4s ease-in-out infinite;
+}
+
+.phase[data-name="bloom"][data-state="active"]::after {
+  background: var(--cb-wood-bright);
+  box-shadow: 0 0 8px rgba(255, 255, 0, 0.5);
+}
+
+@keyframes bloom-pulse {
+  0%, 100% {
+    box-shadow: 0 0 14px -6px rgba(255, 255, 0, 0.35);
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 26px -4px rgba(255, 255, 0, 0.6);
+    text-shadow: 0 0 22px rgba(255, 255, 0, 0.62);
+  }
+}
+
+/* --- readout ---------------------------------------------------------- */
+
+#readout {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 4px;
+  justify-self: end;
+}
+
+#time-label {
+  font-size: 23px;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--cb-leaf-bright);
+  text-shadow: 0 0 16px var(--glow-far);
+  white-space: nowrap;
+}
+
+#time-label .sep,
+#time-label .total {
+  color: var(--hud-dim);
+  font-size: 17px;
+  text-shadow: none;
+}
+
+#run-tag {
+  font-size: 9.5px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hud-dim);
+  white-space: nowrap;
+}
+
+/* --- progress bar ----------------------------------------------------- */
+
+#timeline-track {
+  grid-column: 1;
+  grid-row: 2;
+  position: relative;
+  height: 13px;
+  background: #080c0a;
+  border: 1px solid var(--rule-soft);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.8);
+  overflow: hidden;
+}
+
+/* Ghost ticks at the phase boundaries, so the fill has something to cross. */
+#timeline-track .tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(160, 200, 175, 0.22);
+  z-index: 3;
+}
+
+#timeline-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0%;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    #00a03c 0%,
+    var(--phosphor) 58%,
+    var(--cb-leaf-bright) 100%
+  );
+  box-shadow: 0 0 16px var(--glow-near), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+}
+
+/* The leading edge reads as the growing tip. */
+#timeline-fill::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  bottom: -4px;
+  right: -1px;
+  width: 3px;
+  background: #e8fff2;
+  box-shadow: 0 0 12px 3px var(--glow-near);
+}
+
+body[data-phase="bloom"] #timeline-fill {
+  background: linear-gradient(
+    90deg,
+    #00a03c 0%,
+    var(--cb-leaf-bright) 52%,
+    var(--cb-wood-bright) 100%
+  );
+  box-shadow: 0 0 20px rgba(255, 255, 0, 0.42), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+body[data-phase="bloom"] #time-label { color: var(--cb-wood-bright); }
+
+/* ============================================================================
+   THE ARRIVAL — t = 1, and then nothing
+
+   This is the end of a slow hour, not a reveal. What happens is one breath of
+   light, about three seconds long, and then the page is STILL.
+
+   The rules are in two tiers, written by index.html's arrive():
+
+     body[data-state="held"]    the settle. Every animation here is a single
+                                pass (`1 forwards`) and every transition is
+                                self-terminating. Nothing repeats.
+     body[data-settled]         3.2s later. The animations are removed and the
+                                values they landed on are pinned, so the page
+                                holds its final state with nothing live on the
+                                compositor. This is also where the terminal's
+                                idle phosphor breath — the one thing that
+                                loops during the run — is put to rest.
+
+   Restraint, concretely: the glows swell by roughly a third and come back to
+   just above where they were. Nothing moves, nothing scales, nothing flashes,
+   nothing appears that was not already on the page.
+   ========================================================================= */
+
+/* --- the bar's growing tip becomes a finished edge ---------------------- */
+body[data-state="held"] #timeline-fill::after {
+  background: var(--cb-wood-bright);
+  box-shadow: 0 0 14px 3px rgba(255, 255, 0, 0.5);
+  animation: arrive-cap 2600ms cubic-bezier(0.16, 0.84, 0.44, 1) 1 forwards;
+}
+@keyframes arrive-cap {
+  0%   { box-shadow: 0 0 12px 3px var(--glow-near); }
+  35%  { box-shadow: 0 0 22px 5px rgba(255, 255, 0, 0.62); }
+  100% { box-shadow: 0 0 14px 3px rgba(255, 255, 0, 0.5); }
+}
+
+body[data-state="held"] #run-tag { color: var(--cb-wood-bright); }
+
+/* --- the rail arrives at BLOOM and stays there -------------------------- */
+/* The pulse that ran through the final phase resolves into a steady lit chip.
+   Nothing about it moves again. */
+body[data-state="held"] .phase[data-name="bloom"][data-state="active"] {
+  animation: bloom-hold 2800ms cubic-bezier(0.16, 0.84, 0.44, 1) 1 forwards;
+}
+@keyframes bloom-hold {
+  0% {
+    border-color: rgba(255, 255, 0, 0.6);
+    background: rgba(255, 255, 0, 0.11);
+    box-shadow: 0 0 14px -6px rgba(255, 255, 0, 0.35);
+    text-shadow: 0 0 10px rgba(255, 255, 0, 0.3);
+  }
+  34% {
+    border-color: rgba(255, 255, 0, 0.95);
+    background: rgba(255, 255, 0, 0.17);
+    box-shadow: 0 0 30px -3px rgba(255, 255, 0, 0.5);
+    text-shadow: 0 0 24px rgba(255, 255, 0, 0.68);
+  }
+  100% {
+    border-color: rgba(255, 244, 150, 0.7);
+    background: rgba(255, 255, 0, 0.13);
+    box-shadow: 0 0 18px -6px rgba(255, 255, 0, 0.32);
+    text-shadow: 0 0 13px rgba(255, 255, 0, 0.44);
+  }
+}
+
+/* The phases already crossed step back a little, so BLOOM is unambiguously
+   the state the piece ended in rather than merely the last one lit. */
+body[data-state="held"] .phase[data-state="done"] {
+  color: var(--hud-dim);
+  border-color: rgba(160, 200, 175, 0.1);
+  background: transparent;
+}
+
+/* --- both frames take one breath of light ------------------------------- */
+body[data-state="held"] .terminal {
+  animation: arrive-terminal 3200ms cubic-bezier(0.2, 0.7, 0.3, 1) 1 forwards;
+}
+@keyframes arrive-terminal {
+  0% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6),
+                0 0 60px -12px rgba(0, 255, 106, 0.22),
+                inset 0 0 90px -30px rgba(0, 255, 106, 0.3);
+  }
+  38% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6),
+                0 0 96px -10px rgba(0, 255, 106, 0.34),
+                inset 0 0 112px -26px rgba(0, 255, 106, 0.44);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6),
+                0 0 74px -12px rgba(0, 255, 106, 0.26),
+                inset 0 0 98px -28px rgba(0, 255, 106, 0.35);
+  }
+}
+
+body[data-state="held"] #blender-stage {
+  animation: arrive-plate 3200ms cubic-bezier(0.2, 0.7, 0.3, 1) 1 forwards;
+}
+@keyframes arrive-plate {
+  0% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55),
+                0 0 110px -18px rgba(198, 220, 245, 0.11),
+                0 40px 90px -40px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  }
+  38% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55),
+                0 0 150px -14px rgba(214, 232, 250, 0.2),
+                0 40px 90px -40px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  }
+  100% {
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55),
+                0 0 124px -16px rgba(206, 226, 248, 0.145),
+                0 40px 90px -40px rgba(0, 0, 0, 0.95),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* The ground line and the two counters settle a shade warmer — the only sign
+   the panels themselves give that this is the end and not a pause. */
+body[data-state="held"] #ground-line {
+  background: linear-gradient(
+    90deg,
+    rgba(232, 226, 160, 0) 0%,
+    rgba(232, 226, 160, 0.06) 18%,
+    rgba(232, 226, 160, 0.2) 50%,
+    rgba(232, 226, 160, 0.06) 82%,
+    rgba(232, 226, 160, 0) 100%
+  );
+}
+
+body[data-state="held"] .panel-head .meta .count {
+  color: rgba(238, 232, 170, 0.92);
+  text-shadow: 0 0 12px rgba(255, 255, 0, 0.22);
+}
+
+/* The terminal stops breathing. This is the only thing on the page that loops
+   during the run, and the piece should not end on something still alive. */
+body[data-state="held"] .crt-mask {
+  animation: crt-still 2800ms ease-out 1 forwards;
+}
+@keyframes crt-still {
+  from { opacity: 0.36; }
+  to   { opacity: 0.3; }
+}
+
+/* --- and then the page comes to rest ------------------------------------ */
+/* Every looping or filling animation is removed and its landing values are
+   written directly. After this the page has no rAF, no timer, no animation and
+   no network left running — the piece is a still image that happens to be a
+   web page. The blanket rule at the end is the guarantee, not the mechanism:
+   each element above already pins what it landed on. */
+body[data-settled] .crt-mask { opacity: 0.3; }
+
+body[data-settled] .phase[data-name="bloom"][data-state="active"] {
+  border-color: rgba(255, 244, 150, 0.7);
+  background: rgba(255, 255, 0, 0.13);
+  box-shadow: 0 0 18px -6px rgba(255, 255, 0, 0.32);
+  text-shadow: 0 0 13px rgba(255, 255, 0, 0.44);
+}
+
+body[data-settled] .terminal {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6),
+              0 0 74px -12px rgba(0, 255, 106, 0.26),
+              inset 0 0 98px -28px rgba(0, 255, 106, 0.35);
+}
+
+body[data-settled] #blender-stage {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.55),
+              0 0 124px -16px rgba(206, 226, 248, 0.145),
+              0 40px 90px -40px rgba(0, 0, 0, 0.95),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+body[data-settled] #timeline-fill::after {
+  background: var(--cb-wood-bright);
+  box-shadow: 0 0 14px 3px rgba(255, 255, 0, 0.5);
+}
+
+body[data-settled],
+body[data-settled] *,
+body[data-settled] *::before,
+body[data-settled] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ============================================================================
+   Alignment guides — proof instrument, off unless asked for
+
+   `?guides=1`, or press G. Two hairlines per panel at the SAME panel-local y,
+   drawn from the numbers fitPlate() solved: red = canopy top, blue = pot rim.
+   If the composition is right they cut both trees at the same two features.
+   ========================================================================= */
+
+.guides {
+  position: absolute;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  display: none;
+}
+
+body[data-guides="on"] .guides { display: block; }
+
+.guides i {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+
+.guides i::after {
+  content: attr(data-label);
+  position: absolute;
+  right: 6px;
+  top: -13px;
+  font-size: 9px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: inherit;
+  opacity: 0.85;
+}
+
+.guides .g-canopy {
+  top: var(--guide-canopy);
+  background: rgba(255, 74, 74, 0.8);
+  color: rgba(255, 120, 120, 0.9);
+}
+
+.guides .g-rim {
+  top: var(--guide-rim);
+  background: rgba(96, 168, 255, 0.85);
+  color: rgba(140, 190, 255, 0.9);
+}
+
+/* ============================================================================
+   Degraded states
+   ========================================================================= */
+
+#timeline[data-clock="missing"] #run-tag {
+  color: var(--cb-wood-bright);
+}
+
+/* ============================================================================
+   Accessibility / motion
+   ========================================================================= */
+
+/* Reduced motion keeps the ENDING but drops the breath: the page simply is in
+   its held state, and 3.2s later in its settled one. Nothing swells. */
+@media (prefers-reduced-motion: reduce) {
+  .crt-mask,
+  body[data-state="held"] .crt-mask,
+  .phase[data-name="bloom"][data-state="active"],
+  body[data-state="held"] .phase[data-name="bloom"][data-state="active"],
+  body[data-state="held"] .terminal,
+  body[data-state="held"] #blender-stage,
+  body[data-state="held"] #timeline-fill::after {
+    animation: none;
+  }
+  .phase,
+  #ground-line,
+  .panel-head .meta .count { transition: none; }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* The rail's labels sit at their TRUE fractions, so the first gap to close on a
+   narrow window is SEED (0%) to SAPLING (8%). Tighten the type rather than let
+   the chips collide — moving a label off its fraction is not an option. */
+@media (max-width: 1180px) {
+  #phase-rail { font-size: 9px; letter-spacing: 0.1em; }
+  .phase { padding: 4px 6px 3px; }
+  #time-label { font-size: 20px; }
+  #time-label .sep,
+  #time-label .total { font-size: 15px; }
+}
+
+/* Narrow viewports: stack. The 80x40 grid still wins — it just scales down. */
+@media (max-width: 860px) {
+  body {
+    /* three stacked rows of HUD instead of two, so the rail needs the room */
+    --timeline-h: 112px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr var(--timeline-h);
+    grid-template-areas:
+      "ascii"
+      "blender"
+      "timeline";
+  }
+  #ascii-panel {
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  /* Stacked, the panels no longer meet at 50% and they no longer share a y —
+     so the fold and the shared ground line have nothing left to mean. */
+  #timeline::before,
+  #seam,
+  #ground-line { display: none; }
+  #timeline {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    gap: 10px 0;
+  }
+  #readout {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: stretch;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 14px;
+  }
+  #phase-rail { grid-row: 2; }
+  #timeline-track { grid-row: 3; }
+}

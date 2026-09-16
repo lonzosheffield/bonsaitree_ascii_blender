@@ -1,0 +1,26 @@
+# This project has no npm dependencies — node_modules should never appear.
+node_modules/
+package-lock.json
+
+# OS / editor noise
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Blender working files
+*.blend1
+*.blend2
+
+# Local scratch
+scratch/
+tmp/
+*.log.local
+
+# NOTE: public/frames/ is deliberately NOT ignored. The 600-frame JPEG ladder is
+# what makes this project runnable with Node alone — no Blender, no build step.
+# If you would rather keep the repository small, ignore public/frames/ and
+# regenerate with blender/bonsai_growth.py (~68 minutes on an Intel Xe iGPU).

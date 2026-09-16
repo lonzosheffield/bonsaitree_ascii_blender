@@ -1,0 +1,25 @@
+{
+  "location": [
+    0.2095,
+    -2.487889,
+    0.372077
+  ],
+  "rotation_deg": [
+    86.0,
+    0.0,
+    4.0
+  ],
+  "lens_mm": 85.0,
+  "frame_w": 0.52942,
+  "frame_h": 0.7059,
+  "distance": 2.50005,
+  "focus_distance": 2.45257,
+  "ground_z": 0.0,
+  "pot_rim_z": -0.022,
+  "canopy_top_z": 0.40211,
+  "frame_bottom_z": -0.15527,
+  "frame_top_z": 0.55063,
+  "pot_rim_v": 0.81121,
+  "canopy_top_v": 0.2104,
+  "ground_v": 0.78004
+}

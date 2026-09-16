@@ -1,0 +1,23 @@
+[06:30:22] ==========================================================================
+[06:30:22] bonsai_growth.py | blender 5.2.1 LTS
+[06:30:22] skeleton=C:\aha\ascii art\public\skeleton-42.json
+[06:30:22] out=C:\aha\ascii art\proof\M2\preview res=450x600 samples=24 format=PNG
+[06:30:22] frames=600 rendering 12 frame(s): [0, 54, 109, 163, 218, 272] ...
+[06:30:22] skeleton seed=42 segments=512 chains=180 leafCards=3024 blossomSites=482 steps=512
+[06:30:22] camera FIXED at (0.267802, -3.321643, 0.587824) rot=(86.0, -0.0, 4.0) lens=85.0mm
+[06:30:22] framing frame_w=0.7068 frame_h=0.9425  pot_rim_v=0.9000 canopy_top_v=0.4500 ground_v=0.8767  (v = fraction down from top of frame; M3 alignment uses these)
+[06:30:22] side margins: t=1 content spans u=0.1433..0.8567 (need >= 0.12 .. <= 0.88); floor meets frame bottom at y=-0.1441
+[06:30:26] frame 0000/0599 t=0.00000   4.20s  elapsed=    4.2s  eta=   46.2s  -> frame_0000
+[06:30:28] frame 0054/0599 t=0.09015   1.43s  elapsed=    5.6s  eta=   28.1s  -> frame_0054
+[06:30:30] frame 0109/0599 t=0.18197   2.06s  elapsed=    7.7s  eta=   23.1s  -> frame_0109
+[06:30:33] frame 0163/0599 t=0.27212   2.77s  elapsed=   10.5s  eta=   20.9s  -> frame_0163
+[06:30:35] frame 0218/0599 t=0.36394   2.85s  elapsed=   13.3s  eta=   18.6s  -> frame_0218
+[06:30:38] frame 0272/0599 t=0.45409   3.04s  elapsed=   16.4s  eta=   16.4s  -> frame_0272
+[06:30:41] frame 0327/0599 t=0.54591   2.82s  elapsed=   19.2s  eta=   13.7s  -> frame_0327
+[06:30:44] frame 0381/0599 t=0.63606   2.75s  elapsed=   21.9s  eta=   11.0s  -> frame_0381
+[06:30:47] frame 0436/0599 t=0.72788   3.11s  elapsed=   25.0s  eta=    8.3s  -> frame_0436
+[06:30:51] frame 0490/0599 t=0.81803   3.57s  elapsed=   28.6s  eta=    5.7s  -> frame_0490
+[06:30:54] frame 0545/0599 t=0.90985   3.60s  elapsed=   32.2s  eta=    2.9s  -> frame_0545
+[06:30:58] frame 0599/0599 t=1.00000   3.66s  elapsed=   35.9s  eta=    0.0s  -> frame_0599
+[06:30:58] DONE 12 frame(s) in 35.9s (2.99s/frame)
+[06:30:58] ==========================================================================

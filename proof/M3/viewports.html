@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>M3 — viewport harness</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; }
+  body { display: grid; place-items: start center; padding-top: 6px; }
+  #wrap { position: relative; }
+  #v { display: block; border: 0; background: #000; box-shadow: 0 0 0 1px #1c2a24; }
+  #tag {
+    position: absolute; top: -1px; left: 0; transform: translateY(-100%);
+    font: 10px/1.6 ui-monospace, Consolas, monospace; letter-spacing: 0.18em;
+    color: #6f8a7d; text-transform: uppercase; padding-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+<!-- M3 proof harness. The browser window here is maximised and cannot be
+     resized by automation, so the page under test gets its own viewport in an
+     iframe: media queries, ResizeObserver and the fit routines all key off the
+     iframe's viewport, which is exactly what a smaller window would give.
+     Same origin, so the harness can drive that page's clock directly. -->
+<div id="wrap">
+  <div id="tag">viewport</div>
+  <iframe id="v" src="/?duration=3600" width="1280" height="760"></iframe>
+</div>
+<script>
+const v = document.getElementById('v');
+const tag = document.getElementById('tag');
+
+window.setSize = (w, h, label) => {
+  v.width = w; v.height = h;
+  tag.textContent = (label ? label + ' — ' : '') + w + ' x ' + h + ' css px';
+  return [v.clientWidth, v.clientHeight];
+};
+
+/** Drive the embedded page's clock to a normalized t (forward only). */
+window.seek = (t) => {
+  const w = v.contentWindow;
+  const duet = w.BonsaiDuet;
+  if (!duet) return 'not ready';
+  const D = duet.params.duration * 1000 / duet.params.speed;
+  const a = duet.clock.sample(0.25 * D).t;
+  const start = 0.25 * D - a * D;
+  const f = duet.clock.tick(start + t * D);
+  return { t: f.t, phase: f.phase, done: f.done };
+};
+
+window.reload = (t) => new Promise((res) => {
+  v.addEventListener('load', () => setTimeout(() => res(t === undefined ? 'loaded' : window.seek(t)), 350), { once: true });
+  v.contentWindow.location.replace('/?duration=3600');
+});
+
+window.report = () => {
+  const w = v.contentWindow;
+  const a = w.BonsaiDuet.alignment();
+  const img = v.contentDocument.querySelector('#blender-stage img');
+  const r = img && img.getBoundingClientRect();
+  return {
+    viewport: [w.innerWidth, w.innerHeight],
+    cellH: a.grid.cellH, gridTop: +a.grid.top.toFixed(2), gridH: a.grid.height,
+    asciiCanopyY: +a.ascii.canopyY.toFixed(2), asciiRimY: +a.ascii.rimY.toFixed(2),
+    plateTop: +a.plate.top.toFixed(2), plateH: +a.plate.height.toFixed(2), plateW: +a.plate.width.toFixed(2),
+    plateCanopyY: +a.plate.canopyY.toFixed(2), plateRimY: +a.plate.rimY.toFixed(2),
+    dCanopy: +a.delta.canopy.toFixed(3), dRim: +a.delta.rim.toFixed(3),
+    scaleVsGrid: +a.scaleVsGrid.toFixed(4), clamped: a.clamped,
+    imgRect: r ? { top: +r.top.toFixed(2), h: +r.height.toFixed(2), w: +r.width.toFixed(2) } : null,
+    fill: v.contentDocument.getElementById('timeline-fill').style.width,
+    stacked: w.innerWidth <= 860,
+  };
+};
+
+window.guides = (on) => {
+  const b = v.contentDocument.body;
+  if (on) b.dataset.guides = 'on'; else delete b.dataset.guides;
+  return b.dataset.guides || 'off';
+};
+
+setSize(1280, 760, 'laptop');
+</script>
+</body>
+</html>

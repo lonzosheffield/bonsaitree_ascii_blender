@@ -1,0 +1,82 @@
+==========================================================================
+N1 GEOMETRY  (blender 5.2.1)
+==========================================================================
+ground row              35.000
+trunk origin (root_pos) z =    +0.00 mm   <- UNCHANGED, no skeleton node moved
+soil surface at x=y=0   z =   -13.70 mm
+
+[1] THE ONLY CAP FACE ON THE TRUNK SPLINE
+    first point  q=-0.900  z=-30.00 mm  r=21.51 mm
+    depth below the soil surface: 16.30 mm   (re-gate asks 10-20 mm; PASS)
+    the stub arrives vertically, so the face is horizontal and the mound
+    covers it; every other cap on this curve is a branch TIP.
+
+[2] FLARE PROFILE  (radius vs height above the soil)
+           q     z (mm)     h (mm)   dia (mm)
+      -0.900     -30.00     -16.30      43.02
+      -0.720     -23.90     -10.20      49.36
+      -0.540     -17.70      -4.00      55.80
+      -0.360     -11.54       2.16      57.27
+      -0.180      -5.59       8.11      51.50
+       0.000       0.00      13.70      47.67
+       0.250       0.00      13.70      46.11
+       0.500       0.00      13.70      44.56
+       0.750       0.00      13.70      43.00
+       1.000       0.00      13.70      41.45
+       1.250      -0.12      13.58      41.32
+       1.500      -0.31      13.39      41.24
+       1.750      -0.35      13.35      41.07
+       2.000       0.00      13.70      40.71
+       2.250       0.86      14.56      40.11
+       2.500       2.13      15.83      39.35
+       2.750       3.71      17.41      38.51
+       3.000       5.50      19.20      37.66
+       3.250       7.80      21.50      36.70
+       3.500      10.69      24.39      35.66
+       3.750      13.74      27.44      34.70
+       4.000      16.50      30.20      33.91
+       4.250      19.15      32.85      33.21
+       4.500      22.00      35.70      32.53
+       4.750      24.85      38.55      31.91
+       5.000      27.50      41.20      31.37
+       5.250      30.15      43.85      30.86
+       5.500      33.00      46.70      30.36
+       5.750      35.85      49.55      29.88
+       6.000      38.50      52.20      29.46
+       6.250      41.15      54.85      29.05
+       6.500      44.00      57.70      28.65
+       6.750      46.85      60.55      28.26
+       7.000      49.50      63.20      27.91
+       7.250      52.15      65.85      27.57
+       7.500      55.00      68.70      27.23
+    widest point: 57.27 mm across, at h = +2.16 mm relative to the soil
+    diameter at the soil line vs 40 mm higher: 57.27 -> 31.37 mm
+
+[3] SURFACE ROOTS
+    root 0  r 9.37 -> 2.42 mm   height over soil along it: +2.0 +2.1 -1.4 -10.0 -24.3 mm
+    root 1  r 7.90 -> 2.20 mm   height over soil along it: +3.0 +2.3 -2.1 -11.1 -25.1 mm
+    root 2  r 7.24 -> 2.20 mm   height over soil along it: +3.1 +1.5 -3.2 -11.8 -24.9 mm
+    root 3  r 9.64 -> 2.49 mm   height over soil along it: +2.2 +0.4 -3.8 -11.5 -23.9 mm
+    root 4  r 8.82 -> 2.28 mm   height over soil along it: +1.1 -0.0 -3.3 -10.3 -22.9 mm
+    thickest root / collar radius = 0.337   (re-gate asks <= 0.35; PASS)
+    every root's tip is below the soil surface: True
+
+[4] MONOTONICITY over 600 frames, EVERY trunk sample including the new buried ones
+    worst shrink on any trunk sample: 0.000000000 m at None   (require 0.0; PASS)
+
+[5] BARK MATERIAL  (note 2, read back off the built shader)
+    roughness 0.860  (re-gate asks >= 0.75; PASS)
+    specular  0.140  (re-gate asks <= 0.25; PASS)
+    noise scale  46.00 x mapping 7.00 =  322.00 cycles/m -> feature  3.11 mm   detail 2.0
+    noise scale   8.00 x mapping 7.00 =   56.00 cycles/m -> feature 17.86 mm   detail 1.5
+    finest octave of the grain: 0.776 mm  (900 px over 0.7068 m = 0.785 mm/px)
+    vertical grain stretch: x/z = 12.73 (a 3.1 mm feature across the tube is a 40 mm fibre along it)
+    albedo 0.0128 -> 0.0402   contrast 0.0274  (re-gate asks <= 0.15; PASS)
+    R:B on both stops 2.21 / 2.21  (warm at every value)
+
+[6] RIM LIGHT HUE
+    cool gel R=0.820 G=0.980 B=0.760   R-B=+0.060  (re-gate asks R >= B; PASS)
+    (the literal is build_lights.cool; the backdrop glow and the pot-rim
+     cool spec are untouched — see verify-art-direction.py section [2])
+==========================================================================
+Blender 5.2.1 LTS (hash 9e2066aef7ef built 2026-08-25 02:38:20)

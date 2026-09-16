@@ -1,0 +1,81 @@
+M2 — skeleton export round-trip
+========================================================================
+
+Source of truth : src/ascii/bonsai.js (frozen at the M1 gate, imported unmodified)
+  sha256        : e3216a2f340dab3949f6346a087e0da3b3e815b74e72dfeaf29505ab2125152c
+                  src/shared/glibc-rand.js
+  sha256        : 760c64f2fc9c2a63b71450723d570cd5644640faa8a192646596447f9e9baf92
+
+Method          : GlibcRandom.prototype.rand is wrapped at RUNTIME and every draw
+                  is tagged with its V8 stack trace. The bonsai.js source lines in
+                  that trace identify the branch type, the life band, the spawn
+                  site and the iteration boundary. Segment positions are read from
+                  the frozen walk's own write log (growth.steps[i][0]), never
+                  recomputed. No growth logic is reimplemented here.
+
+Coordinates     : cbonsai treeWin space. x in [0,80), y in [0,36), y=0 TOP,
+                  y=35 the ground row. treeWin origin is stdscr (0,0), so the map
+                  into the 80x40 terminal is the identity; terminal rows 36-39 are
+                  the base art. The trunk is seeded at (row 35, col 40).
+
+------------------------------------------------------------------------
+seed 42
+------------------------------------------------------------------------
+  file            : public/skeleton-42.json
+  grid            : 80 x 36 (tree window) in an 80 x 40 terminal
+  maxLife         : 32
+  totalSteps      : 512
+  segments        : 512
+  leaves          : 378
+  branches        : 180 drawn (cbonsai counts 360, incl. 180 spawned with life<=0 that draw nothing)
+  shoots          : 3
+  max depth       : 5
+  by type         : trunk=108 shootRight=40 dying=162 dead=180 shootLeft=22
+  rebuilt grid    : 40 lines x 80 chars
+  golden          : proof/M1/golden/seed-42.plain.txt (cbonsai -p -s 42, SGR stripped)
+  vs golden       : IDENTICAL
+  vs JS renderer  : IDENTICAL
+  growth order    : IDENTICAL at every one of 513 intermediate steps (exhaustive)
+    t=0.00  step    0 / 512  match
+    t=0.25  step  128 / 512  match
+    t=0.50  step  256 / 512  match
+    t=0.75  step  384 / 512  match
+    t=1.00  step  512 / 512  match
+  RESULT          : PASS
+
+------------------------------------------------------------------------
+seed 1337
+------------------------------------------------------------------------
+  file            : public/skeleton-1337.json
+  grid            : 80 x 36 (tree window) in an 80 x 40 terminal
+  maxLife         : 32
+  totalSteps      : 446
+  segments        : 446
+  leaves          : 336
+  branches        : 160 drawn (cbonsai counts 320, incl. 160 spawned with life<=0 that draw nothing)
+  shoots          : 2
+  max depth       : 6
+  by type         : trunk=90 shootLeft=31 dying=144 dead=160 shootRight=21
+  rebuilt grid    : 40 lines x 80 chars
+  golden          : proof/M1/golden/seed-1337.plain.txt (cbonsai -p -s 1337, SGR stripped)
+  vs golden       : IDENTICAL
+  vs JS renderer  : IDENTICAL
+  growth order    : IDENTICAL at every one of 447 intermediate steps (exhaustive)
+    t=0.00  step    0 / 446  match
+    t=0.25  step  112 / 446  match
+    t=0.50  step  223 / 446  match
+    t=0.75  step  335 / 446  match
+    t=1.00  step  446 / 446  match
+  RESULT          : PASS
+
+------------------------------------------------------------------------
+frozen source unaffected by the observer (same process, patch removed)
+------------------------------------------------------------------------
+  seed 1          : M1 golden still reproduces exactly
+  seed 42         : M1 golden still reproduces exactly
+  seed 1337       : M1 golden still reproduces exactly
+  seed 99999      : M1 golden still reproduces exactly
+  seed 2147483647 : M1 golden still reproduces exactly
+
+========================================================================
+OVERALL: PASS

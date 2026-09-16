@@ -1,0 +1,61 @@
+N1 PROOF — glibc random() TYPE_3 in JavaScript vs. real glibc
+================================================================
+
+golden source : proof/M0/glibc-golden.txt (generated in Docker)
+golden program: proof/M0/glibc-golden.c   (srand(S); then bare rand())
+container     : debian:bookworm-slim, gcc -O2 -std=c11
+  # glibc rand() golden vectors
+  # glibc version: 2.36
+  # RAND_MAX: 2147483647
+  # format: seed <S> then 200 values, one per line, in call order
+implementation: src/shared/glibc-rand.js (GlibcRandom, TYPE_3 deg 31 sep 3)
+node          : v24.19.0
+generated at  : 2026-09-16T05:07:46.837Z
+
+How to reproduce from a clean checkout
+----------------------------------------------------------------
+  1. Build the golden vectors inside a real glibc container:
+       docker run --rm -i debian:bookworm-slim sh -c \
+         'cat > /tmp/g.c; apt-get update -qq; \
+          apt-get install -y -qq gcc libc6-dev; \
+          gcc -O2 -std=c11 -o /tmp/g /tmp/g.c; /tmp/g' \
+         < proof/M0/glibc-golden.c > proof/M0/glibc-golden.txt
+       Repeat with glibc-golden-deep.c -> glibc-golden-deep.txt.
+  2. node proof/M0/compare-rand.mjs        # regenerates this file
+  3. node --test test/glibc-rand.test.mjs  # asserts the same vectors
+
+Per-seed comparison
+----------------------------------------------------------------
+seed          1   200/200  match  OK    first three: 1804289383, 846930886, 1681692777
+seed         42   200/200  match  OK    first three: 71876166, 708592740, 1483128881
+seed       1337   200/200  match  OK    first three: 292616681, 1638893262, 255706927
+seed      99999   200/200  match  OK    first three: 1268809316, 1366423099, 1000818142
+seed 2147483647   200/200  match  OK    first three: 1065668062, 2142264300, 1066566375
+----------------------------------------------------------------
+
+Long-stream digest comparison (100000 values per seed)
+----------------------------------------------------------------
+seed          1  glibc=9746763416736617909  js=9746763416736617909  OK
+seed         42  glibc=3670648034027311101  js=3670648034027311101  OK
+seed       1337  glibc=6754760067196887331  js=6754760067196887331  OK
+seed      99999  glibc=16920912803551295068  js=16920912803551295068  OK
+seed 2147483647  glibc=3033236445700284932  js=3033236445700284932  OK
+seed          0  glibc=9746763416736617909  js=9746763416736617909  OK
+seed 4294967295  glibc=1366063069155383873  js=1366063069155383873  OK
+seed          7  glibc=1970950224734890206  js=1970950224734890206  OK
+----------------------------------------------------------------
+deep seeds compared : 8 (1, 42, 1337, 99999, 2147483647, 0, 4294967295, 7)
+deep values covered : 800000
+deep seeds matching : 8/8
+
+Totals
+----------------------------------------------------------------
+seeds compared : 5 (1, 42, 1337, 99999, 2147483647)
+values compared: 1000
+values matched : 1000
+values differing: 0
+
+value-by-value : 1000/1000 matched
+long-stream    : 800000/800000 values covered by matching digests
+
+RESULT: EXACT MATCH — N1 SATISFIED

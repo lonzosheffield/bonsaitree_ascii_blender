@@ -1,0 +1,219 @@
+M3 — SYNC DELTA BETWEEN THE ASCII PANEL AND THE BLENDER PANEL
+=============================================================
+Gate (docs/BRIEF.md, M3): "Sync delta <1 frame at 10 sample points."
+
+Everything below was measured in Chrome against the running local server on
+the canonical port 8137. Nothing is computed offline, nothing is asserted from
+the source: every number is read back out of the live DOM and out of the two
+panels' own introspection (`#tree`'s data-step, written by the ASCII renderer;
+`BonsaiPlate.panel.stats()`, written by the plate's compositor). Seed 42.
+
+
+-------------------------------------------------------------------------
+0. WHAT "THE SAME t WITHIN ONE FRAME" ACTUALLY MEANS HERE
+-------------------------------------------------------------------------
+The two panels quantise `t` differently, and any honest delta has to be stated
+in terms that survive that:
+
+  ASCII   the run has 512 recorded growth steps. The painted step is
+          floor(t * 512) (bonsai.js, stepForT). One step therefore stands for
+          a HALF-OPEN INTERVAL of time, [s/512, (s+1)/512).
+  PLATE   the ladder has 600 frames, frame i at t = i/599 (N5). The panel
+          composites the two nearest frames, so its position is the exact
+          fractional frame t * 599 — a point, not an interval.
+
+Put both on the Blender frame axis. One ASCII step spans 599/512 = 1.1693
+frames. So three numbers are reported, and the FIRST is the gate:
+
+  OUTSIDE   signed distance, in Blender frames, from the plate's composited
+            position to the interval of frames the painted ASCII step stands
+            for. ZERO means the frame on the right is one of the frames the
+            step on the left represents — the two panels are showing the same
+            instant. This is the panel-to-panel delta.
+  LAG       composited plate position minus t * 599. How far the right panel
+            is from the clock, in frames. Isolates image loading.
+  STEP-FROM-PLATE  floor( (plate position / 599) * 512 ), i.e. the ASCII step
+            that the plate's OWN frame implies. It must equal the step that is
+            actually painted. An exact integer identity, easy to check.
+
+Reporting only "t_plate - t_ascii" would put a ceiling of 1.169 frames on the
+metric for pure arithmetic reasons (the 512 vs 600 quantisation), with no
+drift involved at all. That column is still printed below as EDGE so nothing
+is hidden, but it is not the delta the gate is about.
+
+
+-------------------------------------------------------------------------
+1. THE TEN SAMPLE POINTS — EXACT t, INCLUDING EXACTLY 0 AND EXACTLY 1
+-------------------------------------------------------------------------
+Page:     http://127.0.0.1:8137/?duration=3600&speed=60
+Viewport: 1536 x 770, devicePixelRatio 1.25
+Method:   for each t the page's OWN GrowthClock is rewound to a synthetic
+          start so that one tick lands on exactly that t, then paused at the
+          same instant. That single tick drives everything downstream — both
+          panels, the rail, the bar, the header counters — through the normal
+          subscriber path. No panel is poked directly and no state is posed.
+          t ascends, because the ASCII renderer is deliberately monotonic.
+          Both endpoints are exact: clock t reads 0.000000000 and 1.000000000.
+
+ t     clock t       step  t_ascii    want     lo  hi  frac    base top baseOp topOp     composited   LAG        t_plate      step    OUTSIDE   EDGE    state
+                           =step/512  =t*599                                             plate frame  (frames)   =f/599      from f  (frames)  (frames)
+---- ------------- ----- ---------- -------- ---- ---- ------ ---- ---- ------ --------- ------------ ---------- ------------ ------ --------- ------- ------
+ 0.0  0.000000000     0   0.000000    0.000    0    1  0.0000    0    1  1.0   0.000000     0.0000     0.00e+00  0.000000000     0   0.000000  +0.000  ready
+ 0.1  0.100000000    51   0.099609   59.900   59   60  0.9000   59   60  1.0   0.900000    59.9000    -7.11e-15  0.100000000    51   0.000000  +0.234  ready
+ 0.2  0.200000000   102   0.199219  119.800  119  120  0.8000  119  120  1.0   0.800000   119.8000    -1.42e-14  0.200000000   102   0.000000  +0.468  ready
+ 0.3  0.300000000   153   0.298828  179.700  179  180  0.7000  179  180  1.0   0.700000   179.7000     0.00e+00  0.300000000   153   0.000000  +0.702  ready
+ 0.4  0.400000000   204   0.398438  239.600  239  240  0.6000  239  240  1.0   0.600000   239.6000     0.00e+00  0.400000000   204   0.000000  +0.936  ready
+ 0.5  0.500000000   256   0.500000  299.500  299  300  0.5000  299  300  1.0   0.500000   299.5000     0.00e+00  0.500000000   256   0.000000  +0.000  ready
+ 0.6  0.600000000   307   0.599609  359.400  359  360  0.4000  359  360  1.0   0.400000   359.4000     0.00e+00  0.600000000   307   0.000000  +0.234  ready
+ 0.7  0.700000000   358   0.699219  419.300  419  420  0.3000  419  420  1.0   0.300000   419.3000     0.00e+00  0.700000000   358   0.000000  +0.468  ready
+ 0.8  0.800000000   409   0.798828  479.200  479  480  0.2000  479  480  1.0   0.200000   479.2000     0.00e+00  0.800000000   409   0.000000  +0.702  ready
+ 0.9  0.900000000   460   0.898438  539.100  539  540  0.1000  539  540  1.0   0.100000   539.1000     0.00e+00  0.900000000   460   0.000000  +0.936  ready
+ 1.0  1.000000000   512   1.000000  599.000  599  599  0.0000  599  ---  1.0   0.000000   599.0000     0.00e+00  1.000000000   512   0.000000  +0.000  held
+
+  max |OUTSIDE|   0            frames      <-- THE GATE. 0 < 1 at all 11 points.
+  max |LAG|       1.42e-14     frames
+  STEP-FROM-PLATE mismatches   0 of 11
+  max EDGE        0.936        frames  (ceiling 1.169 = 599/512, arithmetic)
+
+  Endpoints, in full:
+    t = 0   ASCII step 000/512, plate base frame 0 at opacity 1, top layer
+            transparent — frame 0 alone, unmixed. Header reads
+            "step 000 / 512" and "frame 001 / 600"; clock reads t+00:00.
+            Screenshot: full-page-t0.00-seed.jpg
+    t = 1   ASCII step 512/512, plate lo = hi = 599, top layer transparent —
+            frame 599 alone, unmixed. Header reads "step 512 / 512" and
+            "frame 600 / 600"; clock reads t+60:00 / 60:00; phase bloom;
+            body state held.
+            Screenshot: full-page-t1.00-bloom-held.jpg
+
+  Note on the crossfade (N5): at every interior point the TOP layer's opacity
+  equals `frac` to within 1e-6 — 0.9000 at t=0.1, 0.5000 at t=0.5, 0.1000 at
+  t=0.9 — so the blend is live and linear in t, not quantised. At both
+  endpoints frac is 0 and exactly one frame is on screen.
+
+
+-------------------------------------------------------------------------
+2. THE SAME CHECK, EVERY TICK OF A WHOLE RUN
+-------------------------------------------------------------------------
+Eleven samples cannot see a transient. So the identical measurement was taken
+on EVERY animation frame of a complete wall-clock run, end to end.
+
+Page:     http://127.0.0.1:8137/?duration=3600&speed=60
+Run:      60.007 real seconds (a 3600s model hour at x60), t from 0 to
+          exactly 1, ending `done`.
+Samples:  3499 ticks, one per pumped frame, each recording the DOM step and
+          the plate's composited position at that tick.
+
+  ticks recorded                      3499
+  first t / last t                    0.000005  /  1 (done)
+  ASCII step monotonic                true   (never once decreases)
+  plate frame monotonic               true   (never once decreases)
+  plate state over the run            ready 3498, held 1;  stalled 0
+
+  OUTSIDE (panel vs panel, frames)    p50 0.0000   p95 0.0000   p99 0.0410
+                                      max 0.9336   -- STILL < 1
+                                      exactly 0 on 3448 of 3499 ticks (98.5%)
+  LAG (plate vs clock, frames)        p50 0.0000   p95 0.1210   p99 0.1623
+                                      mean 0.0156  max 1.0397
+                                      |LAG| > 1 on 1 tick of 3499 (0.03%)
+  STEP-FROM-PLATE mismatches          51 of 3499 (1.5%), every one of them
+                                      inside the same 0.93-frame envelope
+
+  The single worst tick:
+    index 550, t = 0.160333, real 9.62s, ASCII step 82, plate frame 95.000
+    (an integer, i.e. the crossfade's top layer had not arrived yet)
+    LAG -1.0397 frames, OUTSIDE -0.9336 frames, state still "ready".
+
+  WHY IT HAPPENS, AND WHY IT CANNOT HAPPEN ON THE REAL RUN. At x60 the plate
+  must fetch and decode 9.98 JPEGs per REAL second. On the canonical x1 hour
+  it fetches one every 6.01 seconds — 360x less work for the same growth. The
+  one over-1 tick is the ladder momentarily holding frame 95 while 96 was
+  still in flight; the ASCII panel, which has nothing to fetch, went on. It is
+  an artifact of compressing the hour, not of the sync contract, and the gate
+  metric (OUTSIDE) stayed under 1 frame even then.
+
+  The ten sample points in section 1 are not cherry-picked around it: the
+  nearest ticks to each tenth of t in this same recorded run read OUTSIDE
+  0.0000 at every one of them, LAG 0.0000 at nine of eleven and -0.13 at the
+  other two.
+
+
+-------------------------------------------------------------------------
+3. BOTH PANELS ARRIVE AT t = 1 AND STOP
+-------------------------------------------------------------------------
+Read off the live page after the run above finished, and again 1.5 s later:
+
+  clock              t = 1, done = true, rAF loop cancelled by GrowthClock
+  ASCII              #tree data-step = 512 of 512  (the final recorded step)
+  plate              base frame 599, opacity 1; top layer opacity 0
+                     #blender-stage data-state = "held"
+  body               data-phase = "bloom", data-state = "held",
+                     data-settled = "true"
+  rail               seed/sapling/branching/mature = done, bloom = active
+  bar                #timeline-fill inline width = "100%",
+                     aria-valuenow = "100.0"   (CF-1 holds; see
+                     cf1-timeline-fill.txt)
+  readout            "t+60:00 / 60:00"   tag: "seed 42 - bloomed - held"
+  headers            "step 512 / 512"    "frame 600 / 600"
+
+  document.getAnimations().length   ....  0
+  state re-read 1.5 s later         ....  byte-identical (t, step, plate base,
+                                          plate opacities, plate state, the
+                                          bar's computed width)
+
+  Nothing loops. Nothing resets. See finale-and-rest.txt for how the page is
+  brought to a complete stop rather than merely left on its last keyframe.
+
+
+-------------------------------------------------------------------------
+4. ALIGNMENT, RE-VERIFIED AFTER THE M3 POLISH
+-------------------------------------------------------------------------
+The composition (BRIEF, "M3 composition note") was re-measured on the shipped
+page, because the polish pass changed the panel chrome:
+
+  BonsaiDuet.alignment().delta     canopy 0.000 px    rim 0.000 px
+  ASCII canopy top / plate canopy  316.800 / 316.800 px   (panel-local)
+  ASCII pot rim  / plate pot rim   576.800 / 576.800 px
+  plate height vs the 80x40 grid   1.0298x
+  clamped                          none
+  #ground-line top                 576.800 px — the same y, to the pixel
+
+  The shared ground line added in this pass is drawn AT the solved rim y, so
+  the alignment is now visible rather than merely asserted: in
+  full-page-t1.00-guides.jpg the two guide hairlines cut the ASCII canopy and
+  the rendered canopy at one height, and the ASCII pot lip and the rendered
+  pot rim at another.
+
+  Re-checked at a second window size (1251 x 627, cell 4.88 x 10 px, reached
+  by resizing mid-run): delta still canopy 0.000 / rim 0.000, clamped none.
+  The fit re-solves; it is not tuned to one viewport.
+
+
+-------------------------------------------------------------------------
+5. HOW TO REPRODUCE
+-------------------------------------------------------------------------
+  npm start                       (or PORT=8137 node server.mjs)
+  open http://127.0.0.1:8137/?duration=60&speed=60      -- a one-second run
+  open http://127.0.0.1:8137/?duration=3600&speed=60    -- a one-minute hour
+  press G, or add &guides=1, for the two measured landmark lines
+
+  In the console, at any moment:
+     BonsaiDuet.clock.lastFrame          the frame both panels were handed
+     BonsaiDuet.alignment()              the solved two-point plate fit
+     BonsaiTerminal.renderer.step        the painted growth step  (of 512)
+     BonsaiPlate.panel.stats()           lo / hi / frac / layer opacities
+     document.getAnimations().length     0 once the piece has settled
+
+  ONE CAVEAT, STATED PLAINLY. These measurements were taken by an agent
+  driving Chrome, so the tab was BACKGROUNDED throughout. Chrome suspends
+  requestAnimationFrame in a hidden tab, so the page's own loop cannot advance
+  there; the runs above were pumped at ~60Hz through a MessageChannel, which
+  Chrome does not throttle. The clock still derived t from performance.now(),
+  so the elapsed time is real wall-clock time (60.007 s measured) — only the
+  SAMPLING was ours. Chrome also never settles HTMLImageElement.decode() for a
+  hidden tab, which the plate already anticipates with a 400ms cap
+  (panel.js DEFAULTS.decodeTimeoutMs); for the whole-run recording that cap
+  was set to 0 so layer readiness fell back to the `load` event, which is what
+  a visible tab does anyway. Neither change alters what is displayed, and
+  section 1 — the gate itself — was measured with the panel's shipped
+  settings untouched.

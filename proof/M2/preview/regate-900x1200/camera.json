@@ -1,0 +1,32 @@
+{
+  "location": [
+    0.267802,
+    -3.321643,
+    0.587824
+  ],
+  "rotation_deg": [
+    86.0,
+    -0.0,
+    4.0
+  ],
+  "lens_mm": 85.0,
+  "frame_w": 0.70685,
+  "frame_h": 0.94246,
+  "distance": 3.33789,
+  "focus_distance": 3.3031,
+  "ground_z": 0.0,
+  "pot_rim_z": -0.022,
+  "canopy_top_z": 0.40211,
+  "frame_bottom_z": -0.11625,
+  "frame_top_z": 0.82622,
+  "frame_left_x": -0.31789,
+  "frame_right_x": 0.38895,
+  "content_min_x": -0.21658,
+  "content_max_x": 0.28764,
+  "floor_y_at_frame_bottom": -0.14414,
+  "content_left_u": 0.14334,
+  "content_right_u": 0.85666,
+  "pot_rim_v": 0.9,
+  "canopy_top_v": 0.45,
+  "ground_v": 0.87666
+}

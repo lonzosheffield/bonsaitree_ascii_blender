@@ -1,0 +1,163 @@
+M3 — VERTICAL ALIGNMENT OF THE TWO PANELS
+=========================================
+docs/BRIEF.md, "M3 composition note": the ASCII tree occupies only the lower
+part of its 80x40 grid (trunk row 35, canopy top around row 19, rows 0-18
+permanently blank). That is faithful to cbonsai and is NOT to be fixed by
+cropping or re-centring the grid — the 40-row geometry is load-bearing (N2).
+The BLENDER plate is the thing that moves. This file records what was measured
+and what was solved from it.
+
+Everything below was measured in Chrome against the running local server
+(port 8137, the canonical port), not eyeballed. Nothing here is a design
+choice; the numbers are the reason the composition is what it is.
+
+Owner of this work: index.html + src/styles.css.
+Instrument: BonsaiDuet.alignment() (index.html, fitPlate) + per-pixel scans of
+the rendered plate via canvas, plus proof/M3/viewports.html for viewport sizes
+the maximised browser window could not be resized to.
+
+
+1. THE PLATE — MEASURED FROM THE RENDERED PIXELS
+------------------------------------------------
+Source: public/frames/frame-0599.jpg (t = 1), 900 x 1200, read back through
+canvas getImageData at native resolution; luma = 0.2126R + 0.7152G + 0.0722B.
+
+  canopy top      first image row carrying real ink, i.e. max luma > 60 for
+                  three consecutive rows:      y = 545   ->  v = 0.45417
+                  Threshold is not delicate: >60 gives 545, >100 gives 545,
+                  >150 gives 546. The backdrop cannot trip it — the studio
+                  gradient peaks at luma 25 anywhere above y = 532, then the
+                  first leaf specular jumps to 238.
+
+  pot rim         the pot silhouette appears abruptly (longest contiguous ink
+                  run per row jumps 31 px -> 87 -> 144 -> 363):
+                    back of the rim ellipse    y = 1059..1061 -> v = 0.8825
+                    WIDEST span of the rim      y = 1085..1088, 367-368 px wide
+                                               -> v = 0.90500 (row 1086)
+                  The widest span is what is used as the ground line: it is the
+                  3D reading of the ASCII pot's flat lip, and it independently
+                  reproduces public/frames/camera.json's pot_rim_v = 0.90, i.e.
+                  the Blender camera solve checks out against the real pixels.
+
+These two constants live in index.html as PLATE.canopyV / PLATE.rimV.
+
+
+2. THE ASCII PANEL — MEASURED IN DEVICE PIXELS
+-----------------------------------------------
+Landmark rows (seed 42, t = 1, live DOM read of <pre id="tree">):
+
+  canopy top      row 18   — the first row of the grid carrying any glyph
+                             (a run of '&' leaves)
+  pot rim         row 36   — ROWS - 4; drawBase() steals the bottom 4 rows
+                             (BRIEF, N2 addendum). Row 36 is
+                             ':___________./~~~\.___________:' — the lip.
+
+A row's CELL top is not its INK top, and the difference is most of a row.
+Measured per fit with canvas TextMetrics in the tree's own font
+(ui-monospace / Cascadia Mono / Consolas), at 12.5px on a 15px cell:
+
+  fontBoundingBoxAscent/Descent   ->  baseline sits 12.0px down the cell
+  '&' actualBoundingBoxAscent 9   ->  canopy ink starts  +3.0px into the cell
+  '_' actualBoundingBoxAscent 0   ->  rim ink starts    +12.0px into the cell
+                                      (the underscore draws ON the baseline)
+
+  v_ascii(canopy) = (18*15 + 3)  / 600 = 0.45500
+  v_ascii(rim)    = (36*15 + 12) / 600 = 0.92000
+
+Note the rim: 0.920, not the 0.905 you get from the top edge of cell 36. Using
+the cell edge would have put the ground line ~12 px high at this cell size.
+The brief's ~0.905 / ~0.455 estimate was right about the canopy and about one
+row high on the rim, which is exactly the error this measurement removes.
+
+
+3. THE FIT
+-----------
+Two landmarks, two unknowns (plate height H and plate top T, panel-local px):
+
+  T + canopyV * H = y_ascii_canopy
+  T + rimV    * H = y_ascii_rim
+  =>  H = (y_rim - y_canopy) / (rimV - canopyV),   T = y_rim - rimV * H
+
+  scale vs the ASCII grid = H / (40 * cellH)
+                          = (0.92000 - 0.45500) / (0.90500 - 0.45417)
+                          = 0.46500 / 0.45083  =  1.0314
+
+i.e. the plate is drawn ~3% taller than the 80x40 grid — the camera solve in
+blender/bonsai_growth.py was aimed correctly; this is a 3% correction, not a
+re-framing. No cropping was needed: object-fit could clip the floor below the
+pot, and does not have to at any viewport tested.
+
+Implementation (index.html fitPlate + src/styles.css):
+  - #blender-stage is positioned absolutely at --plate-top with height
+    --plate-h and aspect-ratio 900/1200, so the box IS the image rect and
+    image v maps linearly onto panel-local y.
+  - The stage is framed with `outline`, never `border`: a 1px border shrinks
+    the content box and the image inside it, which alone threw the ground line
+    out by 0.7px (measured, then fixed).
+  - Panel-LOCAL coordinates, so the same solve holds in the stacked layout,
+    where the two panels are the same box twice rather than side by side.
+  - Recomputed on every resize / font swap (ResizeObserver + resize).
+
+
+4. RESULT, MEASURED AT FOUR VIEWPORTS
+--------------------------------------
+dCanopy / dRim = plate landmark minus ASCII landmark, in device px.
+All four: the solve is exact and never clamped.
+
+  viewport      cellH  gridTop  gridH   asciiCan  asciiRim  plateTop  plateH   plateW   dCanopy  dRim   scale
+  1536 x 826     15     69.8     600     342.80    621.80     61.74   618.85   464.14    0.000   0.000  1.0314
+  1280 x 760     14     57.0     560     312.00    572.00     50.08   576.71   432.53    0.000   0.000  1.0298
+  1024 x 720     11     97.0     440     296.50    501.50     89.98   454.71   341.04    0.000   0.000  1.0334
+   700 x 700 *    6     26.6     240     135.60    247.60     22.77   248.43   186.32    0.000   0.000  1.0351
+  * stacked layout (<= 860px): panel-local, i.e. the same composition inside
+    each of the two stacked panels. The plate <img> rect measured at page
+    y = 316.76 = panel-2 top (294.0) + 22.77 local. Correct.
+
+The scale drifts 1.0298 -> 1.0351 across viewports only because cellH is
+floored to a whole pixel, which moves v_ascii(rim) slightly; the fit absorbs it.
+
+
+5. END-TO-END CHECK THROUGH THE LIVE PANEL (not through the constants)
+-----------------------------------------------------------------------
+At 1536 x 826, t = 1, with src/blender/panel.js mounted and its crossfade
+layer at opacity 1, the DISPLAYED layer was read back into a canvas and
+re-scanned, then converted to page coordinates through the <img>'s own
+getBoundingClientRect():
+
+  displayed frame natural size      900 x 1200
+  canopy top found at               y = 545   (v = 0.45417)  -> page y 342.79
+  rim widest span found at          y = 1085  (v = 0.90417)  -> page y 621.27
+  ASCII canopy ink (font metrics)                            -> page y 342.80
+  ASCII rim ink    (font metrics)                            -> page y 621.80
+
+  dCanopy = -0.01 px      dRim = -0.53 px
+
+Both agree well inside "a few pixels". The residual 0.53px is the difference
+between the rim row used as the constant (1086) and the row that happened to
+be widest in this frame (1085) — half a pixel of a 1200px source.
+
+The <img> rect and the stage rect are identical to 0.01px
+(top 61.73, 618.85 x 464.14, aspect 464.14/618.85 = 0.7500), so `object-fit:
+contain` letterboxes nothing and the v -> y mapping is exact.
+
+Screenshot proof: m3-align-guides-1536x826-t1.00.jpg — the two hairlines are
+drawn from these numbers at the same panel-local y in BOTH panels (red =
+canopy top, blue = pot rim). Turn them on with ?guides=1 or by pressing G.
+
+
+6. HOW TO REPRODUCE
+--------------------
+  npm start                       (port 8137)
+  http://127.0.0.1:8137/?guides=1                 both hairlines, live
+  http://127.0.0.1:8137/proof/M3/viewports.html   other viewport sizes
+        setSize(1024, 720); await reload(0.3); report(); guides(true)
+  In the page console:  BonsaiDuet.alignment()   -> the solved numbers above
+
+Screenshots in this directory:
+  m3-align-guides-1536x826-t1.00.jpg     alignment hairlines, t=1
+  m3-duet-1536x826-t1.00-bloom-held.jpg  the finished piece, held at bloom
+  m3-duet-1280x760-t0.70-mature.jpg
+  m3-duet-1280x760-t0.035-seed.jpg
+  m3-duet-1024x720-t0.30-branching.jpg
+  m3-duet-700x700-stacked-t0.92-bloom.jpg
+  cf1-timeline-fill.txt                  the CF-1 fix, measured

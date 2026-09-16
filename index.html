@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en" data-app="bonsai-duet">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bonsai Duet</title>
+<meta name="description" content="One clock, two bonsai: a cbonsai ASCII port and a Blender render growing in lockstep over 3600 seconds.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23050706'/%3E%3Ctext x='8' y='12' font-size='11' text-anchor='middle' fill='%2300ff00' font-family='monospace'%3E%26%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="src/styles.css">
+</head>
+<body data-phase="seed" data-state="booting">
+
+<!--
+  ============================================================================
+  INTEGRATION CONTRACT — read before you touch this file.
+  ============================================================================
+  This file is the shell only. Two regions are placeholders and belong to
+  other agents:
+
+    LEFT   #ascii-panel  >  <pre id="tree">     owned by src/ascii/terminal.js
+    RIGHT  #blender-panel >  <div id="blender-stage">  owned by src/blender/panel.js
+
+  Both placeholders carry data-placeholder="true". Clear that attribute when
+  you take the node over; nothing in this shell writes to either node once it
+  is gone.
+
+  Growth is NOT the shell's. src/shared/clock.js is the single source of t.
+  The shell builds one GrowthClock with createGrowthClock() and hands it over:
+
+    window.BonsaiDuet = {
+      COLS: 80, ROWS: 40,   // N2, fixed
+      params,               // { duration, speed, seed } — N6, from the query string
+      PHASES,               // the clock's phase table plus a display `label`
+      phaseInfoAt,          // re-export from clock.js
+      clock,                // the GrowthClock — subscribe to THIS
+      metrics(),            // -> { cellW, cellH, fontSize } in px, current cell size
+      alignment(),          // -> the solved plate geometry (M3), see fitPlate()
+      PLATE,                // the plate's measured landmarks, normalized
+    }
+
+  The RIGHT panel's stage is sized and positioned by the shell, not by
+  panel.js: fitPlate() solves it from the ASCII grid's measured pot rim and
+  canopy top so the two trees share a ground line (BRIEF, M3 composition
+  note). panel.js owns what is INSIDE #blender-stage and nothing else — the
+  <img> ladder fills the box via src/styles.css, so it must not set width,
+  height, object-fit or position on the images.
+
+  PREFERRED, for both panels:
+
+      const stop = BonsaiDuet.clock.subscribe((frame) => { ... });
+
+  subscribe() fires immediately with the current frame, then once per animation
+  frame, and the clock cancels its own loop at t = 1 — which is how both sides
+  "hold at full bloom and stop". `frame` is the clock's frozen GrowthFrame:
+  { t, elapsed, remaining, duration, speed, seed, phase, phaseIndex,
+    phaseProgress, done, realElapsed }.
+
+  Also dispatched, for anything that cannot take a module import:
+    window event 'bonsai:ready'  detail: { clock, params }
+    window event 'bonsai:tick'   detail: <the same GrowthFrame>
+
+  't' is normalised growth time in [0,1] and is the ONLY thing either panel
+  may key off (N6). Never read wall-clock or a frame counter directly.
+  'elapsed' is model seconds (t * duration) — the number on the timeline —
+  not real seconds, which differ whenever ?speed is not 1.
+  ============================================================================
+-->
+
+<!-- ======================= LEFT — cbonsai, ASCII ========================= -->
+<section id="ascii-panel" class="panel" aria-label="cbonsai ASCII panel">
+  <header class="panel-head">
+    <span class="idx">01</span>
+    <span class="title">cbonsai &mdash; ascii</span>
+    <span class="spacer"></span>
+    <!-- Same shape on both panels: FORMAT · LIVE COUNTER. The counters are
+         read back from the two panels' own datasets every tick, so the header
+         is a measurement of what is painted, not a prediction. Side by side
+         they are the piece's whole thesis — one clock, two views — visible as
+         two numbers crossing their totals together. -->
+    <span class="meta">
+      <span class="fmt">80 &times; 40</span>
+      <span class="dot">&middot;</span>
+      <span class="count" id="ascii-count">step &mdash;</span>
+      <span class="px" id="grid-meta"></span>
+    </span>
+  </header>
+
+  <div class="terminal">
+    <!-- N2: EXACTLY 80 columns x 40 rows. Geometry is load-bearing.
+         Content below is a PLACEHOLDER drawn by initTreePlaceholder(). -->
+    <pre id="tree" data-placeholder="true" aria-label="ASCII bonsai, 80 by 40 character grid"></pre>
+    <div class="crt-scanlines" aria-hidden="true"></div>
+    <div class="crt-mask" aria-hidden="true"></div>
+  </div>
+
+  <p class="placeholder-note" data-placeholder-note="ascii">
+    placeholder &mdash; <b>src/ascii/terminal.js</b> owns <b>#tree</b>
+  </p>
+</section>
+
+<!-- ====================== RIGHT — Blender, rendered ====================== -->
+<section id="blender-panel" class="panel" aria-label="Blender rendered panel">
+  <header class="panel-head">
+    <span class="idx">02</span>
+    <span class="title">blender &mdash; rendered</span>
+    <span class="spacer"></span>
+    <span class="meta">
+      <span class="fmt">900 &times; 1200</span>
+      <span class="dot">&middot;</span>
+      <span class="count" id="plate-count">frame &mdash;</span>
+    </span>
+  </header>
+
+  <!-- PLACEHOLDER. src/blender/panel.js replaces the inner content with the
+       two crossfading <img> elements of the JPEG ladder (N4, N5). -->
+  <div id="blender-stage" data-placeholder="true">
+    <div class="stage-placeholder">
+      <div class="glyph">&#9634;</div>
+      <div>plate empty</div>
+      <div>src/blender/panel.js &rarr; public/frames/</div>
+    </div>
+  </div>
+
+  <p class="placeholder-note" data-placeholder-note="blender">
+    placeholder &mdash; <b>src/blender/panel.js</b> owns <b>#blender-stage</b>
+  </p>
+</section>
+
+<!-- ============================ TIMELINE ================================ -->
+<footer id="timeline" data-clock="pending">
+  <nav id="phase-rail" aria-label="growth phase"></nav>
+
+  <div id="readout">
+    <div id="time-label"
+         role="timer"
+         aria-live="off"><span class="now">t+00:00</span><span class="sep"> / </span><span class="total">60:00</span></div>
+    <!-- Two announcements in an hour: the run's identity at boot, and the
+         arrival at t = 1. Polite is right for both — neither interrupts. -->
+    <div id="run-tag" aria-live="polite">booting</div>
+  </div>
+
+  <div id="timeline-track"
+       role="progressbar"
+       aria-label="growth progress"
+       aria-valuemin="0"
+       aria-valuemax="100"
+       aria-valuenow="0">
+    <div id="timeline-fill"></div>
+  </div>
+</footer>
+
+<!-- ===================== COMPOSITION, NOT DECORATION =====================
+     Two elements that belong to the PAGE rather than to either panel, and
+     that are the reason the two halves read as one specimen:
+
+       #seam         the fold of the diptych. Neutral at the ends, brightest
+                     across the middle band where both trees are.
+       #ground-line  one hairline at the y both pots sit on — the very y
+                     fitPlate() solved (--guide-rim). It runs unbroken from
+                     the left panel, through the seam, to the right, so the
+                     two trees are visibly standing on the same ground
+                     instead of merely being near each other.
+
+     Both are fixed to the viewport, which is exact here because the panels
+     start at y = 0 and the page never scrolls. Both are suppressed when the
+     layout stacks, where "the same y" would no longer mean anything. -->
+<i id="seam" aria-hidden="true"></i>
+<i id="ground-line" aria-hidden="true"></i>
+
+<span id="metrics-probe" aria-hidden="true"></span>
+
+<script type="module">
+/* ==========================================================================
+   Bonsai Duet — page shell runtime
+
+   This file owns three things and nothing else:
+     1. the exact 80x40 monospace geometry of #tree (N2),
+     2. the timeline bar,
+     3. handing both panels a clock.
+
+   It does NOT own growth. src/shared/clock.js is the single source of t.
+   ========================================================================== */
+
+import {
+  PHASES as CLOCK_PHASES,
+  createGrowthClock,
+  parseParams,
+  phaseInfoAt,
+} from './src/shared/clock.js';
+
+const COLS = 80;
+const ROWS = 40;
+
+/* N6: ?duration=<seconds>&speed=<multiplier>&seed=<int>, parsed by the clock
+   module so the shell and the panels cannot disagree about the run. */
+const params = parseParams();
+
+/* Rail labels. The phase table itself is the clock's; only the casing is ours
+   (the brief renders the final phase as "BLOOM"). */
+const PHASES = CLOCK_PHASES.map((p) => ({
+  ...p,
+  label: p.name === 'bloom' ? 'BLOOM' : p.name,
+}));
+
+/* ==========================================================================
+   N2 — exact 80 x 40 monospace geometry
+   --------------------------------------------------------------------------
+   Measure one glyph advance at a reference size, derive advance-per-px, then
+   take the largest font-size whose 80 columns and 40 rows both fit the panel.
+   Row height snaps to a whole pixel (crisp scanlines, no drift accumulated
+   down 40 rows); column width keeps its fractional advance, because that is
+   what the text layout engine actually uses to place glyph 80.
+   ========================================================================== */
+
+const LINE_RATIO = 1.20;   // terminal-ish leading
+const REF_SIZE = 200;      // measurement font-size, px
+const PROBE_LEN = 200;     // glyphs measured, to average out rounding
+
+const probe = document.getElementById('metrics-probe');
+const panel = document.getElementById('ascii-panel');
+const terminal = panel.querySelector('.terminal');
+const treeEl = document.getElementById('tree');
+const blenderPanel = document.getElementById('blender-panel');
+const stageEl = document.getElementById('blender-stage');
+
+let metrics = { cellW: 9.6, cellH: 20, fontSize: 16 };
+
+/** Rendered width of `n` monospace glyphs at `px`, in the tree's own font. */
+function measureRun(px, n) {
+  probe.style.fontFamily = getComputedStyle(treeEl).fontFamily;
+  probe.style.fontSize = px + 'px';
+  probe.textContent = '0'.repeat(n);
+  return probe.getBoundingClientRect().width;
+}
+
+/** Glyph advance per 1px of font-size. Used only to CHOOSE a size. */
+function advancePerPx() {
+  const w = measureRun(REF_SIZE, PROBE_LEN);
+  if (!w) return 0.6; // sane monospace fallback if measurement is unavailable
+  return (w / PROBE_LEN) / REF_SIZE;
+}
+
+function fitTerminal() {
+  const ratio = advancePerPx();
+
+  const cs = getComputedStyle(terminal);
+  const chromeX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight)
+                + parseFloat(cs.borderLeftWidth) + parseFloat(cs.borderRightWidth);
+  const chromeY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom)
+                + parseFloat(cs.borderTopWidth) + parseFloat(cs.borderBottomWidth);
+
+  // Leave room for the header strip and the footer note.
+  const availW = Math.max(80, panel.clientWidth - 40 - chromeX);
+  const availH = Math.max(40, panel.clientHeight - 88 - chromeY);
+
+  // Whole-pixel row height satisfying BOTH the width and the height budget.
+  const hByHeight = availH / ROWS;
+  const hByWidth = (availW / (COLS * ratio)) * LINE_RATIO;
+  const cellH = Math.max(6, Math.floor(Math.min(hByHeight, hByWidth)));
+
+  // Round the size DOWN so it can never exceed the budget it was derived from.
+  const fontSize = Math.floor(Math.min(availW / (COLS * ratio), cellH / LINE_RATIO) * 1000) / 1000;
+
+  // Second pass. advance-per-px is not perfectly linear across sizes (hinting),
+  // so ask the engine what 80 glyphs ACTUALLY measure at the size we picked,
+  // and derive the cell from that. This is what makes `80 * --cell-w` equal
+  // the real width of row 0 rather than merely approximate it.
+  const cellW = measureRun(fontSize, COLS) / COLS || fontSize * ratio;
+
+  metrics = { cellW, cellH, fontSize };
+
+  const root = document.documentElement.style;
+  root.setProperty('--cell-w', cellW.toFixed(6) + 'px');
+  root.setProperty('--cell-h', cellH + 'px');
+  root.setProperty('--cell-font-size', fontSize.toFixed(3) + 'px');
+
+  /* The solved cell size. It is a measurement, not a caption, so it rides in
+     the header only when the guides are up — otherwise the header meta is the
+     format and the live counter, matched across both panels. */
+  document.getElementById('grid-meta').textContent = `${cellW.toFixed(2)}×${cellH}px`;
+
+  fitPlate();
+}
+
+/* ==========================================================================
+   M3 composition — put the two trees on the same ground line
+   --------------------------------------------------------------------------
+   BRIEF, "M3 composition note": cbonsai plants its trunk at row 35 and tops
+   out around row 19, so rows 0-18 of the grid are permanently blank. That is
+   faithful and is NOT to be fixed by cropping or re-centring the grid (N2).
+   The BLENDER plate is what moves.
+
+   Both sides were MEASURED in a browser, not eyeballed (proof/M3/alignment.txt):
+
+     ASCII, seed 42 at t = 1, 80x40 grid
+       canopy top   row 18, the first row that carries a glyph
+       pot rim      row 36, the ':___________./~~~\.___________:' lip of the
+                    base art — ROWS minus the 4 rows drawGBase() steals (N2
+                    addendum). Its ink is the underscore run, which sits on the
+                    baseline, NOT at the top of the cell — hence inkOffsets().
+
+     PLATE, public/frames/frame-0599.jpg at 900x1200, scanned per pixel row
+       canopy top   y = 545  -> v = 0.45417  (first row with luma > 60, stable
+                    from threshold 60 through 150)
+       pot rim      y = 1086 -> v = 0.90500  (widest span of the rim ellipse,
+                    which is the 3D reading of the ASCII pot's flat lip; it
+                    independently reproduces camera.json's pot_rim_v = 0.90)
+
+   Two landmarks, two unknowns: solve height and top so BOTH agree. The result
+   comes out ~1.03x the grid height, which is the camera solve in blender/
+   bonsai_growth.py checking out against the real thing.
+   ========================================================================== */
+
+/** Measured landmarks of the rendered plate, normalized on image height. */
+const PLATE = Object.freeze({ w: 900, h: 1200, canopyV: 545 / 1200, rimV: 1086 / 1200 });
+
+/** Measured landmark rows of the ASCII grid (seed 42, t = 1). */
+const ASCII_CANOPY_ROW = 18;
+const ASCII_RIM_ROW = 36;   // ROWS - BASE_HEIGHT; the pot's lip
+
+const inkCtx = (() => {
+  try { return document.createElement('canvas').getContext('2d'); } catch (e) { return null; }
+})();
+
+/**
+ * Where a glyph's INK starts inside its cell, in px. A row's cell top is not
+ * its ink top: '&' hangs 3.5px below the cell top at a 16px cell, and the
+ * underscore that draws the pot lip sits on the baseline, 12.5px down. Using
+ * cell edges instead would throw the ground line out by most of a row.
+ */
+function inkOffsets(fontSize, cellH, family) {
+  const fallback = { canopy: cellH * 0.22, rim: cellH * 0.78, baseline: cellH * 0.78, measured: false };
+  if (!inkCtx) return fallback;
+  try {
+    inkCtx.font = fontSize + 'px ' + family;
+    const amp = inkCtx.measureText('&');   // a canopy leaf
+    const und = inkCtx.measureText('_');   // the pot lip
+    const fa = amp.fontBoundingBoxAscent;
+    const fd = amp.fontBoundingBoxDescent;
+    if (!(fa > 0) || !(fd >= 0)) return fallback;
+    const baseline = (cellH - (fa + fd)) / 2 + fa;      // half-leading + ascent
+    const canopy = baseline - amp.actualBoundingBoxAscent;
+    const rim = baseline - und.actualBoundingBoxAscent;
+    if (!(canopy >= 0) || !(rim > canopy) || !(rim < cellH * 1.2)) return fallback;
+    return { canopy, rim, baseline, measured: true };
+  } catch (e) {
+    return fallback;
+  }
+}
+
+/** The numbers the last fit solved. Read by proof/QA via BonsaiDuet.alignment(). */
+let alignment = null;
+
+function fitPlate() {
+  if (!stageEl || !blenderPanel) return;
+
+  const ink = inkOffsets(metrics.fontSize, metrics.cellH, getComputedStyle(treeEl).fontFamily);
+  const panelRect = panel.getBoundingClientRect();
+  const gridRect = treeEl.getBoundingClientRect();
+
+  // Panel-LOCAL, not viewport: side by side the two panels share a top edge,
+  // and stacked they are the same box twice, so the same local y is the same
+  // composition either way.
+  const gridTop = gridRect.top - panelRect.top;
+  const yCanopy = gridTop + ASCII_CANOPY_ROW * metrics.cellH + ink.canopy;
+  const yRim = gridTop + ASCII_RIM_ROW * metrics.cellH + ink.rim;
+
+  const ideal = (yRim - yCanopy) / (PLATE.rimV - PLATE.canopyV);
+  let plateH = ideal;
+  let clamped = '';
+
+  // The plate may never be wider than its panel. (It never is at the aspect
+  // ratios this page runs at; this is a guard, not a layout strategy.)
+  const maxW = Math.max(80, blenderPanel.clientWidth - 36);
+  if (plateH * (PLATE.w / PLATE.h) > maxW) {
+    plateH = maxW / (PLATE.w / PLATE.h);
+    clamped = 'width';
+  }
+
+  // Anchor on the ground line: if anything has to give, the canopy gives.
+  let plateTop = yRim - PLATE.rimV * plateH;
+  if (plateTop < 6) {
+    plateH = (yRim - 6) / PLATE.rimV;
+    plateTop = 6;
+    clamped = clamped ? clamped + '+top' : 'top';
+  }
+  // Floor below the pot is allowed to run past the panel edge and be clipped
+  // there — it is nearly black, and the ground line outranks it.
+
+  const root = document.documentElement.style;
+  root.setProperty('--plate-top', plateTop.toFixed(3) + 'px');
+  root.setProperty('--plate-h', plateH.toFixed(3) + 'px');
+  root.setProperty('--guide-canopy', yCanopy.toFixed(3) + 'px');
+  root.setProperty('--guide-rim', yRim.toFixed(3) + 'px');
+
+  alignment = {
+    viewport: { w: window.innerWidth, h: window.innerHeight, dpr: window.devicePixelRatio },
+    grid: { rows: ROWS, cols: COLS, cellH: metrics.cellH, cellW: metrics.cellW, fontSize: metrics.fontSize, top: gridTop, height: ROWS * metrics.cellH },
+    ink,
+    ascii: { canopyRow: ASCII_CANOPY_ROW, rimRow: ASCII_RIM_ROW, canopyY: yCanopy, rimY: yRim },
+    plate: { top: plateTop, height: plateH, width: plateH * (PLATE.w / PLATE.h), canopyV: PLATE.canopyV, rimV: PLATE.rimV,
+             canopyY: plateTop + PLATE.canopyV * plateH, rimY: plateTop + PLATE.rimV * plateH },
+    delta: { canopy: (plateTop + PLATE.canopyV * plateH) - yCanopy, rim: (plateTop + PLATE.rimV * plateH) - yRim },
+    scaleVsGrid: plateH / (ROWS * metrics.cellH),
+    clamped: clamped || 'none',
+  };
+}
+
+/* Two hairlines per panel at the same panel-local y, so the alignment can be
+   seen and photographed rather than asserted. Off unless ?guides=1 or G. */
+function buildGuides() {
+  [panel, blenderPanel].forEach((host) => {
+    if (!host || host.querySelector('.guides')) return;
+    const box = document.createElement('div');
+    box.className = 'guides';
+    box.setAttribute('aria-hidden', 'true');
+    const canopy = document.createElement('i');
+    canopy.className = 'g-canopy';
+    canopy.dataset.label = 'canopy top';
+    const rim = document.createElement('i');
+    rim.className = 'g-rim';
+    rim.dataset.label = 'pot rim';
+    box.append(canopy, rim);
+    host.appendChild(box);
+  });
+}
+
+function setGuides(on) {
+  if (on) document.body.dataset.guides = 'on';
+  else delete document.body.dataset.guides;
+}
+
+/* ==========================================================================
+   Placeholder tree — exactly 80 x 40, and it proves it on screen
+   ========================================================================== */
+
+function initTreePlaceholder() {
+  if (treeEl.dataset.placeholder !== 'true') return;
+
+  const pad = (s) => (s + ' '.repeat(COLS)).slice(0, COLS);
+  const rows = [];
+
+  // Column ruler: tens, then units. Both exactly 80 wide.
+  let tens = '';
+  let units = '';
+  for (let i = 0; i < COLS; i++) {
+    tens += i % 10 === 0 ? String(Math.floor(i / 10)) : ' ';
+    units += String(i % 10);
+  }
+  rows.push(tens, units);
+
+  const inner = COLS - 2;
+  const hrule = '+' + '-'.repeat(inner) + '+';
+  const blank = '|' + ' '.repeat(inner) + '|';
+  const centred = (text) => {
+    const t = text.slice(0, inner);
+    const left = Math.floor((inner - t.length) / 2);
+    return '|' + ' '.repeat(left) + t + ' '.repeat(inner - left - t.length) + '|';
+  };
+
+  rows.push(hrule);                                // row 2
+  for (let r = 3; r <= 36; r++) rows.push(blank);  // rows 3..36
+  rows.push(hrule);                                // row 37
+
+  const lines = [
+    'A S C I I   P A N E L   —   P L A C E H O L D E R',
+    '',
+    'src/ascii/terminal.js renders the cbonsai port into <pre id="tree">',
+    'glibc TYPE_3 random() (N1)  ·  print-mode golden diff (N3)',
+    '',
+    'grid is exactly ' + COLS + ' columns × ' + ROWS + ' rows (N2)',
+    'the ruler above counts columns 0..' + (COLS - 1),
+    'the box edges sit on column 0 and column ' + (COLS - 1),
+    'row 0 is the top line, row ' + (ROWS - 1) + ' is the bottom line',
+    '',
+    'seed ' + params.seed + '  ·  duration ' + params.duration + 's  ·  speed ×' + params.speed,
+  ];
+  const top = 3 + Math.floor((34 - lines.length) / 2);
+  lines.forEach((line, i) => { rows[top + i] = centred(line); });
+
+  rows.push(pad(''));                                                  // row 38
+  rows.push(pad('row ' + (ROWS - 1) + ' — last line').slice(0, COLS - 7)
+            + 'col 79'.padStart(7));                                   // row 39
+
+  // This grid is a gate, not decoration. Fail loudly if it drifts.
+  const grid = rows.slice(0, ROWS).map(pad);
+  if (grid.length !== ROWS || grid.some((r) => r.length !== COLS)) {
+    throw new Error('placeholder grid is not ' + COLS + 'x' + ROWS);
+  }
+  treeEl.textContent = grid.join('\n');
+}
+
+/* ==========================================================================
+   Timeline
+   ========================================================================== */
+
+const railEl = document.getElementById('phase-rail');
+const trackEl = document.getElementById('timeline-track');
+const fillEl = document.getElementById('timeline-fill');
+const timeEl = document.getElementById('time-label');
+const timeNowEl = timeEl.querySelector('.now');
+const timeTotalEl = timeEl.querySelector('.total');
+const runTagEl = document.getElementById('run-tag');
+const timelineEl = document.getElementById('timeline');
+
+/* Every label is parked at its OWN start fraction on the same axis the fill
+   travels, and the track gets a tick at that identical fraction. The label,
+   the tick and the fill's edge are then one coordinate expressed three ways:
+   the bar arrives at BRANCHING exactly when the run does. (Labels spread
+   evenly would put SAPLING at 25% when the clock changes phase at 8%.) */
+function buildRail() {
+  PHASES.forEach((p, i) => {
+    if (i > 0) {
+      const tick = document.createElement('span');
+      tick.className = 'tick';
+      tick.style.left = (p.start * 100).toFixed(3) + '%';
+      trackEl.appendChild(tick);
+    }
+    const el = document.createElement('span');
+    el.className = 'phase';
+    el.dataset.name = p.name;
+    el.dataset.state = 'pending';
+    el.style.setProperty('--at', (p.start * 100).toFixed(3) + '%');
+    el.textContent = p.label;
+    railEl.appendChild(el);
+  });
+}
+
+/** MM:SS, where MM is free to exceed 59 — a 3600s run ends at 60:00. */
+function formatClock(seconds) {
+  const s = Math.max(0, Math.floor(seconds + 1e-6));
+  return String(Math.floor(s / 60)).padStart(2, '0') + ':' + String(s % 60).padStart(2, '0');
+}
+
+let lastPhaseIndex = -1;
+let lastPct = -1;
+let lastSecond = -1;
+let lastDone = null;
+
+/* ---- the two header counters -------------------------------------------
+   Read back from the panels' OWN datasets rather than recomputed here: the
+   left panel publishes data-step/data-steps on <pre id="tree">, the right
+   publishes data-frames on #blender-stage. So the header reports what is on
+   screen, and if the two panels ever disagreed the header would say so.
+   Written only when the text actually changes — over a 3600s run that is a
+   few hundred writes, not 216,000. */
+const asciiCountEl = document.getElementById('ascii-count');
+const plateCountEl = document.getElementById('plate-count');
+let lastStep = -1;
+let lastSteps = -1;
+let lastShown = -1;
+let lastFrames = -1;
+
+/** Zero-pad to the width of the total, so the counter never changes length and
+ *  the right-aligned header never jitters. Contact-sheet type, and it is free. */
+const pad = (n, total) => String(n).padStart(String(total).length, '0');
+
+/* Compares NUMBERS, then builds a string only if one moved. A run has 512
+   steps and 600 frames but 216,000 ticks, so the overwhelming majority of
+   calls here end after four integer comparisons having allocated nothing —
+   the same discipline the terminal renderer applies to its own hot path. */
+function renderCounters(frame) {
+  /* BOTH COUNTERS ARE 1-BASED. They sit side by side in the same header, so a
+     0-based one beside a 1-based one reads as an off-by-one bug: at boot the
+     header said "STEP 000 / 512" next to "FRAME 001 / 600". The panels publish
+     0-based INDICES (data-step, and floor(t*(frames-1))); both are converted
+     here by the same rule — "which of the N you are on", index + 1, capped at
+     N — so both start at 001 and both land on their own total at t = 1. */
+  const steps = Number(treeEl.dataset.steps);
+  const step = Number(treeEl.dataset.step);
+  const onStep =
+    Number.isFinite(steps) && steps > 0 && Number.isFinite(step) ? Math.min(steps, step + 1) : 0;
+  if (onStep !== lastStep || steps !== lastSteps) {
+    lastStep = onStep;
+    lastSteps = steps;
+    asciiCountEl.textContent = onStep ? `step ${pad(onStep, steps)} / ${steps}` : 'step —';
+  }
+
+  const frames = Number(stageEl.dataset.frames);
+  const shown = Number.isFinite(frames) && frames > 0
+    ? Math.min(frames, Math.floor(frame.t * (frames - 1)) + 1)
+    : 0;
+  if (shown !== lastShown || frames !== lastFrames) {
+    lastShown = shown;
+    lastFrames = frames;
+    plateCountEl.textContent = shown ? `frame ${pad(shown, frames)} / ${frames}` : 'frame —';
+  }
+}
+
+/**
+ * ORDER MATTERS, and it bit once. The shell subscribes to the clock BEFORE
+ * terminal.js and panel.js do — they are separate module scripts, evaluated
+ * after this one — so inside render() the panels have not yet been handed this
+ * frame and `#tree`'s data-step still carries the PREVIOUS one. On a 60Hz run
+ * that is invisible; at t = 1 the clock stops and the header would sit on the
+ * second-to-last step forever, in the one screenshot that matters.
+ *
+ * The clock emits to all subscribers synchronously, so a microtask queued here
+ * runs once the whole emit loop has unwound — same frame, both panels painted,
+ * nothing scheduled. That is the moment to read them.
+ */
+let pendingFrame = null;
+
+function flushCounters() {
+  const frame = pendingFrame;
+  pendingFrame = null;
+  if (frame) renderCounters(frame);
+}
+
+function scheduleCounters(frame) {
+  // One stable callback, not a fresh closure per tick, and at most one queued
+  // at a time: the 60Hz path allocates nothing here either.
+  const idle = pendingFrame === null;
+  pendingFrame = frame;
+  if (idle) queueMicrotask(flushCounters);
+}
+
+/* ==========================================================================
+   The arrival — t = 1
+   --------------------------------------------------------------------------
+   The clock has already cancelled its own loop by the time this runs, both
+   panels are painting their last state, and nothing will ask them for another.
+   All this adds is a MOMENT: one slow settle, then stillness.
+
+   Two flags, in order, and each is written exactly once per page:
+
+     data-state="held"     the instant t reaches 1. Every finale rule in
+                           src/styles.css hangs off this, and every animation it
+                           starts is `1 forwards` — a single pass that ends on
+                           its own final frame.
+     data-settled="true"   SETTLE_MS later, once that pass is over. It removes
+                           the animations outright and pins the values they
+                           landed on.
+
+   The second flag is the point. `animation-fill-mode: forwards` holds the last
+   keyframe but keeps the animation ALIVE on the compositor; an hour-long piece
+   that ends by parking a dozen live animations has not actually come to rest,
+   and the M4 soak would be measuring them. After SETTLE_MS this page is static
+   in the literal sense: no rAF, no timers, no animations, no network. The only
+   thing left running is the browser.
+   ========================================================================== */
+
+const SETTLE_MS = 3200;
+
+function arrive(frame) {
+  runTagEl.textContent = `seed ${frame.seed} · bloomed · held`;
+  setTimeout(() => {
+    // Last write of the run. Belt and braces for the two header counters: the
+    // clock is silent from here, so if anything were still catching up this is
+    // its final chance to land on 512/512 and 600/600.
+    renderCounters(frame);
+    document.body.dataset.settled = 'true';
+  }, SETTLE_MS);
+}
+
+/** The only subscriber the shell installs. `frame` is the clock's own frame. */
+function render(frame) {
+  const pct = frame.t * 100;
+  // CF-1 (BRIEF, carry-forward defects). The 0.01 guard is a paint throttle:
+  // over a 3600s run one rAF advances t by ~0.00046%, so the guard swallows
+  // ~22 frames out of every 23 — including, fatally, the LAST one. The piece
+  // ends on t = 1; `frame.done` forces that final write through so the bar
+  // visibly lands on 100% instead of holding at 99.992% forever.
+  if (frame.done || Math.abs(pct - lastPct) > 0.01) {
+    fillEl.style.width = pct.toFixed(3) + '%';
+    trackEl.setAttribute('aria-valuenow', pct.toFixed(1));
+    lastPct = pct;
+  }
+
+  const second = Math.floor(frame.elapsed);
+  if (frame.done || second !== lastSecond) {
+    timeNowEl.textContent = 't+' + formatClock(frame.elapsed);
+    lastSecond = second;
+  }
+
+  scheduleCounters(frame);
+
+  if (frame.phaseIndex !== lastPhaseIndex) {
+    lastPhaseIndex = frame.phaseIndex;
+    document.body.dataset.phase = frame.phase;
+    railEl.querySelectorAll('.phase').forEach((el, i) => {
+      el.dataset.state = i < frame.phaseIndex ? 'done' : i === frame.phaseIndex ? 'active' : 'pending';
+    });
+  }
+
+  // At t=1 both sides hold at full bloom and stop (brief; M4 soak).
+  if (frame.done !== lastDone) {
+    lastDone = frame.done;
+    document.body.dataset.state = frame.done ? 'held' : 'running';
+    if (frame.done) arrive(frame);
+  }
+
+  window.dispatchEvent(new CustomEvent('bonsai:tick', { detail: frame }));
+}
+
+/* ==========================================================================
+   Boot
+   ========================================================================== */
+
+buildGuides();
+fitTerminal();      // also solves the plate geometry (fitPlate)
+initTreePlaceholder();
+buildRail();
+timeTotalEl.textContent = formatClock(params.duration);
+
+/* Proof instrument: ?guides=1 draws the two measured landmark lines across
+   both panels; G toggles them at any time. Never on by default. */
+if (/(^|[?&])guides=(1|true|on)([&#]|$)/.test(window.location.search)) setGuides(true);
+window.addEventListener('keydown', (ev) => {
+  if (ev.key === 'g' || ev.key === 'G') setGuides(!document.body.dataset.guides);
+});
+
+const clock = createGrowthClock();
+
+/* Public surface. Panels should prefer clock.subscribe() — it is the same
+   frame this shell renders from, and it stops itself at t = 1. */
+const BonsaiDuet = {
+  COLS,
+  ROWS,
+  params,
+  PHASES,
+  phaseInfoAt,
+  clock,
+  metrics: () => ({ ...metrics }),
+  /* The measured two-point fit behind the composition (M3). QA reads this. */
+  alignment: () => (alignment ? JSON.parse(JSON.stringify(alignment)) : null),
+  PLATE,
+};
+window.BonsaiDuet = BonsaiDuet;
+
+runTagEl.textContent =
+  `seed ${params.seed} · ×${params.speed}` +
+  (params.duration !== 3600 ? ` · ${params.duration}s` : '');
+timelineEl.dataset.clock = 'ok';
+document.body.dataset.state = 'running';
+
+clock.subscribe(render);
+window.dispatchEvent(new CustomEvent('bonsai:ready', { detail: { clock, params } }));
+
+/* ==========================================================================
+   N8 — coming back from a backgrounded tab
+   --------------------------------------------------------------------------
+   A hidden tab gets no animation frames, so every subscriber is frozen at the
+   `t` it last saw. The clock is NOT frozen and must not be: it tracks real
+   wall-clock time, so twenty minutes away is twenty minutes of growth. That
+   jump is the correct behaviour; only the recovery was ever broken.
+
+   `visibilitychange` fires before the first restored rAF, and `tick()` emits
+   synchronously to every subscriber, so this one line lands the true `t` on
+   both panels a frame earlier than the clock's own loop could:
+
+     - the ASCII panel re-renders STRAIGHT to the correct step. Its renderer is
+       a function of the step index (terminal.js `renderStep`), so the skipped
+       steps cost one buffer replay and exactly one repaint — it never animates
+       through them.
+     - the plate re-seats its prefetch window on the new playhead and holds the
+       frame it already has until the right one has decoded (panel.js `resync`).
+
+   `pageshow` covers the bfcache restore, where visibilitychange may not fire.
+   Both are idempotent: the panels dedupe by step index and frame index. */
+function resumeFromBackground() {
+  if (document.visibilityState !== 'visible') return;
+  clock.tick();
+}
+document.addEventListener('visibilitychange', resumeFromBackground);
+window.addEventListener('pageshow', resumeFromBackground);
+
+/* --- geometry stays exact across resize / zoom / font swap --------------- */
+let refitPending = false;
+function scheduleRefit() {
+  if (refitPending) return;
+  refitPending = true;
+  requestAnimationFrame(() => {
+    refitPending = false;
+    fitTerminal();
+  });
+}
+new ResizeObserver(scheduleRefit).observe(panel);
+window.addEventListener('resize', scheduleRefit);
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleRefit);
+</script>
+
+<!-- LEFT PANEL. Module scripts run in document order, so BonsaiDuet (and its
+     clock) already exist when this one evaluates; terminal.js takes #tree over,
+     clears data-placeholder, and subscribes to the clock itself. -->
+<script type="module" src="src/ascii/terminal.js"></script>
+
+<!-- RIGHT PANEL. Owned by another agent. Loaded exactly like terminal.js: a
+     module script in document order, so window.BonsaiDuet (and its clock) is
+     already published when it evaluates — read it directly rather than waiting
+     on 'bonsai:ready', which has fired by then. panel.js takes #blender-stage
+     over, clears data-placeholder, and mounts the crossfading <img> ladder.
+     The stage's SIZE AND POSITION are the shell's (fitPlate, above); the two
+     images just fill it — `#blender-stage img` in src/styles.css already does
+     that, so panel.js should not set width/height/object-fit on them. -->
+<script type="module" src="src/blender/panel.js"></script>
+</body>
+</html>

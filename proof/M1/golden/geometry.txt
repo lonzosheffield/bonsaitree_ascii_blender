@@ -1,0 +1,23 @@
+cbonsai geometry confirmation (BRIEF N2)
+generated: 2026-09-16T05:08:49Z
+
+environment passed to the container:
+  COLUMNS=80
+  LINES=40
+  TERM=xterm-256color
+  docker run -i   (NO -t: no pseudo-tty is allocated, so there is no
+                   tty window size for ncurses to prefer over the
+                   LINES/COLUMNS environment variables)
+
+cbonsai -p -v -s 1 self-report (cbonsai.c:699-706, drawn into treeWin):
+  maxX: 080, maxY: 036
+
+interpretation:
+  stdscr   = 40 rows x 80 cols   <- LINES x COLUMNS, honoured
+  baseWin  = 4 rows x 31 cols              <- baseType 1 (cbonsai.c:213)
+  treeWin  = 36 rows x 80 cols   <- newwin(rows-4, cols) (cbonsai.c:233)
+
+RESULT: cbonsai HONOURS the COLUMNS/LINES environment variables.
+        ncurses setupterm() consults them and cbonsai never calls
+        use_env(FALSE), so NO 'script'/pty wrapper is needed and none
+        is used. Every golden file below is a true 40x80 grid.

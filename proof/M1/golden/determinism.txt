@@ -1,0 +1,40 @@
+cbonsai golden-output determinism proof
+generated: 2026-09-16T05:10:49Z
+
+method:   tools/golden.sh ran 'cbonsai -p -s <seed>' twice, each time in
+          a fresh container, and byte-diffed run 1 against run 2.
+geometry: COLUMNS=80 LINES=40, pinned (BRIEF N2) -- grid is 40x80
+mode:     print mode -p (BRIEF N3)
+image:    bonsai-duet/cbonsai-golden:bookworm
+
+SEED         SHA256 OF seed-<N>.txt (run 1)                                   BYTES    RUN1 vs RUN2
+------------ ---------------------------------------------------------------- -------- ---------------
+1            82e9a008d26bb850364f3ee56164d93cdaf6f6271644b212bb193ecf991ffa34 35048    IDENTICAL
+42           d42c10cdb2a026d51837cd1daf3aac36d0380f56e965292f7b705f0193a43c63 34933    IDENTICAL
+1337         19700bab31f09e15a02aef4b39ce39b8807f88fe4720e901bc3cd9548e8d0020 34986    IDENTICAL
+99999        c3480a2dd8cec1c612753d3d7690d79c8b02ef401a626eeeca5e2bddf70e09b7 34859    IDENTICAL
+2147483647   df0f81f857b007e0148f13d897082a74dfaafce2c5525bc10c0e3223fd194321 34970    IDENTICAL
+
+raw stdout streams (ncurses teardown + grid, unmodified) also compared:
+    raw/seed-1.raw -> IDENTICAL (89e5e0fd112fe232932b7acf7cc349731f9f44d1d0e91fe89db0b6a087e0dc36)
+    raw/seed-42.raw -> IDENTICAL (41cb8488e0f75bad2bfaf32f47e5284dc873b0b1cea413cc75ccde7d3bc4dceb)
+    raw/seed-1337.raw -> IDENTICAL (09e56ff9329684850a081b1e83120d0dc6b5bb0ead32fae0626e6fc32a07cdad)
+    raw/seed-99999.raw -> IDENTICAL (2f3ba30b5842f2f882bdff86956fcf702f76135469dbc791f469b2427eec90c0)
+    raw/seed-2147483647.raw -> IDENTICAL (8858fd4560b7091f4d5c033f51b13e72dcf56e27dd757ae801fbc047061b7907)
+
+verbatim diff output (empty == byte identical):
+  $ diff proof/M1/golden/seed-<N>.txt <run2>/seed-<N>.txt ; echo $?
+    seed-1.txt        -> (no output; exit 0)
+    seed-1.plain.txt  -> (no output; exit 0)
+    seed-42.txt        -> (no output; exit 0)
+    seed-42.plain.txt  -> (no output; exit 0)
+    seed-1337.txt        -> (no output; exit 0)
+    seed-1337.plain.txt  -> (no output; exit 0)
+    seed-99999.txt        -> (no output; exit 0)
+    seed-99999.plain.txt  -> (no output; exit 0)
+    seed-2147483647.txt        -> (no output; exit 0)
+    seed-2147483647.plain.txt  -> (no output; exit 0)
+
+RESULT: DETERMINISTIC.
+        All 5 seeds are byte-identical across two independent runs,
+        for the coloured grid, the plain grid, and the raw stdout stream.

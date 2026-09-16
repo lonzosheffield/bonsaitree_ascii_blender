@@ -1,0 +1,25 @@
+[07:14:44] ==========================================================================
+[07:14:44] bonsai_growth.py | blender 5.2.1 LTS
+[07:14:44] skeleton=C:\aha\ascii art\public\skeleton-42.json
+[07:14:44] out=C:\aha\ascii art\proof\M2\preview\regate-900x1200 res=900x1200 samples=48 format=PNG
+[07:14:44] frames=600 rendering 14 frame(s): [0, 54, 109, 130, 163, 218] ...
+[07:14:44] skeleton seed=42 segments=512 chains=180 leafCards=3024 blossomSites=482 steps=512
+[07:14:44] camera FIXED at (0.267802, -3.321643, 0.587824) rot=(86.0, -0.0, 4.0) lens=85.0mm
+[07:14:44] framing frame_w=0.7068 frame_h=0.9425  pot_rim_v=0.9000 canopy_top_v=0.4500 ground_v=0.8767  (v = fraction down from top of frame; M3 alignment uses these)
+[07:14:44] side margins: t=1 content spans u=0.1433..0.8567 (need >= 0.12 .. <= 0.88); floor meets frame bottom at y=-0.1441
+[07:14:52] frame 0000/0599 t=0.00000   8.08s  elapsed=    8.1s  eta=  105.1s  -> frame_0000
+[07:14:58] frame 0054/0599 t=0.09015   6.15s  elapsed=   14.2s  eta=   85.4s  -> frame_0054
+[07:15:04] frame 0109/0599 t=0.18197   6.16s  elapsed=   20.4s  eta=   74.8s  -> frame_0109
+[07:15:10] frame 0130/0599 t=0.21703   5.97s  elapsed=   26.4s  eta=   65.9s  -> frame_0130
+[07:15:17] frame 0163/0599 t=0.27212   6.20s  elapsed=   32.6s  eta=   58.6s  -> frame_0163
+[07:15:24] frame 0218/0599 t=0.36394   7.19s  elapsed=   39.8s  eta=   53.0s  -> frame_0218
+[07:15:30] frame 0272/0599 t=0.45409   6.59s  elapsed=   46.4s  eta=   46.4s  -> frame_0272
+[07:15:38] frame 0290/0599 t=0.48414   7.46s  elapsed=   53.8s  eta=   40.4s  -> frame_0290
+[07:15:45] frame 0327/0599 t=0.54591   7.27s  elapsed=   61.1s  eta=   33.9s  -> frame_0327
+[07:15:53] frame 0381/0599 t=0.63606   7.37s  elapsed=   68.5s  eta=   27.4s  -> frame_0381
+[07:16:00] frame 0436/0599 t=0.72788   7.72s  elapsed=   76.2s  eta=   20.8s  -> frame_0436
+[07:16:07] frame 0490/0599 t=0.81803   7.19s  elapsed=   83.4s  eta=   13.9s  -> frame_0490
+[07:16:15] frame 0545/0599 t=0.90985   7.16s  elapsed=   90.5s  eta=    7.0s  -> frame_0545
+[07:16:23] frame 0599/0599 t=1.00000   8.06s  elapsed=   98.6s  eta=    0.0s  -> frame_0599
+[07:16:23] DONE 14 frame(s) in 98.6s (7.04s/frame)
+[07:16:23] ==========================================================================

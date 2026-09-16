@@ -1,0 +1,214 @@
+================================================================================
+ Bonsai Duet - M0 proof: server boot
+ captured 2026-09-16T04:57:05Z  host=Lonzo-Laptop  node=v24.19.0
+================================================================================
+
+--------------------------------------------------------------------------------
+1. `npm start` on the canonical port 8080  --  BLOCKED BY A PRE-EXISTING SERVICE
+--------------------------------------------------------------------------------
+$ npm start
+
+> bonsai-duet@0.1.0 start
+> node server.mjs
+
+file:///C:/aha/ascii%20art/server.mjs:175
+  throw err;
+  ^
+
+Error: listen EACCES: permission denied 127.0.0.1:8080
+    at Server.setupListenHandle [as _listen2] (node:net:2145:21)
+    at listenInCluster (node:net:2224:12)
+    at node:net:2448:7
+    at process.processTicksAndRejections (node:internal/process/task_queues:90:21) {
+  code: 'EACCES',
+  errno: -4092,
+  syscall: 'listen',
+  address: '127.0.0.1',
+  port: 8080
+}
+
+Node.js v24.19.0
+
+Port 8080 is already held on this machine by an unrelated user application:
+
+
+LocalAddress LocalPort  State OwningProcess Process   
+------------ ---------  ----- ------------- -------   
+0.0.0.0           8080 Listen          5480 family-hub
+
+
+
+  $ curl -s -i http://localhost:8080/
+  HTTP/1.1 308 Permanent Redirect
+  location: /tv
+  content-length: 0
+  date: Wed, 16 Sep 2026 04:58:17 GMT
+  
+  ^ that is 'family-hub', not this project. It was NOT killed: it belongs to the
+    user, not to this build. Windows reports EACCES (not EADDRINUSE) when a port
+    is already bound with exclusive access.
+
+  server.mjs keeps 8080 as its hard default (`const PORT = Number(process.env.PORT) || 8080`).
+  The run below therefore uses PORT=8199 purely to dodge the squatter; nothing else differs.
+  ACTION FOR THE OPERATOR: stop family-hub (PID above) before the M0 gate, or change
+  the canonical port in the brief. This is an environment conflict, not a code defect.
+
+
+--------------------------------------------------------------------------------
+2. Successful boot  --  $ PORT=8199 npm start
+--------------------------------------------------------------------------------
+[bonsai-duet] serving C:\aha\ascii art
+[bonsai-duet] http://localhost:8199/
+[bonsai-duet] 60-second compressed run: http://localhost:8199/?duration=3600&speed=60
+
+--------------------------------------------------------------------------------
+3. $ curl -s -i http://localhost:8199/       ->  HTTP 200 + the real HTML
+--------------------------------------------------------------------------------
+HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Cache-Control: no-store
+Last-Modified: Wed, 16 Sep 2026 05:18:41 GMT
+Accept-Ranges: bytes
+Content-Length: 16486
+Date: Wed, 16 Sep 2026 05:27:15 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+   [first 45 lines of the body]
+   <!DOCTYPE html>
+   <html lang="en" data-app="bonsai-duet">
+   <head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <title>Bonsai Duet</title>
+   <meta name="description" content="One clock, two bonsai: a cbonsai ASCII port and a Blender render growing in lockstep over 3600 seconds.">
+   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23050706'/%3E%3Ctext x='8' y='12' font-size='11' text-anchor='middle' fill='%2300ff00' font-family='monospace'%3E%26%3C/text%3E%3C/svg%3E">
+   <link rel="stylesheet" href="src/styles.css">
+   </head>
+   <body data-phase="seed" data-state="booting">
+   
+   <!--
+     ============================================================================
+     INTEGRATION CONTRACT — read before you touch this file.
+     ============================================================================
+     This file is the shell only. Two regions are placeholders and belong to
+     other agents:
+   
+       LEFT   #ascii-panel  >  <pre id="tree">     owned by src/ascii/terminal.js
+       RIGHT  #blender-panel >  <div id="blender-stage">  owned by src/blender/panel.js
+   
+     Both placeholders carry data-placeholder="true". Clear that attribute when
+     you take the node over; nothing in this shell writes to either node once it
+     is gone.
+   
+     Growth is NOT the shell's. src/shared/clock.js is the single source of t.
+     The shell builds one GrowthClock with createGrowthClock() and hands it over:
+   
+       window.BonsaiDuet = {
+         COLS: 80, ROWS: 40,   // N2, fixed
+         params,               // { duration, speed, seed } — N6, from the query string
+         PHASES,               // the clock's phase table plus a display `label`
+         phaseInfoAt,          // re-export from clock.js
+         clock,                // the GrowthClock — subscribe to THIS
+         metrics(),            // -> { cellW, cellH, fontSize } in px, current cell size
+       }
+   
+     PREFERRED, for both panels:
+   
+         const stop = BonsaiDuet.clock.subscribe((frame) => { ... });
+   
+     subscribe() fires immediately with the current frame, then once per animation
+     frame, and the clock cancels its own loop at t = 1 — which is how both sides
+     "hold at full bloom and stop". `frame` is the clock's frozen GrowthFrame:
+
+   ... [body continues to the Content-Length above] ...
+
+--------------------------------------------------------------------------------
+4. Integrity checks
+--------------------------------------------------------------------------------
+
+   a) the response is byte-identical to index.html on disk, not a stub:
+      served bytes = 16486   index.html on disk = 16486
+      sha256(served) = a7c3e2b12cac2f37d08304f318c332dfc36e243a3c786817c3e9211ebe911805
+      sha256(disk)   = a7c3e2b12cac2f37d08304f318c332dfc36e243a3c786817c3e9211ebe911805
+
+   b) required hooks present in the served body:
+        id="ascii-panel"           present
+        id="blender-panel"         present
+        id="tree"                  present
+        id="timeline"              present
+        id="timeline-fill"         present
+        id="phase-rail"            present
+        id="time-label"            present
+        src/shared/clock.js        present
+        src/styles.css             present
+        data-placeholder="true"    present
+
+   c) MIME types:
+        /                        status=200  content-type=text/html; charset=utf-8
+        /index.html              status=200  content-type=text/html; charset=utf-8
+        /src/styles.css          status=200  content-type=text/css; charset=utf-8
+        /src/shared/clock.js     status=200  content-type=text/javascript; charset=utf-8
+        /package.json            status=200  content-type=application/json; charset=utf-8
+        /server.mjs              status=200  content-type=text/javascript; charset=utf-8
+        /nope.txt                status=404  content-type=text/plain; charset=utf-8
+
+   d) path traversal is contained (400 = rejected outright, 404 = clamped to root):
+        /../../../Windows/win.ini                -> 404
+        /..%2f..%2f..%2fWindows/win.ini          -> 404
+        /..%5c..%5c..%5cWindows/win.ini          -> 400
+        /C:/Windows/win.ini                      -> 400
+        /%5c%5clocalhost%5cc$%5cWindows/win.ini  -> 404
+
+   e) zero npm dependencies (N.B. the "start" script is plain `node server.mjs`):
+        "dependencies" in package.json:    0 occurrences
+        "devDependencies" in package.json: 0 occurrences
+        node_modules/ present:             NO
+        package-lock.json present:         NO
+        server.mjs imports:                'node:http''node:fs''node:fs/promises''node:path''node:url'
+
+--------------------------------------------------------------------------------
+5. The page actually renders  (headless Chrome via CDP, zero project deps)
+--------------------------------------------------------------------------------
+
+   a) N2 - the <pre id="tree"> grid is EXACTLY 80 columns x 40 rows.
+      DELTA is the box width minus the measured rendered width of 80 glyphs on
+      row 0, read back from a DOM Range. Zero means the box is the grid, not an
+      approximation of it. Checked at five viewport sizes:
+
+      1600x1000  rows=40  every row 80 chars=True  font=15px  row=18px  cell=8.789063px  <pre> width=703.125px  rendered width of 80 glyphs=703.125px  DELTA=0px  page scroll=none  console errors=0
+      1280x800   rows=40  every row 80 chars=True  font=11.666px  row=14px  cell=6.832031px  <pre> width=546.563px  rendered width of 80 glyphs=546.563px  DELTA=0px  page scroll=none  console errors=0
+      1920x1080  rows=40  every row 80 chars=True  font=18.333px  row=22px  cell=10.740234px  <pre> width=859.219px  rendered width of 80 glyphs=859.219px  DELTA=0px  page scroll=none  console errors=0
+      2560x1440  rows=40  every row 80 chars=True  font=25.833px  row=31px  cell=15.134766px  <pre> width=1210.781px  rendered width of 80 glyphs=1210.781px  DELTA=0px  page scroll=none  console errors=0
+      3440x1440  rows=40  every row 80 chars=True  font=25.833px  row=31px  cell=15.134766px  <pre> width=1210.781px  rendered width of 80 glyphs=1210.781px  DELTA=0px  page scroll=none  console errors=0
+
+      The fit routine chooses the largest font-size whose 80 columns and 40 rows
+      both fit, snaps the row to a whole pixel, then RE-MEASURES 80 glyphs at that
+      exact size and derives --cell-w from the measurement. Two-pass, because
+      glyph advance is not perfectly linear in font-size once hinting is involved.
+
+   b) Clock wiring - index.html imports src/shared/clock.js and subscribes.
+      Run: ?duration=3600&speed=120&seed=7
+        t=0.1156  phase=seed       rail: seed:active
+        t=0.2499  phase=sapling    rail: seed:done sapling:active   fill=24.94%   t+14:57 / 60:00
+      Run: ?duration=3600&speed=400&seed=7
+        t=0.8085  phase=mature     rail: ...mature:active           fill=80.73%   t+48:26 / 60:00
+      Run: ?duration=6&speed=1&seed=42   (drives all the way to t=1)
+        t=1.0000  phase=bloom      rail: BLOOM:active               fill=100%     t+00:06 / 00:06
+        body[data-state] flips to "held" and the clock cancels its own rAF loop
+        -> "ends bloomed and STOPPED".
+      N6 honoured: duration/speed/seed all come from the query string via
+      clock.js parseParams(); growth is read only from normalized t.
+
+   c) Zero console errors and zero failed network requests on every run above.
+      (CDP Runtime.exceptionThrown + Runtime.consoleAPICalled(error|warning) +
+       Log.entryAdded(error|warning) + Network.loadingFailed were all collected;
+       every list came back empty.)
+
+   d) Screenshots in this folder:
+        shell-1600x1000.png   mid-run, 1600x1000
+        shell-bloom-t1.png    held at t=1, BLOOM lit
+
+--------------------------------------------------------------------------------
+END
+--------------------------------------------------------------------------------

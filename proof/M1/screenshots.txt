@@ -1,0 +1,15 @@
+M1 live-panel screenshots — captured by the QA gate via Chrome DevTools Protocol (headless Chrome, 1600x1000)
+url: http://127.0.0.1:8137/?seed=42   (seed 42, duration 3600s, speed 1)
+method: for each t, BonsaiDuet.clock.start(now - t*duration*1000/speed); clock.pause(); clock.tick(); then Page.captureScreenshot
+
+t=0.00  clock.t=0  step=0/512  phase=seed  hud="t+00:00 / 60:00"  nonBlankCells=66  done=false  -> panel-t0.00.png  1343137 bytes  sha256=6ce255e56f563501d89e00019d4c642f4e23ea3463b38d6f67c242b4edd2314d
+t=0.25  clock.t=0.2500000277777844  step=128/512  phase=sapling  hud="t+15:00 / 60:00"  nonBlankCells=167  done=false  -> panel-t0.25.png  1359668 bytes  sha256=9c61413aedafbb63243fbb0db80e75b769cbbf098a7c989d0aac87d8a7e931da
+t=0.50  clock.t=0.5  step=256/512  phase=branching  hud="t+30:00 / 60:00"  nonBlankCells=232  done=false  -> panel-t0.50.png  1369135 bytes  sha256=d22f98395abdb501a9cb5ff8412a892e1e69525215f9e857322f5a3becb354bd
+t=0.75  clock.t=0.75  step=384/512  phase=mature  hud="t+45:00 / 60:00"  nonBlankCells=286  done=false  -> panel-t0.75.png  1380208 bytes  sha256=0da91a6530f136f930ef72b928df7d9d0318810d34baea182c1fe80673c156c5
+t=1.00  clock.t=1  step=512/512  phase=bloom  hud="t+60:00 / 60:00"  nonBlankCells=312  done=true  -> panel-t1.00.png  1397424 bytes  sha256=c5d8bd0567de97694bdfc127998d2317466bb8d6e688bfbfac626b8f7b5aa0c9
+
+live DOM text at t=1 byte-identical to proof/M1/golden/seed-42.plain.txt: true
+pre#tree geometry: 40 row spans, row text lengths [80], 703.125x720px, line-height 18px, 80 chars = 609.375px
+computed palette: {"leaf-dark":"rgb(0, 128, 0)","b leaf-dark":"rgb(0, 192, 0)","wood-dark":"rgb(128, 128, 0)","b wood-dark":"rgb(192, 192, 0)","leaf-bright":"rgb(0, 255, 0)","b leaf-bright":"rgb(156, 255, 156)","wood-bright":"rgb(255, 255, 0)","b wood-bright":"rgb(255, 255, 156)","txt":"rgb(128, 128, 128)","b txt":"rgb(200, 200, 200)"}
+
+browser console (0 entries):

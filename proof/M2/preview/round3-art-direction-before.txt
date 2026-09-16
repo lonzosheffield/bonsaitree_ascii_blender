@@ -1,0 +1,102 @@
+== BEFORE(round2)  proof/M2/preview/superseded-pipe-build  12 frames  450x600 ==
+
+[1a] BOTTOM ROW / FLOOR BAND  (require bottom-row luma <= 9)
+   f0000  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0054  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0109  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0163  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0218  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0272  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0327  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0381  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0436  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0490  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0545  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+   f0599  row-1 RGB=( 0.1, 0.1, 0.1) luma= 0.08 max=  1.0 | rows-4 luma= 0.09
+
+[1b] CONTENT EXTENT at t=1, from the clean plate (delta luma > 6)
+   tree pixels span  u=0.1733..0.8311   v=0.4533..0.9100
+   side margins: left=0.1733  right=0.1689   (require >= 0.12)
+   leaf pixels span  u=0.1733..0.8289   v=0.4533..0.9083
+
+[2] AMBIENT HUE at the first frame  (require G >= B and B-R <= +6)
+   backdrop glow, behind canopy v=.42-.52 u=.35-.65   RGB=( 20.3, 27.2, 22.6)  G-B= +4.6  B-R= +2.3
+   backdrop glow, wide band     v=.30-.45 u=.10-.90   RGB=(  7.2, 10.9,  8.8)  G-B= +2.1  B-R= +1.6
+   backdrop peak row            v=.46-.50 u=.44-.56   RGB=( 22.7, 30.1, 25.1)  G-B= +5.0  B-R= +2.3
+   top rows                     v=.00-.06             RGB=(  0.2,  0.5,  0.4)  G-B= +0.2  B-R= +0.2
+   floor, left of pot           v=.90-.97 u=.05-.20   RGB=(  1.0,  1.4,  1.1)  G-B= +0.2  B-R= +0.1
+
+[2b] TRUNK WARMTH  (wood only: differs from plate AND luma>40; require R-B >= +8)
+   f0000  (no wood in box yet: 0 px)
+   f0054  lit=  609  R= 96.27 G= 93.26 B= 76.96   R-B=+19.31  R-G= +3.01
+   f0109  lit=  781  R= 93.38 G= 90.66 B= 74.72   R-B=+18.66  R-G= +2.72
+   f0163  lit=  818  R= 93.73 G= 90.94 B= 74.94   R-B=+18.79  R-G= +2.78
+   f0218  lit=  847  R= 94.71 G= 91.79 B= 75.70   R-B=+19.01  R-G= +2.92
+   f0272  lit= 1548  R= 90.89 G= 87.05 B= 70.88   R-B=+20.01  R-G= +3.84
+   f0327  lit= 1652  R= 90.84 G= 86.77 B= 70.58   R-B=+20.26  R-G= +4.07
+   f0381  lit= 1733  R= 91.14 G= 86.91 B= 70.74   R-B=+20.40  R-G= +4.23
+   f0436  lit= 1824  R= 91.06 G= 86.85 B= 70.75   R-B=+20.31  R-G= +4.21
+   f0490  lit= 1919  R= 91.30 G= 86.57 B= 70.24   R-B=+21.06  R-G= +4.74
+   f0545  lit= 2028  R= 90.91 G= 85.78 B= 69.37   R-B=+21.54  R-G= +5.12
+   f0599  lit= 2266  R= 94.87 G= 89.53 B= 73.62   R-B=+21.25  R-G= +5.33
+
+[3a] RIGHT-PAD LEAF PIXELS  (must strictly increase f109->f218->f327->f436->f490)
+   -- Fable's literal box (old framing)  v=0.500..0.720 u=0.680..1.000
+      f0000  leaf px=     0
+      f0054  leaf px=   334  +334
+      f0109  leaf px=   474  +140
+      f0163  leaf px=   495  +21
+      f0218  leaf px=   576  +81
+      f0272  leaf px=   666  +90
+      f0327  leaf px=   734  +68
+      f0381  leaf px=   775  +41
+      f0436  leaf px=   789  +14
+      f0490  leaf px=   800  +11
+      f0545  leaf px=   803  +3
+      f0599  leaf px=   814  +11
+   -- same pad, re-mapped to new framing  v=0.667..0.832 u=0.635..1.000
+      f0000  leaf px=     0
+      f0054  leaf px=  1036  +1036
+      f0109  leaf px=  1662  +626
+      f0163  leaf px=  1720  +58
+      f0218  leaf px=  1950  +230
+      f0272  leaf px=  2276  +326
+      f0327  leaf px=  2546  +270
+      f0381  leaf px=  2725  +179
+      f0436  leaf px=  2832  +107
+      f0490  leaf px=  2870  +38
+      f0545  leaf px=  2847  *** NOT INCREASING (-23)
+      f0599  leaf px=  2734  *** NOT INCREASING (-113)
+
+[3b] WHOLE-FRAME mean|delta| between consecutive preview frames
+     (BRIEF N7: any consecutive pair with t in [0.55,0.87] must be >= 0.80/255)
+   f0000->f0054  t=0.000->0.090  mean|d|= 0.636/255
+   f0054->f0109  t=0.090->0.182  mean|d|= 0.689/255
+   f0109->f0163  t=0.182->0.272  mean|d|= 0.594/255
+   f0163->f0218  t=0.272->0.364  mean|d|= 0.626/255
+   f0218->f0272  t=0.364->0.454  mean|d|= 1.171/255
+   f0272->f0327  t=0.454->0.546  mean|d|= 1.383/255
+   f0327->f0381  t=0.546->0.636  mean|d|= 1.153/255  <-- N7 window
+   f0381->f0436  t=0.636->0.728  mean|d|= 1.428/255  <-- N7 window
+   f0436->f0490  t=0.728->0.818  mean|d|= 1.418/255  <-- N7 window
+   f0490->f0545  t=0.818->0.910  mean|d|= 1.064/255  <-- N7 window
+   f0545->f0599  t=0.910->1.000  mean|d|= 2.286/255
+   worst pair inside the N7 window: 1.064/255  (need >= 0.80)
+
+[4] LEAF SPECULAR GLITTER  (luma>200, B>R, blossoms masked out; require <= 150 at t=1)
+   f0000  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0054  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0109  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0163  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0218  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0272  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0327  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0381  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0436  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0490  cool-highlight px=    0   | all luma>200 px=    16  of which petal-like=    15
+   f0545  cool-highlight px=    0   | all luma>200 px=   150  of which petal-like=    22
+   f0599  cool-highlight px=    0   | all luma>200 px=  1178  of which petal-like=    63
+
+[4b] BRIGHTEST ELEMENTS IN THE CANOPY AT t=1
+   petal-like px=  4603  mean luma= 162.3  p99= 231.7  max= 237.6
+   leaf-like  px=  4499  mean luma= 121.0  p99= 197.7  max= 232.9

@@ -1,0 +1,13 @@
+# glibc rand() long-stream digests
+# glibc version: 2.36 (debian:bookworm-slim, gcc -O2)
+# program: proof/M0/glibc-golden-deep.c
+# each line: <seed> <FNV-1a-64 digest of 100000 big-endian uint32 rand() outputs>
+# note: basis constant is 1469598103934665603, as written in the C program
+1 9746763416736617909
+42 3670648034027311101
+1337 6754760067196887331
+99999 16920912803551295068
+2147483647 3033236445700284932
+0 9746763416736617909
+4294967295 1366063069155383873
+7 1970950224734890206

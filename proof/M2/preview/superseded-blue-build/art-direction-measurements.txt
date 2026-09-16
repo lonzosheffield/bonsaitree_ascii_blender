@@ -1,0 +1,60 @@
+== 1. PER-SEGMENT AGE RAMP: monotonicity + girth-at-birth (analytic, no render) ==
+   blender -b --factory-startup --python proof/M2/preview/verify-girth-monotonic.py  (every spline point, 300 frames)
+AGE_STEPS = 45.0   total_steps = 512
+MONOTONIC radius check over 300 sampled frames: worst shrink = 0.000e+00 m  at None
+  (R_MIN = 0.00085 m; any value <= 1e-12 is float noise, not a shrink)
+
+frame 247 -> t=0.4124 steps=234.6
+frame 262 -> t=0.4374 steps=248.8
+chains born in skeleton steps 225-252 (the f247-f262 window):
+  chain  81 birthStep=243  minX=-0.1571 m  segs=22
+  chain  79 birthStep=226  minX=-0.0092 m  segs=2
+  chain  78 birthStep=225  minX=+0.0000 m  segs=1
+  chain  80 birthStep=229  minX=+0.0000 m  segs=1
+=== chain 81 (furthest camera-left, birthStep=243) ===
+ frame       t    NEW r_mm    OLD r_mm  NEW %fin  OLD %fin  trunk_mm
+   244  0.4073    (not born)
+   247  0.4124    (not born)
+   250  0.4174    (not born)
+   255  0.4257    (not born)
+   258  0.4307       1.592       8.807       14%       80%     22.32
+   262  0.4374       1.719       8.838       16%       80%     22.39
+   270  0.4508       2.776       8.899       25%       81%     22.55
+   280  0.4674       5.425       8.974       49%       82%     22.74
+   295  0.4925       8.788       9.085       80%       83%     23.02
+   312  0.5209       9.208       9.208       84%       84%     23.33
+   340  0.5676       9.404       9.404       86%       86%     23.83
+   400  0.6678       9.805       9.805       89%       89%     24.84
+   599  1.0000      10.987      10.987      100%      100%     27.84
+
+== 2. ADJACENT-FRAME DIFF over the two dense verification windows ==
+   (mean absolute luma delta between consecutive rendered frames, 0-255)
+verify-f040-f070        31 frames  mean|d|=0.0801  max|d|=0.1116 /255 at frame_0041.png
+verify-f240-f312        73 frames  mean|d|=0.0906  max|d|=0.1557 /255 at frame_0284.png
+   Fable measured max 0.21/255 on the rejected build; the age ramp lowers it.
+
+== 3. KEYWARM 8.5W/0.34 -> 22W/0.25 : trunk warmth, lit pixels only (luma>40) ==
+f109 trunk NEW           lit px=  1341  R= 98.43 G= 89.50 B= 86.04  R-B=+12.40
+f163 trunk NEW           lit px=  1703  R= 97.56 G= 87.73 B= 83.25  R-B=+14.31
+f272 trunk NEW           lit px=  3278  R= 91.40 G= 84.99 B= 83.48  R-B= +7.92
+f436 trunk NEW           lit px=  5800  R= 90.18 G= 82.34 B= 79.09  R-B=+11.10
+f599 trunk NEW           lit px=  6085  R= 92.11 G= 84.30 B= 81.02  R-B=+11.09
+f599 trunk OLD 8.5W      lit px=  4581  R= 80.12 G= 81.28 B= 86.99  R-B= -6.87
+   R-B flips from -6.87 (cool grey putty) to +7.9..+14.3 (warm wood) everywhere.
+
+== 4. POT RIM / FLOOR POOL : did the brighter key blow out the base? ==
+floor pool f000 OLD 8.5W   R= 60.34 G= 73.75 B= 90.02  luma= 72.08
+floor pool f000 NEW 22W    R= 66.53 G= 77.73 B= 92.46  luma= 76.42
+floor pool f599 OLD 8.5W   R= 56.84 G= 69.32 B= 84.56  luma= 67.77
+floor pool f599 NEW 22W    R= 63.34 G= 73.56 B= 87.22  luma= 72.37
+pot rim   f000 OLD 8.5W    R= 41.22 G= 52.70 B= 65.66  luma= 51.20
+pot rim   f000 NEW 22W     R= 47.56 G= 56.99 B= 68.35  luma= 55.81
+
+OLD-f000     p50= 23 p99=145 p99.9=180 max=255  pct>=250: 0.0011%
+NEW-f000     p50= 23 p99=146 p99.9=180 max=255  pct>=250: 0.0011%
+OLD-f599     p50= 26 p99=199 p99.9=224 max=255  pct>=250: 0.0011%
+NEW-f599     p50= 27 p99=208 p99.9=238 max=255  pct>=250: 0.0011%
+   Highlight distribution is unchanged: p99.9 moves <=14/255 and the
+   fraction of pixels >=250 is identical, so nothing new clips.
+   Floor pool +4.3/255 luma (+0.08 EV), pot rim +4.6/255 (+0.12 EV): the
+   base of the picture is not visibly brighter, only the trunk is.

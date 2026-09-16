@@ -1,0 +1,81 @@
+
+==============================================================================
+M4 PREFLIGHT — start 2026-09-16 15:33:47.098Z
+URL            http://127.0.0.1:8137/?duration=3600&speed=40&seed=42
+Browser        Chrome HEADLESS (--headless=new)
+Plan           90s run, sample every 10s, hide at
+               t+30s for 12s, screenshots at [0, 22.5, 45, 67.5]s + end
+==============================================================================
+Chrome         Chrome/152.0.7977.83
+User agent     Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/152.0.0.0 Safari/537.36
+
+Panels mounted. ASCII steps=512  ladder frames=600
+Anchor         wall=2026-09-16 15:33:55.521Z  clock realElapsed=0.0673s  t=0.000747778
+Elapsed below is the RUNNER's own wall clock (anchor + Date.now()), not the page's.
+
+  # wall-clock             elapsed          t       DRIFT      step  frames lo/hi   frac  heapMB  cache  err   LT
+------------------------------------------------------------------------------------------------------------------------
+  1 2026-09-16 15:33:55.669Z     0.2s  0.0024356  0.00004333     0/512         -1/-1  0.000    2.04     25    0    1
+      >>> screenshot pre-t0.00.png  (1582x904, t=0.060850)
+  2 2026-09-16 15:34:05.459Z    10.0s  0.1112056  0.00003556    56/512         66/67  0.522    2.28     27    0    1
+  3 2026-09-16 15:34:15.468Z    20.0s  0.2224144  0.00003333   113/512       133/134  0.188    4.04     27    0    0
+      >>> screenshot pre-t0.25.png  (1582x904, t=0.256318)
+  4 2026-09-16 15:34:25.472Z    30.0s  0.3335656  0.00002889   170/512       199/200  0.738    5.82     27    0    1
+
+------------------------------------------------------------------------------------------------------------------------
+N8 BACKGROUNDING TEST — hiding the tab for 12s
+  visibilityState after activating the other tab: "hidden"
+  t before hide ......... 0.3346511   step 171/512   frames 200/201
+  t just before restore . 0.4682733   (hidden for 12.1s real)
+  t after restore ....... 0.5191400   step 265/512   frames 310/311
+  model time missed ..... 481.0s of growth
+  max rAF gap ........... 12088 ms  (proves rAF really was suspended)
+  first frame back at ... +0.0 ms; step on that frame = 240 (wanted 239)
+  recovery complete at .. +329 ms
+  blank frames .......... 0 of 239 recorded animation frames
+  base frame sequence ... 201 -> 281 -> 283 -> 284 -> 285 -> 286 -> 287 -> 288 -> 289 -> 290 -> 291 -> 292 ...
+  plate state sequence .. resyncing -> ready
+------------------------------------------------------------------------------------------------------------------------
+
+  5 2026-09-16 15:34:42.580Z    47.1s  0.5236667  0.00004111   268/512       313/314  0.660    2.00     27    0    0
+      >>> screenshot pre-t0.52.png  (1582x904, t=0.529983)
+  6 2026-09-16 15:34:45.464Z    50.0s  0.5557089  0.00003889   284/512       332/333  0.853    1.96     27    0    1
+  7 2026-09-16 15:34:55.464Z    60.0s  0.6668156  0.00003444   341/512       399/400  0.404    2.06     27    0    0
+      >>> screenshot pre-t0.75.png  (1582x904, t=0.756358)
+  8 2026-09-16 15:35:05.466Z    70.0s  0.7779467  0.00003222   398/512       465/466  0.958    3.33     27    0    1
+  9 2026-09-16 15:35:15.468Z    80.0s  0.8890744  0.00002667   455/512       532/533  0.510    1.97     27    0    0
+ 10 2026-09-16 15:35:25.472Z    90.0s  1.0000000  0.00000000   512/512       599/599  0.000    2.17      3    0    0
+
+========================================================================================================================
+FINALE CHECKS
+      >>> screenshot pre-t1.00.png  (1582x904, t=1.000000)
+ 11 2026-09-16 15:35:26.265Z    90.8s  1.0000000  0.00000000   512/512       599/599  0.000    2.21      3    0    0   <<< t=1 reached
+  holding for 10s to see whether anything is still scheduling work...
+ 12 2026-09-16 15:35:36.349Z   100.9s  1.0000000  0.00000000   512/512       599/599  0.000    2.21      3    0    0   <<< +10s after t=1
+  clockDone                true
+  frameDone                true
+  t                        1
+  bodyState                held
+  bodySettled              undefined
+  fillWidth                100%
+  step                     512/512
+  plateFrames              599/599
+  baseIndex                599
+  plateState               held
+  rafScheduledAfterDone    0
+  cacheHeld                3
+  cacheBytes               243406
+
+HEADLINE
+  max DRIFT ............... 0.000043333  (156.0 ms of model time)
+  one animation frame is .. 0.000004639 in t; one ladder frame is 0.001669449
+  drift ever > 1 rAF frame  true
+  drift ever > 1 ladder fr. false
+  heap first/median/peak/final  2.04 / 2.21 / 5.82 / 2.21 MB
+  frame cache first/peak/final  25 / 27 / 3 entries
+  console errors .......... 0  exceptions 0  browser-log errors 0
+  warnings ................ 0 console, 0 browser-log
+  long tasks .............. 5 (946 ms total, max 272 ms)
+  rAF scheduled after t=1 . 0
+M4 PREFLIGHT — end 2026-09-16 15:35:36.943Z
+========================================================================================================================

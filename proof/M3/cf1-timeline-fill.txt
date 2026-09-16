@@ -1,0 +1,53 @@
+CF-1 — THE TIMELINE FILL NOW LANDS ON 100%
+==========================================
+docs/BRIEF.md, "Carry-forward defects":
+
+  CF-1 — timeline fill can skip the final frame. In index.html's render(), the
+  guard `Math.abs(pct - lastPct) > 0.01` suppresses the last update, leaving
+  the progress fill stuck at ~99.992% while the page is held at bloom. Force
+  the update when `frame.done` is true.
+
+WHY IT BITES ONLY ON THE REAL RUN
+---------------------------------
+The guard is a paint throttle. One animation frame of a 3600 s run advances t
+by 16.7ms / 3600s = 0.00046 percentage points, so the guard swallows about 22
+frames out of every 23 — including the last one. On a compressed QA run
+(?duration=6) each frame is worth 0.28 points, the guard never fires twice in
+a row, and the bug is invisible. That is exactly why it survived M0.
+
+THE FIX (index.html, render())
+------------------------------
+  if (frame.done || Math.abs(pct - lastPct) > 0.01) { ... }
+
+`frame.done` is the clock's own t === 1 flag, so the final write always goes
+through. The same `frame.done ||` was added to the MM:SS write, which has the
+identical shape of guard.
+
+MEASURED — replaying the real animation cadence
+------------------------------------------------
+Page: http://127.0.0.1:8137/?duration=3600 (default run, speed x1).
+The last 2 seconds of the run were replayed through the clock at 16.7 ms per
+frame — 121 frames, the last one crossing the end so t clamps to exactly 1 —
+and the same frame sequence was run through a model of the OLD guard.
+
+  frames replayed                   121
+  per-frame delta                   0.00046388 percentage points
+  paint throttle in render()        0.01 percentage points
+
+  OLD guard   writes: 6    final fill width: 99.995%    (never reaches 100%)
+  SHIPPED     writes: 7    final fill width: 100%
+
+  shipped, at the final frame:
+    t                        1
+    frame.done               true
+    #timeline-fill width     100%        (computed 1280.55px of a 1282.15px track)
+    aria-valuenow            100.0
+    body[data-phase]         bloom
+    body[data-state]         held
+    time readout             t+60:00 / 60:00
+    run tag                  bloomed · held
+
+One extra style write per run buys the ending. Screenshot:
+m3-duet-1536x826-t1.00-bloom-held.jpg — the bar is full, the head of the fill
+has become the finished edge at the end of the track, and the BLOOM chip on the
+rail is the lit one.

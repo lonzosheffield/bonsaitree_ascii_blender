@@ -1,0 +1,166 @@
+M3 — THE BLOOM FINALE, AND HOW THE PIECE COMES TO REST
+======================================================
+docs/BRIEF.md: "at t=3600s both hold at full bloom and stop."
+M4 will soak this for a real hour: "ends bloomed and **stopped**."
+
+This file records what happens at t = 1, why it is as quiet as it is, and the
+measurement that the page genuinely STOPS rather than merely looking finished.
+
+
+-------------------------------------------------------------------------
+1. THE BRIEF SAYS "STOP". MOST WAYS OF ENDING A WEB PAGE DO NOT.
+-------------------------------------------------------------------------
+A CSS animation with `animation-fill-mode: forwards` holds its last keyframe,
+which LOOKS like stopping. It is not: the animation stays alive on the
+compositor forever, and so does every infinite one that was already running.
+An hour-long piece that ends by parking a dozen live animations has not come
+to rest, and the M4 soak would spend the rest of the hour measuring them.
+
+So the ending is written in two stages, both driven from index.html's
+`arrive()`, and each flag is written exactly once per page:
+
+  body[data-state="held"]     the instant the clock reports t = 1.
+                              Every finale rule in src/styles.css hangs off
+                              this, and every animation it starts is a single
+                              pass (`1 forwards`); every transition it starts
+                              is self-terminating.
+  body[data-settled="true"]   SETTLE_MS = 3200 ms later, once that pass is
+                              over. It removes the animations outright and
+                              writes the values they landed on directly, so
+                              the final state is held by static CSS.
+
+The second flag is also what silences the one thing that DOES loop during the
+run: the terminal's phosphor breath on `.crt-mask`. A CRT breathing is alive;
+a finished piece should not be.
+
+
+-------------------------------------------------------------------------
+2. WHAT THE ARRIVAL ACTUALLY IS
+-------------------------------------------------------------------------
+Restraint was the brief. This is the end of a slow hour, not a reveal, so
+nothing moves, nothing scales, nothing flashes, and nothing appears that was
+not already on the page. Over ~3 seconds, four things that are already there
+take one breath of light and settle just above where they were:
+
+  the rail        the BLOOM chip stops pulsing. The 2.4s pulse that ran
+                  through the final phase — the approach signal — resolves
+                  into one steady lit chip (`bloom-hold`, 2800ms, one pass).
+                  The four phases already crossed step BACK a shade, so BLOOM
+                  is unambiguously the state the piece ended in rather than
+                  merely the last one lit.
+  the terminal    its glow swells by about a third and returns to a little
+                  above its running level (`arrive-terminal`, 3200ms).
+  the plate       the same move in the studio's cool white, so both frames
+                  breathe together (`arrive-plate`, 3200ms).
+  the bar         the growing tip at the head of the fill becomes a finished
+                  end cap (`arrive-cap`, 2600ms) at 100% of the track.
+
+  Two quieter marks, as transitions rather than animations:
+  the ground line and the two header counters settle a shade warmer — the
+  only sign the panels themselves give that this is an end and not a pause.
+
+  The readout's tag becomes "seed 42 - bloomed - held". It carries
+  aria-live="polite", so across a whole hour a screen reader is told exactly
+  two things: what run this is, and that it has arrived.
+
+  prefers-reduced-motion: reduce keeps the ENDING and drops the breath. The
+  page is simply in its held state, and 3.2s later in its settled one.
+  Nothing swells.
+
+
+-------------------------------------------------------------------------
+3. MEASURED — IT REALLY STOPS
+-------------------------------------------------------------------------
+Read from the live page after a complete run
+(http://127.0.0.1:8137/?duration=3600&speed=60, 60.007 real seconds, t
+reaching exactly 1), then re-read 1.5 s later:
+
+  document.getAnimations().length ............ 0
+      Not "0 running" — zero animation objects of any kind, CSS animations and
+      transitions alike. There is nothing left on the compositor.
+
+  identical over 1.5 s ....................... true
+      clock t, #tree data-step, plate base index, both layer opacities, plate
+      state and the computed width of #timeline-fill were byte-identical
+      across the two reads.
+
+  final state
+      clock         t = 1, done = true, its rAF loop cancelled by GrowthClock
+                    itself (it is never rescheduled after t reaches 1)
+      ASCII         step 512 / 512 — the last recorded growth step
+      plate         frame 599 at opacity 1, top layer transparent: frame 599
+                    alone, unmixed, not a blend
+      body          data-phase="bloom" data-state="held" data-settled="true"
+      rail          seed/sapling/branching/mature done, bloom active
+      bar           inline width "100%", aria-valuenow "100.0"
+      readout       "t+60:00 / 60:00",  "seed 42 - bloomed - held"
+      headers       "step 512 / 512"    "frame 600 / 600"
+
+  no loop, no reset
+      Across the whole 3499-tick recorded run the ASCII step never decreased
+      and the plate frame never decreased (see sync-delta.txt section 2).
+      There is no code path that re-seeds, rewinds or replays: the ASCII tree
+      is grown once at mount and `t` only selects how many of that single
+      run's steps have been applied, and the clock clamps t at 1 and cancels
+      its loop there.
+
+  network
+      At t = 1 the plate's prefetch window ends at the last frame, so once 599
+      is on screen nothing further is requested.
+
+  Screenshots
+      full-page-t1.00-bloom-settling.jpg   during the breath
+      full-page-t1.00-bloom-held.jpg       after data-settled, at rest
+      full-page-t1.00-guides.jpg           the same moment with the two
+                                           measured landmark lines up
+
+
+-------------------------------------------------------------------------
+4. WHOLE-PAGE POLISH IN THIS PASS
+-------------------------------------------------------------------------
+The two panels had to read as two views of ONE specimen rather than two
+widgets. Four changes, all in index.html and src/styles.css:
+
+  THE FOLD (#seam). The divider was a green hairline with a green bloom
+  spilling rightward, which read as the left panel bleeding onto the right
+  one. It is now a NEUTRAL hairline — neither the terminal's phosphor nor the
+  studio's cool white — with the light carried by a separate gradient that is
+  dark at top and bottom and brightest across the middle band, the band both
+  trees occupy. The eye crosses between the panels where there is something to
+  compare.
+
+  THE GROUND (#ground-line). One hairline, drawn across the full width at
+  --guide-rim: the exact y that fitPlate() solved so the ASCII pot's lip and
+  the rendered pot's rim land on the same row. It runs unbroken from the left
+  panel, through the seam, to the right, so the two trees are SEEN to be
+  standing on one surface. It is deliberately at the threshold of visibility:
+  you notice it only after you notice that both pots sit on it. Measured on
+  the shipped page: ground line 576.800 px, ASCII rim 576.800 px, plate rim
+  576.800 px.
+
+  THE HEADERS. Both now read FORMAT - LIVE COUNTER in the same type at the
+  same gutter: "80 x 40 - step 307 / 512" and "900 x 1200 - frame 360 / 600".
+  This replaced a pixel-metrics debug string ("80 x 40 - 6.83x14px") that
+  meant nothing to a viewer; that measurement now rides along only when the
+  alignment guides are up. The counters are the piece's whole thesis in two
+  numbers — one clock, two representations — and they cross their totals
+  together at t = 1. Zero-padded and tabular, so the right-aligned header
+  never jitters as they climb.
+
+  THE EMPTY UPPER REGION. It is not filled and it is not cropped. cbonsai
+  plants its trunk at row 35 and rows 0-18 are permanently blank (BRIEF, M3
+  composition note), and the plate is framed to match — so the headroom above
+  the specimen is now EXACTLY equal on both sides, to the pixel, which is what
+  makes it read as composition rather than as unused area. The header
+  counters give the region something to carry; the vignette and the ground
+  line give it a floor.
+
+  One defect was found and fixed while doing this. The shell subscribes to the
+  clock BEFORE terminal.js and panel.js do — they are separate module scripts,
+  evaluated after the inline one — so inside render() the panels have not yet
+  been handed the current frame and #tree's data-step still carried the
+  PREVIOUS one. At 60Hz that is invisible; at t = 1 the clock stops and the
+  header would have sat on the second-to-last step forever, in the one
+  screenshot that matters. The counters are now read in a microtask queued
+  from render(), which runs once the clock's whole emit loop has unwound —
+  same frame, both panels painted.

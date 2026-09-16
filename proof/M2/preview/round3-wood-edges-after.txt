@@ -1,0 +1,41 @@
+== AFTER(round3)  proof/M2/preview  450x600 ==
+
+[E1] BRANCH-EDGE HUE  (wood edge pixels, luma > 45; B-R, 8-bit)
+     a saturated cyan line reads as a long positive tail
+      frame  edge px  mean B-R       p90       p99       max      %B>R
+     f0054      752    -39.88    -21.00    -12.51     -9.00     0.00%
+     f0109     1556    -43.65    -19.00    -11.00     -5.00     0.00%
+     f0163     2323    -45.34    -18.00    -10.00     -3.00     0.00%
+     f0218     2646    -45.55    -18.00     -8.00     -3.00     0.00%
+     f0272     3016    -43.38    -18.00     -9.00     -3.00     0.00%
+     f0327     3226    -43.52    -18.00    -10.00     -3.00     0.00%
+     f0381     2992    -42.31    -18.00    -11.00     -2.00     0.00%
+     f0436     2821    -40.56    -17.00    -11.20     -6.00     0.00%
+     f0490     2411    -38.15    -17.00    -11.00      0.00     0.00%
+     f0545     2715    -36.04    -17.00    -11.00      0.00     0.00%
+     f0599     4079    -32.73    -18.00     -9.00      0.00     0.00%
+
+[E2] BARK HIGH-FREQUENCY ENERGY  (mean local std of luma on lit wood, 3x3 window)
+     f0218  interior px=    293   mean local std=14.767   p95=32.669
+     f0272  interior px=    489   mean local std=11.408   p95=29.177
+     f0327  interior px=    659   mean local std=12.500   p95=31.506
+     f0381  interior px=    635   mean local std= 8.910   p95=18.505
+     f0436  interior px=    811   mean local std= 9.400   p95=21.802
+     f0490  interior px=    804   mean local std= 7.719   p95=16.479
+     f0545  interior px=    831   mean local std= 7.825   p95=16.801
+     f0599  interior px=    943   mean local std= 7.663   p95=17.217
+
+[E3] THE BASE: bulb or flare?
+     base box px x=149..262 y=465..585, trunk band v=0.70..0.78
+      frame   base px  base mean trunk mean     ratio    hot share
+     f0054       675      62.69      61.05     1.027        6.07%
+     f0109       784      60.94      66.80     0.912        2.42%
+     f0163       820      61.12      66.97     0.913        2.32%
+     f0218       874      61.02      65.51     0.931        2.63%
+     f0272      1405      59.29      60.54     0.979        6.41%
+     f0327      1481      59.86      62.83     0.953        4.93%
+     f0381      1584      59.60      61.86     0.963        6.19%
+     f0436      1688      59.67      59.81     0.998        8.23%
+     f0490      1784      59.66      59.90     0.996        8.30%
+     f0545      1901      59.51      61.85     0.962        7.00%
+     f0599      2246      69.11      75.22     0.919        8.19%
